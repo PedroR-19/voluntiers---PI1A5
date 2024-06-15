@@ -1,0 +1,48 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Dashboard ({{ user }}) | {% endblock title %}
+
+{% block content %}
+  <div class="main-content center container">
+    <h2>Dashboard ({{ user }})</h2>
+
+    {% include 'profiles/partials/login_message.html' %}
+    {% include 'global/partials/messages.html' %}
+
+    <div class="profiles-dashboard-container">
+      <h3>Suas vagas ou candidaturas</h3>
+
+      {% if user_type == 'ONG' %}
+        <ul>
+          {% for vaga in vagas %}
+            <li>
+              <a href="{% url 'profiles:dashboard_vaga_edit' vaga.id %}">{{ vaga.title }}</a>
+              <form class="inline-form form-delete" action="{% url 'profiles:dashboard_vaga_delete' %}" method='POST'>
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ vaga.id }}">
+              </form>
+            </li>
+          {% empty %}
+            <li>
+              <p>Você ainda não tem nenhuma vaga aberta.</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% elif user_type == 'Voluntier' %}
+        <ul>
+          {% for candidatura in candidaturas %}
+            <li>
+              {{ candidatura.vaga.title }} - Candidatura feita em {{ candidatura.data_candidatura }}
+            </li>
+          {% empty %}
+            <li>
+              <p>Você ainda não se candidatou a nenhuma vaga.</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>User type not recognized.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}

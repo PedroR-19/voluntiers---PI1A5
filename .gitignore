@@ -76,10 +76,7 @@ celerybeat-schedule.*
 *.sage.py
 
 # Environments
-.env
-.venv
 env/
-venv/
 ENV/
 env.bak/
 venv.bak/
@@ -119,7 +116,6 @@ GitHub.sublime-settings
 __pycache__/
 *.pyc
 __localcode
-venv
 env
 .DS_Store
 local_settings.py

@@ -1,15 +1,17 @@
 {% extends 'global/base.html' %}
 
+{% load i18n %}
+
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-  <h1>Candidatar-se à vacancy: {{ vacancy.title }}</h1>
+  <h1>{% translate 'Apply for' %}: {{ vacancy.title }}</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <div class="form-content form-content-grid">
       <div class="form-group">
-        <button type="submit">Enviar application</button>
+        <button type="submit">{% translate 'Submit' %}</button>
       </div>
     </div>
   </form>

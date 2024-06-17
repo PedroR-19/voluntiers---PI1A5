@@ -15,23 +15,23 @@ class Category(models.Model):
 
 class Vacancy(models.Model):
     title = models.CharField(max_length=65, verbose_name=_('Title'))
-    description = models.CharField(max_length=165)
+    description = models.CharField(max_length=165, verbose_name=_('Description'))
     slug = models.SlugField(unique=True)
-    salary = models.IntegerField()
-    types = models.CharField(max_length=65)
-    requirements = models.TextField()
+    salary = models.IntegerField(verbose_name=_('Salary'))
+    types = models.CharField(max_length=65, verbose_name=_('Types'))
+    requirements = models.TextField(verbose_name=_('Requirements'))
     requirements_is_html = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created_at'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated_at'))
     is_published = models.BooleanField(default=False)
     cover = models.ImageField(
-        upload_to='vacancies/covers/%Y/%m/%d/', blank=True, default='')
+        upload_to='vacancies/covers/%Y/%m/%d/', blank=True, default='', verbose_name=_('Cover'))
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True,
-        default=None,
+        default=None
     )
     profile = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True
+        User, on_delete=models.SET_NULL, null=True, verbose_name=_('Profile')
     )
 
     def __str__(self):
@@ -49,10 +49,10 @@ class Vacancy(models.Model):
 
 
 class Application(models.Model):
-    vacancy = models.ForeignKey('Vacancy', on_delete=models.CASCADE, related_name='applications_vaga')
+    vacancy = models.ForeignKey('Vacancy', on_delete=models.CASCADE, related_name='applications_vaga', verbose_name=_('Vacancy'))
     voluntier = models.ForeignKey(User, on_delete=models.CASCADE)
     cv = models.FileField(upload_to='cvs/%Y/%m/%d/')
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True, verbose_name=_('Date'))
 
     def __str__(self):
         return f'{self.voluntier.username} - {self.vacancy.title}'

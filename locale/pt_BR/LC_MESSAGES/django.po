@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 10:08-0300\n"
+"POT-Creation-Date: 2024-06-17 12:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\base_templates\global\partials\form.html:45
+#: .\vacancies\templates\vacancies\pages\candidatar_vacancy.html:14
+msgid "Submit"
+msgstr "Enviar"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:16
+msgid "vacancies"
+msgstr "Vagas"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:28
+msgid "You do not have any vacancy"
+msgstr "Você não tem nenhuma vaga"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:33
+msgid "applications"
+msgstr "Veja suas candidaturas"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:37
+msgid "application made at"
+msgstr "feito em"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:41
+msgid "You do not have applied for any vacancy"
+msgstr "Você não se candidatou em nenhuma vaga ainda"
+
+#: .\profiles\templates\profiles\partials\login_message.html:5
+msgid "You are logged in as"
+msgstr "Você está logado como"
+
+#: .\profiles\templates\profiles\partials\login_message.html:8
+msgid "See your vacancies"
+msgstr "Veja suas vagas"
+
+#: .\profiles\templates\profiles\partials\login_message.html:9
+msgid "Create a new vacancy"
+msgstr "Criar uma nova vaga"
+
+#: .\profiles\templates\profiles\partials\login_message.html:10
+#: .\profiles\templates\profiles\partials\login_message.html:19
+msgid "or"
+msgstr "ou"
+
+#: .\profiles\templates\profiles\partials\login_message.html:14
+#: .\profiles\templates\profiles\partials\login_message.html:23
+msgid "click here"
+msgstr "clique aqui"
+
+#: .\profiles\templates\profiles\partials\login_message.html:15
+#: .\profiles\templates\profiles\partials\login_message.html:24
+msgid "to logout"
+msgstr "para desconectar"
+
+#: .\profiles\templates\profiles\partials\login_message.html:18
+msgid "See your applications"
+msgstr "Veja suas candidaturas"
+
 #: .\vacancies\models.py:17
 msgid "Title"
 msgstr "Título"
+
+#: .\vacancies\models.py:18
+msgid "Description"
+msgstr "Descrição"
+
+#: .\vacancies\models.py:20
+msgid "Salary"
+msgstr "Salário"
+
+#: .\vacancies\models.py:21
+msgid "Types"
+msgstr "Tipos"
+
+#: .\vacancies\models.py:22
+msgid "Requirements"
+msgstr "Requerimentos"
+
+#: .\vacancies\models.py:24
+msgid "Created_at"
+msgstr "Criado_às"
+
+#: .\vacancies\models.py:25
+msgid "Updated_at"
+msgstr "atualizado_às"
+
+#: .\vacancies\models.py:28
+msgid "Cover"
+msgstr "Capa"
+
+#: .\vacancies\models.py:34
+msgid "Profile"
+msgstr "Perfil"
+
+#: .\vacancies\models.py:52 .\vacancies\models.py:62
+msgid "Vacancy"
+msgstr "Vaga"
+
+#: .\vacancies\models.py:55
+msgid "Date"
+msgstr "Data"
+
+#: .\vacancies\models.py:63
+msgid "Vacancies"
+msgstr "Vagas"
+
+#: .\vacancies\templates\vacancies\pages\candidatar_vacancy.html:8
+msgid "Apply for"
+msgstr "Candidatar-se para"
 
 #: .\vacancies\templates\vacancies\partials\vacancy.html:52
 msgid "Contract"
@@ -30,6 +134,30 @@ msgstr "Contrato"
 msgid "See more"
 msgstr "Ver mais"
 
+#: .\vacancies\templates\vacancies\partials\vacancy.html:80
+msgid "Apply"
+msgstr "Candidatar-se"
+
+#: .\vacancies\templates\vacancies\partials\vacancy.html:84
+msgid "You need to be a Voluntier to apply"
+msgstr "Você precisa ser um Voluntier para aplicar para essa vaga"
+
 #: .\vacancies\views.py:84
 msgid "Category"
 msgstr "Categoria"
+
+#, fuzzy
+#~| msgid "Date"
+#~ msgid "at"
+#~ msgstr "Data"
+
+#~ msgid "Your"
+#~ msgstr "Suas"
+
+#, fuzzy
+#~| msgid "Vacancy"
+#~ msgid "vacancy"
+#~ msgstr "Vaga"
+
+#~ msgid "Search"
+#~ msgstr "Pesquisar"

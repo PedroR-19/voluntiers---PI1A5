@@ -30,7 +30,7 @@
 
         <span class="vacancy-profile-item">
             <i class="fas fa-calendar-alt"></i>
-            {{ vacancy.created_at|date:"d/m/Y" }} às {{ vacancy.created_at|date:"H:i" }}
+            {{ vacancy.created_at|date:"d/m/Y" }} {{ vacancy.created_at|date:"H:i" }}
         </span>
 
         {% if vacancy.category is not None %}
@@ -77,11 +77,11 @@
         {% if user.is_authenticated and user.profile.user_type == 'Voluntier' %}
           <div class="form-content form-content-grid">
             <a class="vacancy-read-more button button-dark button-full-width" href="{% url 'vacancies:candidatar_vacancy' vacancy.id %}">
-              <span>Candidatar-se</span>
+              <span>{% translate "Apply" %}</span>
             </a>
           </div>
         {% else %}
-            <p>Você precisa estar logado como Voluntário para se candidatar a esta vacancy.</p>
+            <p>{% translate "You need to be a Voluntier to apply" %}</p>
         {% endif %}
     {% endif %}
 </div>

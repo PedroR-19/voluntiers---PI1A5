@@ -1,5 +1,7 @@
 {% extends 'global/base.html' %}
 
+{% load i18n %}
+
 {% block title %}Dashboard ({{ user }}) | {% endblock title %}
 
 {% block content %}
@@ -10,9 +12,8 @@
     {% include 'global/partials/messages.html' %}
 
     <div class="profiles-dashboard-container">
-      <h3>Suas vacancies ou applications</h3>
-
       {% if user_type == 'ONG' %}
+      <h3>{% translate 'vacancies' %}</h3>
         <ul>
           {% for vacancy in vacancies %}
             <li>
@@ -24,19 +25,20 @@
             </li>
           {% empty %}
             <li>
-              <p>Você ainda não tem nenhuma vacancy aberta.</p>
+              <p>{% translate 'You do not have any vacancy' %}.</p>
             </li>
           {% endfor %}
         </ul>
       {% elif user_type == 'Voluntier' %}
+      <h3>{% translate 'applications' %}</h3>
         <ul>
           {% for application in applications %}
             <li>
-              {{ application.vacancy.title }} - Application feita em {{ application.date }}
+              {{ application.vacancy.title }} - {% translate 'application made at' %} {{ application.date }}
             </li>
           {% empty %}
             <li>
-              <p>Você ainda não se voluntieru a nenhuma vacancy.</p>
+              <p>{% translate 'You do not have applied for any vacancy' %}.</p>
             </li>
           {% endfor %}
         </ul>

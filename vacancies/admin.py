@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-from .models import Category, Vaga
+from .models import Category, Vacancy
 
 
 class CategoryAdmin(admin.ModelAdmin):
     ...
 
 
-@admin.register(Vaga)
-class VagaAdmin(admin.ModelAdmin):
+@admin.register(Vacancy)
+class VacancyAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'created_at', 'is_published', 'profile']
     list_display_links = 'title', 'created_at',
     search_fields = 'id', 'title', 'description', 'slug', 'requirements',

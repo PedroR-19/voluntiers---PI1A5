@@ -3,8 +3,8 @@
   Você está logado como 
   {{ request.user.username }}. 
   {% if profile.user_type == 'ONG' %}
-  <a href="{% url 'profiles:dashboard' %}">Acesse suas vagas</a>,
-    <a href="{% url 'profiles:dashboard_vaga_new' %}">crie uma nova vaga</a>
+  <a href="{% url 'profiles:dashboard' %}">Acesse suas vacancies</a>,
+    <a href="{% url 'profiles:dashboard_vacancy_new' %}">crie uma nova vacancy</a>
     ou
     <form class="inline-form" action="{% url 'profiles:logout' %}" method='POST'>
       {% csrf_token %}
@@ -13,7 +13,7 @@
     </form> para fazer logout.
   </div>
   {% else %}
-    <a href="{% url 'profiles:dashboard' %}">Veja suas candidaturas</a>
+    <a href="{% url 'profiles:dashboard' %}">Veja suas applications</a>
     ou
     <form class="inline-form" action="{% url 'profiles:logout' %}" method='POST'>
       {% csrf_token %}

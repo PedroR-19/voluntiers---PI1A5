@@ -1,7 +1,7 @@
 # profiles/views.py
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from vagas.models import Vaga, Candidatura
+from vacancies.models import Vacancy, Application
 from profiles.models import Profile
 
 @login_required
@@ -16,10 +16,10 @@ def dashboard(request):
 
     # Identifica o tipo de usuário e busca os dados correspondentes
     if profile.user_type == 'Voluntier':
-        candidaturas = Candidatura.objects.filter(candidato=request.user)
-        context['candidaturas'] = candidaturas
+        applications = Application.objects.filter(voluntier=request.user)
+        context['applications'] = applications
     else:
-        vagas = Vaga.objects.filter(profile=request.user)
-        context['vagas'] = vagas
+        vacancies = Vacancy.objects.filter(profile=request.user)
+        context['vacancies'] = vacancies
 
     return render(request, 'profiles/pages/dashboard.html', context)

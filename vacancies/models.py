@@ -1,9 +1,10 @@
-# vagas/models.py
+# vacancies/models.py
 
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
     name = models.CharField(max_length=65)
@@ -12,8 +13,8 @@ class Category(models.Model):
         return self.name
 
 
-class Vaga(models.Model):
-    title = models.CharField(max_length=65)
+class Vacancy(models.Model):
+    title = models.CharField(max_length=65, verbose_name=_('Title'))
     description = models.CharField(max_length=165)
     slug = models.SlugField(unique=True)
     salary = models.IntegerField()
@@ -24,7 +25,7 @@ class Vaga(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
     cover = models.ImageField(
-        upload_to='vagas/covers/%Y/%m/%d/', blank=True, default='')
+        upload_to='vacancies/covers/%Y/%m/%d/', blank=True, default='')
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True,
         default=None,
@@ -37,7 +38,7 @@ class Vaga(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('vagas:vaga', args=(self.id,))
+        return reverse('vacancies:vacancy', args=(self.id,))
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -47,12 +48,16 @@ class Vaga(models.Model):
         return super().save(*args, **kwargs)
 
 
-class Candidatura(models.Model):
-    vaga = models.ForeignKey('Vaga', on_delete=models.CASCADE, related_name='candidaturas_vaga')
-    candidato = models.ForeignKey(User, on_delete=models.CASCADE)
-    curriculo = models.FileField(upload_to='curriculos/%Y/%m/%d/')
-    data_candidatura = models.DateTimeField(auto_now_add=True)
+class Application(models.Model):
+    vacancy = models.ForeignKey('Vacancy', on_delete=models.CASCADE, related_name='applications_vaga')
+    voluntier = models.ForeignKey(User, on_delete=models.CASCADE)
+    cv = models.FileField(upload_to='cvs/%Y/%m/%d/')
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.candidato.username} - {self.vaga.title}'
+        return f'{self.voluntier.username} - {self.vacancy.title}'
     
+
+class Meta:
+        verbose_name = _('Vacancy')
+        verbose_name_plural = _('Vacancies')

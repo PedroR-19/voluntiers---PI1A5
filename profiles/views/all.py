@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from profiles.forms import LoginForm, RegisterForm
 from profiles.models import Profile
-from vagas.models import Vaga, Candidatura
+from vacancies.models import Vacancy, Application
 
 
 def register_view(request):
@@ -95,28 +95,28 @@ def dashboard(request):
     if not request.user.is_superuser:
         profile = Profile.objects.get(user_id=request.user.id)
     if profile.user_type == 'Voluntier':
-        candidaturas = Candidatura.objects.filter(
-            candidato=request.user
+        applications = Application.objects.filter(
+            voluntier=request.user
         )
         return render(
             request,
             'profiles/pages/dashboard.html',
             context={
-                'candidaturas': candidaturas,
+                'applications': applications,
                 'user_type': profile.user_type,
                 'user': request.user,
                 'profile': profile
             }
         )
     else:
-        vagas = Vaga.objects.filter(
+        vacancies = Vacancy.objects.filter(
             profile=request.user
         )
         return render(
             request,
             'profiles/pages/dashboard.html',
             context={
-                'vagas': vagas,
+                'vacancies': vacancies,
                 'user_type': profile.user_type,
                 'user': request.user,
                 'profile': profile

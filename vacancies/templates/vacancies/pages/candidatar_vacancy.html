@@ -3,13 +3,13 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-  <h1>Candidatar-se à vaga: {{ vaga.title }}</h1>
+  <h1>Candidatar-se à vacancy: {{ vacancy.title }}</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <div class="form-content form-content-grid">
       <div class="form-group">
-        <button type="submit">Enviar candidatura</button>
+        <button type="submit">Enviar application</button>
       </div>
     </div>
   </form>

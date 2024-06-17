@@ -4,21 +4,24 @@ from django.views.generic import DetailView, ListView
 
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from vagas.models import Vaga, Candidatura
-from vagas.forms import CandidaturaForm
+from vacancies.models import Vacancy, Application
+from vacancies.forms import ApplicationForm
 
 from profiles.models import Profile
-from vagas.models import Vaga
+from vacancies.models import Vacancy
 from .pagination import make_pagination
+
+from django.utils import translation
+from django.utils.translation import gettext as _
 
 PER_PAGE = 6
 
 
-class VagaListViewBase(ListView):
-    model = Vaga
-    context_object_name = 'vagas'
+class VacancyListViewBase(ListView):
+    model = Vacancy
+    context_object_name = 'vacancies'
     ordering = ['-id']
-    template_name = 'vagas/pages/home.html'
+    template_name = 'vacancies/pages/home.html'
 
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset(*args, **kwargs)
@@ -28,18 +31,24 @@ class VagaListViewBase(ListView):
         ctx = super().get_context_data(*args, **kwargs)
         page_obj, pagination_range = make_pagination(
             self.request,
-            ctx.get('vagas'),
+            ctx.get('vacancies'),
             PER_PAGE
         )
+
+        html_language = translation.get_language()
+
         ctx.update(
-            {'vagas': page_obj, 'pagination_range': pagination_range}
+            {'vacancies': page_obj,
+             'pagination_range': pagination_range,
+             'html_language': html_language,
+            }
         )
         return ctx
 
 
-def vaga_list_view_home(request):
+def vacancy_list_view_home(request):
     user = request.user
-    vagas = Vaga.objects.all(
+    vacancies = Vacancy.objects.all(
     )
 
     if user.is_authenticated:
@@ -49,32 +58,33 @@ def vaga_list_view_home(request):
 
         return render(
             request,
-            'vagas/pages/home.html',
+            'vacancies/pages/home.html',
             context={
                 'user': user,
                 'profile': profile,
-                'vagas': vagas,
+                'vacancies': vacancies,
             }
         )
     else:
         return render(
             request,
-            'vagas/pages/home.html',
+            'vacancies/pages/home.html',
             context={
-                'vagas': vagas,
+                'vacancies': vacancies,
             }
         )
 
 
 
-class VagaListViewCategory(VagaListViewBase):
-    template_name = 'vagas/pages/category.html'
+class VacancyListViewCategory(VacancyListViewBase):
+    template_name = 'vacancies/pages/category.html'
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
+        category_translation = _('Category')
 
         ctx.update({
-            'title': f'{ctx.get("vagas")[0].category.name} - Category | '
+            'title': f'{ctx.get("vacancies")[0].category.name} - {category_translation} | '
         })
 
         return ctx
@@ -91,8 +101,8 @@ class VagaListViewCategory(VagaListViewBase):
         return qs
 
 
-class VagaListViewSearch(VagaListViewBase):
-    template_name = 'vagas/pages/search.html'
+class VacancyListViewSearch(VacancyListViewBase):
+    template_name = 'vacancies/pages/search.html'
 
     def get_queryset(self, *args, **kwargs):
         search_term = self.request.GET.get('q', '')
@@ -122,10 +132,10 @@ class VagaListViewSearch(VagaListViewBase):
         return ctx
 
 
-class VagaDetail(DetailView):
-    model = Vaga
-    context_object_name = 'vaga'
-    template_name = 'vagas/pages/vaga-view.html'
+class VacancyDetail(DetailView):
+    model = Vacancy
+    context_object_name = 'vacancy'
+    template_name = 'vacancies/pages/vacancy-view.html'
 
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset(*args, **kwargs)
@@ -144,22 +154,22 @@ class VagaDetail(DetailView):
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from vagas.models import Vaga
-from vagas.forms import CandidaturaForm
+from vacancies.models import Vacancy
+from vacancies.forms import ApplicationForm
 
 @login_required
-def candidatar_vaga(request, vaga_id):
-    vaga = get_object_or_404(Vaga, id=vaga_id)
+def candidatar_vacancy(request, vacancy_id):
+    vacancy = get_object_or_404(Vacancy, id=vacancy_id)
     if request.method == 'POST':
-        form = CandidaturaForm(request.POST, request.FILES)
+        form = ApplicationForm(request.POST, request.FILES)
         if form.is_valid():
-            candidatura = form.save(commit=False)
-            candidatura.vaga = vaga
-            candidatura.candidato = request.user
-            candidatura.save()
-            messages.success(request, 'Sua candidatura foi enviada!')
+            application = form.save(commit=False)
+            application.vacancy = vacancy
+            application.voluntier = request.user
+            application.save()
+            messages.success(request, 'Sua application foi enviada!')
             return redirect('profiles:dashboard')
     else:
-        form = CandidaturaForm()
-    return render(request, 'vagas/pages/candidatar_vaga.html', {'form': form, 'vaga': vaga})
+        form = ApplicationForm()
+    return render(request, 'vacancies/pages/candidatar_vacancy.html', {'form': form, 'vacancy': vacancy})
 

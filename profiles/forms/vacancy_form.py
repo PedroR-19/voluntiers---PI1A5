@@ -3,12 +3,12 @@ from collections import defaultdict
 from django import forms
 from django.core.exceptions import ValidationError
 
-from vagas.models import Vaga
+from vacancies.models import Vacancy
 from .django_forms import add_attr
 from .strings import is_positive_number
 
 
-class ProfileVagaForm(forms.ModelForm):
+class ProfileVacancyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -17,7 +17,7 @@ class ProfileVagaForm(forms.ModelForm):
         add_attr(self.fields.get('requirements'), 'class', 'span-2')
 
     class Meta:
-        model = Vaga
+        model = Vacancy
         fields = 'title', 'description', 'salary', \
             'types', 'requirements', 'cover'
         widgets = {

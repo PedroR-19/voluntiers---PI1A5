@@ -6,15 +6,15 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 
-from profiles.forms.vaga_form import ProfileVagaForm
-from vagas.models import Vaga
+from profiles.forms.vacancy_form import ProfileVacancyForm
+from vacancies.models import Vacancy
 
 
 @method_decorator(
     login_required(login_url='profiles:login', redirect_field_name='next'),
     name='dispatch'
 )
-class DashboardVaga(View):
+class DashboardVacancy(View):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -24,70 +24,70 @@ class DashboardVaga(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get_vaga(self, id=None):
-        vaga = None
+    def get_vacancy(self, id=None):
+        vacancy = None
 
         if id is not None:
-            vaga = Vaga.objects.filter(
+            vacancy = Vacancy.objects.filter(
                 profile=self.request.user,
                 pk=id,
             ).first()
 
-            if not vaga:
+            if not vacancy:
                 raise Http404()
 
-        return vaga
+        return vacancy
 
-    def render_vaga(self, form):
+    def render_vacancy(self, form):
         return render(
             self.request,
-            'profiles/pages/dashboard_vaga.html',
+            'profiles/pages/dashboard_vacancy.html',
             context={
                 'form': form
             }
         )
 
     def get(self, request, id=None):
-        vaga = self.get_vaga(id)
-        form = ProfileVagaForm(instance=vaga)
-        return self.render_vaga(form)
+        vacancy = self.get_vacancy(id)
+        form = ProfileVacancyForm(instance=vacancy)
+        return self.render_vacancy(form)
 
     def post(self, request, id=None):
-        vaga = self.get_vaga(id)
-        form = ProfileVagaForm(
+        vacancy = self.get_vacancy(id)
+        form = ProfileVacancyForm(
             data=request.POST or None,
             files=request.FILES or None,
-            instance=vaga
+            instance=vacancy
         )
 
         if form.is_valid():
             # Agora, o form é válido e eu posso tentar salvar
-            vaga = form.save(commit=False)
+            vacancy = form.save(commit=False)
 
-            vaga.profile = request.user
-            vaga.requirements_is_html = False
+            vacancy.profile = request.user
+            vacancy.requirements_is_html = False
 
-            vaga.save()
+            vacancy.save()
 
-            messages.success(request, 'Sua vaga foi salva com sucesso!')
+            messages.success(request, 'Sua vacancy foi salva com sucesso!')
             return redirect(
                 reverse(
-                    'profiles:dashboard_vaga_edit', args=(
-                        vaga.id,
+                    'profiles:dashboard_vacancy_edit', args=(
+                        vacancy.id,
                     )
                 )
             )
 
-        return self.render_vaga(form)
+        return self.render_vacancy(form)
 
 
 @method_decorator(
     login_required(login_url='profiles:login', redirect_field_name='next'),
     name='dispatch'
 )
-class DashboardVagaDelete(DashboardVaga):
+class DashboardVacancyDelete(DashboardVacancy):
     def post(self, *args, **kwargs):
-        vaga = self.get_vaga(self.request.POST.get('id'))
-        vaga.delete()
+        vacancy = self.get_vacancy(self.request.POST.get('id'))
+        vacancy.delete()
         messages.success(self.request, 'Deleted successfully.')
         return redirect(reverse('profiles:dashboard'))

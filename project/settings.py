@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'vagas',
+    'vacancies',
     'profiles',
 ]
 
@@ -116,7 +116,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-LOCALE_PATH = [
+LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 

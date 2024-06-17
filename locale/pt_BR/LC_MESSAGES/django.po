@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 12:29-0300\n"
+"POT-Creation-Date: 2024-06-17 14:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\base_templates\global\partials\form.html:17
+#: .\profiles\forms\register_form.py:27
+msgid "Username"
+msgstr "Nome de usuário"
+
+#: .\base_templates\global\partials\form.html:19
+#: .\profiles\forms\register_form.py:62
+msgid "Password"
+msgstr "Senha"
+
 #: .\base_templates\global\partials\form.html:45
+msgid "There are errors in the form, please correct them and resubmit"
+msgstr "Existem erros no formulário, corrija-os e envie novamente"
+
+#: .\base_templates\global\partials\form.html:53
 #: .\vacancies\templates\vacancies\pages\candidatar_vacancy.html:14
 msgid "Submit"
 msgstr "Enviar"
@@ -73,17 +87,9 @@ msgstr "Por favor, selecione uma opção"
 msgid "User_type"
 msgstr "Tipo de usuário"
 
-#: .\profiles\forms\register_form.py:27
-msgid "Username"
-msgstr "Nome de usuário"
-
 #: .\profiles\forms\register_form.py:29
-msgid ""
-"Username must contain letters, numbers, or one of these: @.+-_. Username "
-"must contain between 4 and 150 characters."
-msgstr ""
-"O nome de usuário deve conter letras, números ou um destes: @.+-_. Nome de "
-"usuário deve conter entre 4 e 150 caracteres."
+msgid "Username must contain letters, numbers, or one of these: @.+-_. Username must contain between 4 and 150 characters."
+msgstr "O nome de usuário deve conter letras, números ou um destes: @.+-_. Nome de usuário deve conter entre 4 e 150 caracteres."
 
 #: .\profiles\forms\register_form.py:32
 msgid "This field must not be empty"
@@ -132,10 +138,6 @@ msgid ""
 msgstr ""
 "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um "
 "número. pelo menos 8 caracteres"
-
-#: .\profiles\forms\register_form.py:62
-msgid "Password"
-msgstr "Senha"
 
 #: .\profiles\forms\register_form.py:66
 msgid "Password2"
@@ -203,6 +205,34 @@ msgstr "para desconectar"
 #: .\profiles\templates\profiles\partials\login_message.html:18
 msgid "See your applications"
 msgstr "Veja suas candidaturas"
+
+#: .\profiles\views\all.py:39
+msgid "Your user has been created, please log in."
+msgstr "Seu usuário foi criado, faça login"
+
+#: .\profiles\views\all.py:68
+msgid "You're logged in!"
+msgstr "Você está logado"
+
+#: .\profiles\views\all.py:71
+msgid "Invalid credentials"
+msgstr "Credenciais inválidas"
+
+#: .\profiles\views\all.py:73
+msgid "Invalid username or password"
+msgstr "Nome de usuário ou senha inválidos"
+
+#: .\profiles\views\all.py:81
+msgid "Invalid logout request"
+msgstr "Solicitação de logout inválida"
+
+#: .\profiles\views\all.py:85
+msgid "Invalid logout user"
+msgstr "Usuário de logout inválido"
+
+#: .\profiles\views\all.py:88
+msgid "Logout Done Successfully"
+msgstr "Logout feito com sucesso"
 
 #: .\vacancies\models.py:17
 msgid "Title"

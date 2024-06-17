@@ -12,8 +12,16 @@
     <div class="form-content form-content-grid">
       {% for field in form %}
         <div class="form-group {{ field.field.widget.attrs.class }}">
-          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-          {{field}}
+          <label for="{{ field.id_for_label }}">
+            {% if field.label == 'Username' %}
+              {% translate 'Username' %}
+            {% elif field.label == 'Password' %}
+              {% translate 'Password' %}
+            {% else %}
+              {{ field.label }}
+            {% endif %}
+          </label>
+          {{ field }}
 
           {% if field.help_text %}
             <p class="help-text">{{ field.help_text }}</p>
@@ -34,7 +42,7 @@
     <div class="form-content form-content-grid">
       <div class="form-group">
         <div class="message message-error">
-          Existem erros no formulário, corrija-os e envie novamente
+          {% translate 'There are errors in the form, please correct them and resubmit' %}
         </div>
       </div>
     </div>

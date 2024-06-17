@@ -1,16 +1,18 @@
+{% load i18n %}
+
 <div class="menu-content">
     <nav class="menu-nav">
-      <a href="{% url 'vacancies:home' %}">Home</a>
+      <a href="{% url 'vacancies:home' %}">{% translate 'Home' %}</a>
       {% if user.is_authenticated %}
         {% if profile.user_type == 'Voluntier' %}
           <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
         {% else %}
-        <a href="{% url 'profiles:dashboard_vacancy_new' %}">New vacancy</a>
+        <a href="{% url 'profiles:dashboard_vacancy_new' %}">{% translate 'New vacancy' %}</a>
         <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
         {% endif %}
       {% else %}
-        <a href="{% url 'profiles:login' %}">Login</a>
-        <a href="{% url 'profiles:register' %}">Register</a>
+        <a href="{% url 'profiles:login' %}">{% translate 'Login' %}</a>
+        <a href="{% url 'profiles:register' %}">{% translate 'Register' %}</a>
     {% endif %}
     </nav>
 </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 12:03-0300\n"
+"POT-Creation-Date: 2024-06-17 12:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,136 @@ msgstr ""
 #: .\vacancies\templates\vacancies\pages\candidatar_vacancy.html:14
 msgid "Submit"
 msgstr "Enviar"
+
+#: .\base_templates\global\partials\menu.html:5
+msgid "Home"
+msgstr "Página principal"
+
+#: .\base_templates\global\partials\menu.html:10
+msgid "New vacancy"
+msgstr "Nova vaga"
+
+#: .\base_templates\global\partials\menu.html:14
+msgid "Login"
+msgstr "Login"
+
+#: .\base_templates\global\partials\menu.html:15
+#: .\profiles\templates\profiles\pages\register_view.html:5
+#: .\profiles\templates\profiles\pages\register_view.html:9
+msgid "Register"
+msgstr "Registro"
+
+#: .\profiles\forms\register_form.py:11
+msgid "Your name"
+msgstr "Seu nome"
+
+#: .\profiles\forms\register_form.py:12
+msgid "Your e-mail"
+msgstr "Seu e-mail"
+
+#: .\profiles\forms\register_form.py:13
+msgid "Ex.: Pedro"
+msgstr "Ex.: Pedro"
+
+#: .\profiles\forms\register_form.py:14
+msgid "Ex.: Costa"
+msgstr "Ex.: Costa"
+
+#: .\profiles\forms\register_form.py:15
+msgid "Write your password"
+msgstr "Digite sua senha"
+
+#: .\profiles\forms\register_form.py:16
+msgid "Write your password again"
+msgstr "Repita sua senha"
+
+#: .\profiles\forms\register_form.py:23
+msgid "Please select an option"
+msgstr "Por favor, selecione uma opção"
+
+#: .\profiles\forms\register_form.py:24
+msgid "User_type"
+msgstr "Tipo de usuário"
+
+#: .\profiles\forms\register_form.py:27
+msgid "Username"
+msgstr "Nome de usuário"
+
+#: .\profiles\forms\register_form.py:29
+msgid ""
+"Username must contain letters, numbers, or one of these: @.+-_. Username "
+"must contain between 4 and 150 characters."
+msgstr ""
+"O nome de usuário deve conter letras, números ou um destes: @.+-_. Nome de "
+"usuário deve conter entre 4 e 150 caracteres."
+
+#: .\profiles\forms\register_form.py:32
+msgid "This field must not be empty"
+msgstr "Este campo não deve estar vazio"
+
+#: .\profiles\forms\register_form.py:33
+msgid "Username must have at least 4 characters"
+msgstr "O nome de usuário deve ter pelo menos 4 caracteres"
+
+#: .\profiles\forms\register_form.py:34
+msgid "Username must have less than 150 characters"
+msgstr "O nome de usuário deve ter menos de 150 caracteres"
+
+#: .\profiles\forms\register_form.py:39
+msgid "Write your first name"
+msgstr "Escreva seu primeiro nome"
+
+#: .\profiles\forms\register_form.py:40
+msgid "First name"
+msgstr "Primeiro nome"
+
+#: .\profiles\forms\register_form.py:43
+msgid "Write your last name"
+msgstr "Escreva seu sobrenome"
+
+#: .\profiles\forms\register_form.py:44
+msgid "Last name"
+msgstr "Sobrenome"
+
+#: .\profiles\forms\register_form.py:47
+msgid "E-mail is required"
+msgstr "E-mail é obrigatório"
+
+#: .\profiles\forms\register_form.py:49
+msgid "The e-mail need to be valid."
+msgstr "O e-mail precisa ser válido"
+
+#: .\profiles\forms\register_form.py:54
+msgid "Password must not be empty"
+msgstr "A senha não deve estar vazia"
+
+#: .\profiles\forms\register_form.py:57
+msgid ""
+"Password must contain at least one uppercase letter, a lowercase letter and "
+"a number. at least 8 characters."
+msgstr ""
+"A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um "
+"número. pelo menos 8 caracteres"
+
+#: .\profiles\forms\register_form.py:62
+msgid "Password"
+msgstr "Senha"
+
+#: .\profiles\forms\register_form.py:66
+msgid "Password2"
+msgstr "Repita sua senha"
+
+#: .\profiles\forms\register_form.py:68
+msgid "Please, repeat your password"
+msgstr "Por favor, repita sua senha"
+
+#: .\profiles\forms\register_form.py:89
+msgid "This email is already in use."
+msgstr "Este e-mail já está em uso"
+
+#: .\profiles\forms\register_form.py:102
+msgid "Password and Password2 must be the same"
+msgstr "Senha e Senha2 devem ser as mesmas"
 
 #: .\profiles\templates\profiles\pages\dashboard.html:16
 msgid "vacancies"
@@ -150,14 +280,6 @@ msgstr "Categoria"
 #~| msgid "Date"
 #~ msgid "at"
 #~ msgstr "Data"
-
-#~ msgid "Your"
-#~ msgstr "Suas"
-
-#, fuzzy
-#~| msgid "Vacancy"
-#~ msgid "vacancy"
-#~ msgstr "Vaga"
 
 #~ msgid "Search"
 #~ msgstr "Pesquisar"

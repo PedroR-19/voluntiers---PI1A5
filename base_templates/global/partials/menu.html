@@ -7,7 +7,6 @@
         {% if profile.user_type == 'Voluntier' %}
           <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
         {% else %}
-        <a href="{% url 'profiles:dashboard_vacancy_new' %}">{% translate 'New vacancy' %}</a>
         <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
         {% endif %}
       {% else %}

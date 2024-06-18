@@ -21,6 +21,7 @@
               <form class="inline-form form-delete" action="{% url 'profiles:dashboard_vacancy_delete' %}" method='POST'>
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{ vacancy.id }}">
+                <button class="plaintext-button" type="submit">❌</button>
               </form>
             </li>
           {% empty %}
@@ -47,4 +48,21 @@
       {% endif %}
     </div>
   </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const forms = document.querySelectorAll('.form-delete');
+
+      forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const confirmed = confirm('Are you sure you want to delete this vacancy?');
+
+          if (confirmed) {
+            this.submit();
+          }
+        });
+      });
+    });
+  </script>
 {% endblock content %}

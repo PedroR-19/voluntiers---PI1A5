@@ -69,7 +69,7 @@ class DashboardVacancy(View):
 
             vacancy.save()
 
-            messages.success(request, 'Sua vacancy foi salva com sucesso!')
+            messages.success(request, 'Sua vaga foi salva com sucesso!')
             return redirect(
                 reverse(
                     'profiles:dashboard_vacancy_edit', args=(

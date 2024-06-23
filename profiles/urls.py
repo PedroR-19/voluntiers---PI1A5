@@ -11,6 +11,7 @@ urlpatterns = [
     path('login/create/', views.login_create, name='login_create'),
     path('logout/', views.logout_view, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('match/', views.match_view, name='match'),
     path(
         'dashboard/vacancy/new/',
         views.DashboardVacancy.as_view(),

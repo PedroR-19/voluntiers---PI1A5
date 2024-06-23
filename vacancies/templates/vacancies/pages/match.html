@@ -1,0 +1,22 @@
+{% extends 'global/base.html' %}
+
+{% load i18n %}
+
+{% block title %}Matching Vacancies{% endblock title %}
+
+{% block content %}
+  <div class="main-content center container">
+    <h2>{% translate 'Matching Vacancies' %}</h2>
+    {% include 'global/partials/messages.html' %}
+
+    {% for vacancy in vacancies %}
+      <div class="vacancy">
+        <h3>{{ vacancy.title }}</h3>
+        <p>{{ vacancy.description }}</p>
+        <a href="{{ vacancy.get_absolute_url }}">{% translate 'See more' %}</a>
+      </div>
+    {% empty %}
+      <p>{% translate 'No matching vacancies found' %}</p>
+    {% endfor %}
+  </div>
+{% endblock content %}

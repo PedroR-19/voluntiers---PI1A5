@@ -1,3 +1,4 @@
+<!-- profiles/templates/profiles/pages/dashboard.html -->
 {% extends 'global/base.html' %}
 
 {% load i18n %}
@@ -12,6 +13,58 @@
     {% include 'global/partials/messages.html' %}
 
     <div class="profiles-dashboard-container">
+      {% if user_type == 'Voluntier' %}
+        <h3>{% translate 'Find Matching Vacancies' %}</h3>
+        <form method="get" action="{% url 'profiles:match' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="shift">{% translate 'Shift' %}</label>
+            <select name="shift" id="shift">
+              <option value="">{% translate 'Select Shift' %}</option>
+              {% for value, display in form.fields.shift.choices %}
+                <option value="{{ value }}">{{ display }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="country">{% translate 'Country' %}</label>
+            <select name="country" id="country">
+              <option value="">{% translate 'Select Country' %}</option>
+              {% for value, display in form.fields.country.choices %}
+                <option value="{{ value }}">{{ display }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="state">{% translate 'State' %}</label>
+            <select name="state" id="state">
+              <option value="">{% translate 'Select State' %}</option>
+              {% for value, display in form.fields.state.choices %}
+                <option value="{{ value }}">{{ display }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="city">{% translate 'City' %}</label>
+            <select name="city" id="city">
+              <option value="">{% translate 'Select City' %}</option>
+              {% for value, display in form.fields.city.choices %}
+                <option value="{{ value }}">{{ display }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="category">{% translate 'Category' %}</label>
+            <select name="category" id="category">
+              <option value="">{% translate 'Select Category' %}</option>
+              {% for category in form.fields.category.queryset %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit">{% translate 'Match' %}</button>
+        </form>
+      {% endif %}
       {% if user_type == 'ONG' %}
       <h3>{% translate 'vacancies' %}</h3>
         <ul>

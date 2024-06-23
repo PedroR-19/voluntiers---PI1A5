@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Vacancy, Subcategory, Day
+from .models import Category, Vacancy, Subcategory
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -10,12 +10,6 @@ class SubcategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'category']
     search_fields = ['name', 'category__name']
     list_filter = ['category']
-    ordering = ['name']
-
-
-class DayAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name']
-    search_fields = ['name']
     ordering = ['name']
 
 
@@ -32,7 +26,7 @@ class VacancyAdmin(admin.ModelAdmin):
     ]
     list_filter = [
         'category', 'profile', 'requirements_is_html', 'shift',
-        'subcategory', 'country', 'state', 'city', 'days'
+        'subcategory', 'country', 'state', 'city',
     ]
     list_per_page = 10
     ordering = ['-id']
@@ -40,4 +34,3 @@ class VacancyAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subcategory, SubcategoryAdmin)
-admin.site.register(Day, DayAdmin)

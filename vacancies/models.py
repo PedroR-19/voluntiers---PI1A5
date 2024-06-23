@@ -17,12 +17,6 @@ class Subcategory(models.Model):
     def __str__(self):
         return self.name
 
-class Day(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-
-    def __str__(self):
-        return self.name
-
 class Vacancy(models.Model):
     SHIFT_CHOICES = [
         ('morning', _('Morning')),
@@ -68,7 +62,6 @@ class Vacancy(models.Model):
     state = models.CharField(max_length=100, choices=STATE_CHOICES, verbose_name=_('State'))
     city = models.CharField(max_length=100, choices=CITY_CHOICES, verbose_name=_('City'))
     logradouro = models.CharField(max_length=255, verbose_name=_('Address'))
-    days = models.ManyToManyField(Day, related_name='vacancies', verbose_name=_('Days'))  # Usando ManyToManyField para Dias
 
     def __str__(self):
         return self.title

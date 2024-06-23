@@ -1,20 +1,13 @@
 from collections import defaultdict
 from django import forms
 from django.core.exceptions import ValidationError
-from vacancies.models import Vacancy, Subcategory, Day
+from vacancies.models import Vacancy, Subcategory
 from .django_forms import add_attr
 from .strings import is_positive_number
 from django.utils.translation import gettext_lazy as _
 
 
 class ProfileVacancyForm(forms.ModelForm):
-    days = forms.ModelMultipleChoiceField(
-        queryset=Day.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True,
-        label=_('Days')
-    )
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -26,7 +19,7 @@ class ProfileVacancyForm(forms.ModelForm):
         model = Vacancy
         fields = [
             'title', 'description', 'category', 'subcategory', 'shift',
-            'country', 'state', 'city', 'logradouro', 'days', 'requirements', 'cover',
+            'country', 'state', 'city', 'logradouro', 'requirements', 'cover',
         ]
         widgets = {
             'cover': forms.FileInput(attrs={'class': 'span-2'}),
@@ -56,12 +49,3 @@ class ProfileVacancyForm(forms.ModelForm):
             self._my_errors['title'].append('Must have at least 5 chars.')
 
         return title
-
-    def clean_servings(self):
-        field_name = 'servings'
-        field_value = self.cleaned_data.get(field_name)
-
-        if not is_positive_number(field_value):
-            self._my_errors[field_name].append('Must be a positive number')
-
-        return field_value

@@ -1,14 +1,20 @@
 from collections import defaultdict
-
 from django import forms
 from django.core.exceptions import ValidationError
-
-from vacancies.models import Vacancy
+from vacancies.models import Vacancy, Subcategory, Day
 from .django_forms import add_attr
 from .strings import is_positive_number
+from django.utils.translation import gettext_lazy as _
 
 
 class ProfileVacancyForm(forms.ModelForm):
+    days = forms.ModelMultipleChoiceField(
+        queryset=Day.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True,
+        label=_('Days')
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -18,21 +24,13 @@ class ProfileVacancyForm(forms.ModelForm):
 
     class Meta:
         model = Vacancy
-        fields = 'title', 'description', 'salary', \
-            'types', 'requirements', 'cover'
+        fields = [
+            'title', 'description', 'category', 'subcategory', 'shift',
+            'country', 'state', 'city', 'logradouro', 'days', 'requirements', 'cover',
+        ]
         widgets = {
-            'cover': forms.FileInput(
-                attrs={
-                    'class': 'span-2'
-                }
-            ),
-            'types': forms.Select(
-                choices=(
-                    ('PJ', 'PJ'),
-                    ('CLT', 'CLT'),
-                    ('Voluntier', 'Voluntier')
-                ),
-            ),
+            'cover': forms.FileInput(attrs={'class': 'span-2'}),
+            'shift': forms.Select(choices=Vacancy.SHIFT_CHOICES),
         }
 
     def clean(self, *args, **kwargs):
@@ -58,7 +56,6 @@ class ProfileVacancyForm(forms.ModelForm):
             self._my_errors['title'].append('Must have at least 5 chars.')
 
         return title
-
 
     def clean_servings(self):
         field_name = 'servings'

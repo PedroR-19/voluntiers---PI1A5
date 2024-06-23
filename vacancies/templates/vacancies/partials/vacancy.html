@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div class="vacancy vacancy-list-item">
-    {% if vacancy.cover %}
+    {% if vacancy.cover %} 
         <div class="vacancy-cover">
             <a href="{{ vacancy.get_absolute_url }}">
                 <img src="{{ vacancy.cover.url }}" alt="Temporário">
@@ -49,10 +49,19 @@
 
     <div class="vacancy-meta-container">
         <div class="vacancy-meta vacancy-preparation">
-            <h3 class="vacancy-meta-title"></i> {% translate "Contract" %} {{ vacancy.types }} </h3>
-            <div class="vacancy-meta-text">
-                R$ {{ vacancy.salary }}
-            </div>
+            <h3 class="vacancy-meta-title"></i> {% translate "Shift" %} {{ vacancy.get_shift_display }} </h3>
+            <h3 class="vacancy-meta-title"></i> {% translate "Subcategory" %} {{ vacancy.subcategory.name }} </h3>
+            <h3 class="vacancy-meta-title"></i> {% translate "Country" %} {{ vacancy.country }} </h3>
+            <h3 class="vacancy-meta-title"></i> {% translate "State" %} {{ vacancy.state }} </h3>
+            <h3 class="vacancy-meta-title"></i> {% translate "City" %} {{ vacancy.city }} </h3>
+            <h3 class="vacancy-meta-title"></i> {% translate "Address" %} {{ vacancy.logradouro }} </h3>
+            <h3 class="vacancy-meta-title"></i> {% translate "Days" %}
+            <ul>
+                {% for day in vacancy.days.all %}
+                    <li>{{ day.name }}</li>
+                {% endfor %}
+            </ul>
+            </h3>
         </div>
     </div>
 

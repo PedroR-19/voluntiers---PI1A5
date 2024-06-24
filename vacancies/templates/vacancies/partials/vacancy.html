@@ -77,14 +77,18 @@
             {% endif %}
         </div>
 
-        {% if user.is_authenticated and user.profile.user_type == 'Voluntier' %}
-          <div class="form-content form-content-grid">
-            <a class="vacancy-read-more button button-dark button-full-width" href="{% url 'vacancies:candidatar_vacancy' vacancy.id %}">
-              <span>{% translate "Apply" %}</span>
-            </a>
-          </div>
+        {% if user.is_authenticated %}
+            {% if user_profile %}
+                <div class="form-content form-content-grid">
+                    <a class="vacancy-read-more button button-dark button-full-width" href="{% url 'vacancies:candidatar_vacancy' vacancy.id %}">
+                        <span>{% translate "Apply" %}</span>
+                    </a>
+                </div>
+            {% else %}
+                <p>{% translate "You need to be a Voluntier to apply" %}</p>
+            {% endif %}
         {% else %}
-            <p>{% translate "You need to be a Voluntier to apply" %}</p>
+            <p>{% translate "You need to be logged in to apply" %}</p>
         {% endif %}
     {% endif %}
 </div>

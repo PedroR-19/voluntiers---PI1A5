@@ -141,8 +141,16 @@ class VacancyDetail(DetailView):
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
 
+        user_profile = None
+        if self.request.user.is_authenticated:
+            try:
+                user_profile = self.request.user.voluntier
+            except Voluntier.DoesNotExist:
+                user_profile = None
+
         ctx.update({
-            'is_detail_page': True
+            'is_detail_page': True,
+            'user_profile': user_profile
         })
 
         return ctx
@@ -162,7 +170,7 @@ def candidatar_vacancy(request, vacancy_id):
         if form.is_valid():
             application = form.save(commit=False)
             application.vacancy = vacancy
-            application.voluntier = request.user
+            application.voluntier = request.user.voluntier  # Certifique-se de que estamos associando corretamente
             application.save()
             messages.success(request, 'Sua application foi enviada!')
             return redirect('profiles:dashboard')

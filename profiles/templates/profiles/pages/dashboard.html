@@ -60,6 +60,7 @@
         </form>
       {% endif %}
       {% if user_type == 'ONG' %}
+      <a href="{% url 'profiles:dashboard_vacancy_new' %}">{% translate 'Create a new vacancy' %}</a>
         <h3>{% translate 'Vacancies' %}</h3>
         <ul>
           {% for vacancy in vacancies %}
@@ -77,7 +78,6 @@
             </li>
           {% endfor %}
         </ul>
-        <a href="{% url 'profiles:dashboard_vacancy_new' %}">{% translate 'Create a new vacancy' %}</a> <!-- Adicionado o link para criar nova vaga -->
       {% elif user_type == 'Voluntier' %}
         <h3>{% translate 'Applications' %}</h3>
         <ul>

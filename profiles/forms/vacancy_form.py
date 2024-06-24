@@ -3,9 +3,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from vacancies.models import Vacancy, Subcategory
 from .django_forms import add_attr
-from .strings import is_positive_number
 from django.utils.translation import gettext_lazy as _
-
 
 class ProfileVacancyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -14,6 +12,12 @@ class ProfileVacancyForm(forms.ModelForm):
         self._my_errors = defaultdict(list)
 
         add_attr(self.fields.get('requirements'), 'class', 'span-2')
+        add_attr(self.fields.get('country'), 'id', 'id_country')
+        add_attr(self.fields.get('state'), 'id', 'id_state')
+        add_attr(self.fields.get('city'), 'id', 'id_city')
+        add_attr(self.fields.get('category'), 'id', 'id_category')
+        add_attr(self.fields.get('subcategory'), 'id', 'id_subcategory')
+
 
     class Meta:
         model = Vacancy

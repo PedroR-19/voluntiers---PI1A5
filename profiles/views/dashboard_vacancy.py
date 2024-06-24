@@ -1,14 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http.response import Http404
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 
 from profiles.forms.vacancy_form import ProfileVacancyForm
 from vacancies.models import Vacancy
-
+from profiles.models import Institution
 
 @method_decorator(
     login_required(login_url='profiles:login', redirect_field_name='next'),
@@ -29,7 +29,7 @@ class DashboardVacancy(View):
 
         if id is not None:
             vacancy = Vacancy.objects.filter(
-                profile=self.request.user,
+                profile__user=self.request.user,  # Ajuste para garantir que estamos filtrando pelo usuário da instituição
                 pk=id,
             ).first()
 
@@ -61,10 +61,10 @@ class DashboardVacancy(View):
         )
 
         if form.is_valid():
-            # Agora, o form é válido e eu posso tentar salvar
             vacancy = form.save(commit=False)
 
-            vacancy.profile = request.user
+            institution = get_object_or_404(Institution, user=request.user)  # Obtenha a instituição do usuário
+            vacancy.profile = institution  # Associe a vaga à instituição
             vacancy.requirements_is_html = False
 
             vacancy.save()

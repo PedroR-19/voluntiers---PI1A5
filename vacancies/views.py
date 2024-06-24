@@ -1,16 +1,13 @@
 from django.db.models import Q
 from django.http.response import Http404
 from django.views.generic import DetailView, ListView
-
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from vacancies.models import Vacancy, Application
 from vacancies.forms import ApplicationForm
-
-from profiles.models import Profile
+from profiles.models import User, Institution, Voluntier
 from vacancies.models import Vacancy
 from .pagination import make_pagination
-
 from django.utils import translation
 from django.utils.translation import gettext as _
 
@@ -48,32 +45,32 @@ class VacancyListViewBase(ListView):
 
 def vacancy_list_view_home(request):
     user = request.user
-    vacancies = Vacancy.objects.all(
+    vacancies = Vacancy.objects.all()
+
+    institution = None
+    voluntier = None
+
+    if user.is_authenticated and not user.is_superuser:
+        try:
+            institution = Institution.objects.get(user=user)
+        except Institution.DoesNotExist:
+            institution = None
+
+        try:
+            voluntier = Voluntier.objects.get(user=user)
+        except Voluntier.DoesNotExist:
+            voluntier = None
+
+    return render(
+        request,
+        'vacancies/pages/home.html',
+        context={
+            'user': user,
+            'institution': institution,
+            'voluntier': voluntier,
+            'vacancies': vacancies,
+        }
     )
-
-    if user.is_authenticated:
-        profile = None
-        if not user.is_superuser:
-            profile = get_object_or_404(Profile, user_id=user.id)
-
-        return render(
-            request,
-            'vacancies/pages/home.html',
-            context={
-                'user': user,
-                'profile': profile,
-                'vacancies': vacancies,
-            }
-        )
-    else:
-        return render(
-            request,
-            'vacancies/pages/home.html',
-            context={
-                'vacancies': vacancies,
-            }
-        )
-
 
 
 class VacancyListViewCategory(VacancyListViewBase):
@@ -172,4 +169,3 @@ def candidatar_vacancy(request, vacancy_id):
     else:
         form = ApplicationForm()
     return render(request, 'vacancies/pages/candidatar_vacancy.html', {'form': form, 'vacancy': vacancy})
-

@@ -2,46 +2,40 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from profiles.forms.match_form import MatchForm
-from profiles.forms import LoginForm, RegisterForm
-from profiles.models import Profile
+from profiles.forms import LoginForm, InstitutionForm, VoluntierForm
+from profiles.models import User, Institution, Voluntier
 from vacancies.models import Vacancy, Application
 from django.utils.translation import gettext as _
 
+def register_choice_view(request):
+    return render(request, 'profiles/pages/register_choice.html')
 
-def register_view(request):
-    register_form_data = request.session.get('register_form_data', None)
-    form = RegisterForm(register_form_data)
-    return render(request, 'profiles/pages/register_view.html', {
-        'form': form,
-        'form_action': reverse('profiles:register_create'),
-    })
+def institution_register_view(request):
+    if request.method == 'POST':
+        form = InstitutionForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
+            Institution.objects.create(user=user, name=form.cleaned_data['name'], cnpj=form.cleaned_data['cnpj'])
+            messages.success(request, _('Your Institution has been created, please log in.'))
+            return redirect(reverse('profiles:login'))
+    else:
+        form = InstitutionForm()
+    return render(request, 'profiles/pages/institution_register.html', {'form': form})
 
-
-def register_create(request):
-    if not request.POST:
-        raise Http404()
-
-    POST = request.POST
-    request.session['register_form_data'] = POST
-    form = RegisterForm(POST)
-
-    if form.is_valid():
-        user = form.save(commit=False)
-        user.set_password(user.password)
-        user.save()
-        profile = Profile.objects.create(user_id=user.id,
-                                         user_type=form.cleaned_data['user_type'])
-        profile.save()
-        messages.success(request, _('Your user has been created, please log in.'))
-
-        del (request.session['register_form_data'])
-        return redirect(reverse('profiles:login'))
-
-    return redirect('profiles:register')
-
+def voluntier_register_view(request):
+    if request.method == 'POST':
+        form = VoluntierForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
+            Voluntier.objects.create(user=user, first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], birth_date=form.cleaned_data['birth_date'], cpf=form.cleaned_data['cpf'])
+            messages.success(request, _('Your Voluntier account has been created, please log in.'))
+            return redirect(reverse('profiles:login'))
+    else:
+        form = VoluntierForm()
+    return render(request, 'profiles/pages/voluntier_register.html', {'form': form})
 
 def login_view(request):
     form = LoginForm()
@@ -49,7 +43,6 @@ def login_view(request):
         'form': form,
         'form_action': reverse('profiles:login_create')
     })
-
 
 def match_view(request):
     form = MatchForm(request.GET or None)
@@ -72,7 +65,6 @@ def match_view(request):
         'form': form,
     })
 
-
 def login_create(request):
     if not request.POST:
         raise Http404()
@@ -80,73 +72,87 @@ def login_create(request):
     form = LoginForm(request.POST)
 
     if form.is_valid():
-        authenticated_user = authenticate(
-            username=form.cleaned_data.get('username', ''),
-            password=form.cleaned_data.get('password', ''),
-        )
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password')
 
-        if authenticated_user is not None:
+        # Atualize a autenticação para usar o email como username
+        user = authenticate(request, username=email, password=password)
+
+        if user is not None:
+            login(request, user)
             messages.success(request, _("You're logged in!"))
-            login(request, authenticated_user)
+            return redirect(reverse('profiles:dashboard'))
         else:
             messages.error(request, _('Invalid credentials'))
     else:
-        messages.error(request, _('Invalid username or password'))
+        messages.error(request, _('Invalid email or password'))
 
-    return redirect(reverse('profiles:dashboard'))
+    return redirect(reverse('profiles:login'))
+
 
 
 @login_required(login_url='profiles:login', redirect_field_name='next')
 def logout_view(request):
-    if not request.POST:
+    if request.method != 'POST':
         messages.error(request, _('Invalid logout request'))
         return redirect(reverse('profiles:login'))
 
-    if request.POST.get('username') != request.user.username:
-        messages.error(request, _('Invalid logout user'))
-        return redirect(reverse('profiles:login'))
-
-    messages.success(request, _('Logout Done Successfully'))
     logout(request)
+    messages.success(request, _('Logout Done Successfully'))
     return redirect(reverse('profiles:login'))
 
 
 @login_required(login_url='profiles:login', redirect_field_name='next')
 def dashboard(request):
     user = request.user
-    profile = request.user.profile
     form = MatchForm(request.GET or None)
 
+    user_type = None
+    profile = None
+
     if not request.user.is_superuser:
-        profile = Profile.objects.get(user_id=request.user.id)
-        
-    if profile.user_type == 'Voluntier':
-        applications = Application.objects.filter(
-            voluntier=request.user
-        )
-        return render(
-            request,
-            'profiles/pages/dashboard.html',
-            context={
-                'applications': applications,
-                'user_type': profile.user_type,
-                'user': request.user,
-                'profile': profile,
-                'form': form,  # Passando o formulário para o contexto
-            }
-        )
+        try:
+            institution = Institution.objects.get(user=user)
+            user_type = 'ONG'
+            profile = institution
+        except Institution.DoesNotExist:
+            institution = None
+
+        try:
+            voluntier = Voluntier.objects.get(user=user)
+            user_type = 'Voluntier'
+            profile = voluntier
+        except Voluntier.DoesNotExist:
+            voluntier = None
+
+        if user_type == 'Voluntier':
+            applications = Application.objects.filter(voluntier=profile)
+            return render(
+                request,
+                'profiles/pages/dashboard.html',
+                context={
+                    'applications': applications,
+                    'user_type': user_type,
+                    'user': user,
+                    'profile': profile,
+                    'form': form,  # Passando o formulário para o contexto
+                }
+            )
+        elif user_type == 'ONG':
+            vacancies = Vacancy.objects.filter(profile=institution)
+            return render(
+                request,
+                'profiles/pages/dashboard.html',
+                context={
+                    'vacancies': vacancies,
+                    'user_type': user_type,
+                    'user': user,
+                    'profile': profile,
+                    'form': form,  # Passando o formulário para o contexto
+                }
+            )
     else:
-        vacancies = Vacancy.objects.filter(
-            profile=request.user
-        )
-        return render(
-            request,
-            'profiles/pages/dashboard.html',
-            context={
-                'vacancies': vacancies,
-                'user_type': profile.user_type,
-                'user': request.user,
-                'profile': profile,
-                'form': form,  # Passando o formulário para o contexto
-            }
-        )
+        # Lógica para superusuário, se necessário
+        pass
+
+    return render(request, 'profiles/pages/dashboard.html', {'form': form})

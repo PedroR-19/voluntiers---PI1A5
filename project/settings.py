@@ -144,3 +144,5 @@ MESSAGE_TAGS = {
     constants.SUCCESS: 'message-success',
     constants.WARNING: 'message-warning',
 }
+
+AUTH_USER_MODEL = 'profiles.User'

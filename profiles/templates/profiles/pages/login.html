@@ -11,6 +11,17 @@
   {% include 'global/partials/messages.html' %}
 
   {% if not user.is_authenticated %}
-    {% include 'global/partials/form.html' %}
+    <form method="POST" action="{% url 'profiles:login_create' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_email">Email</label>
+        <input type="email" name="email" required id="id_email" placeholder="Digite seu email">
+      </div>
+      <div class="form-group">
+        <label for="id_password">Senha</label>
+        <input type="password" name="password" required id="id_password" placeholder="Digite sua senha">
+      </div>
+      <button type="submit">Login</button>
+    </form>
   {% endif %}
 {% endblock content %}

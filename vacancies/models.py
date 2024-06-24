@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.conf import settings
+from profiles.models import Institution, Voluntier
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -54,9 +56,7 @@ class Vacancy(models.Model):
     subcategory = models.ForeignKey(
         Subcategory, on_delete=models.SET_NULL, null=True, blank=True, default=None
     )
-    profile = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, verbose_name=_('Profile')
-    )
+    profile = models.ForeignKey(Institution, on_delete=models.CASCADE)
     shift = models.CharField(max_length=10, choices=SHIFT_CHOICES, default='morning', verbose_name=_('Shift'))
     country = models.CharField(max_length=100, choices=COUNTRY_CHOICES, verbose_name=_('Country'))
     state = models.CharField(max_length=100, choices=STATE_CHOICES, verbose_name=_('State'))
@@ -78,12 +78,12 @@ class Vacancy(models.Model):
 
 class Application(models.Model):
     vacancy = models.ForeignKey('Vacancy', on_delete=models.CASCADE, related_name='applications_vaga', verbose_name=_('Vacancy'))
-    voluntier = models.ForeignKey(User, on_delete=models.CASCADE)
+    voluntier = models.ForeignKey(Voluntier, on_delete=models.CASCADE)
     cv = models.FileField(upload_to='cvs/%Y/%m/%d/')
     date = models.DateTimeField(auto_now_add=True, verbose_name=_('Date'))
 
     def __str__(self):
-        return f'{self.voluntier.username} - {self.vacancy.title}'
+        return f'{self.voluntier.email} - {self.vacancy.title}'
 
     class Meta:
         verbose_name = _('Vacancy')

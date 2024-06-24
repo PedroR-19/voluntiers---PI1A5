@@ -23,7 +23,7 @@
                 {% if vacancy.profile.first_name %}
                     {{ vacancy.profile.first_name }} {{ vacancy.profile.last_name }}
                 {% else %}
-                    {{ vacancy.profile.username }}
+                    {{ vacancy.profile.email }}
                 {% endif %}
             </span>
         {% endif %}

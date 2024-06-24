@@ -11,7 +11,7 @@
         {% endif %}
       {% else %}
         <a href="{% url 'profiles:login' %}">{% translate 'Login' %}</a>
-        <a href="{% url 'profiles:register' %}">{% translate 'Register' %}</a>
+        <a href="{% url 'profiles:register_choice' %}">{% trans 'Register' %}</a>
     {% endif %}
     </nav>
 </div>

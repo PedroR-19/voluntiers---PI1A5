@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+from .validators import validate_cpf, validate_cnpj
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -34,7 +35,7 @@ class User(AbstractBaseUser):
 class Institution(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    cnpj = models.CharField(max_length=18)
+    cnpj = models.CharField(max_length=18, validators=[validate_cnpj])
 
     def __str__(self):
         return self.name
@@ -44,7 +45,7 @@ class Voluntier(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     birth_date = models.DateField()
-    cpf = models.CharField(max_length=14)
+    cpf = models.CharField(max_length=14, validators=[validate_cpf])
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

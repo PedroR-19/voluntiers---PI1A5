@@ -8,7 +8,6 @@ from profiles.forms.match_form import MatchForm
 from profiles.forms import LoginForm, RegisterForm
 from profiles.models import Profile
 from vacancies.models import Vacancy, Application
-from profiles.forms.match_form import MatchForm
 from django.utils.translation import gettext as _
 
 
@@ -50,6 +49,7 @@ def login_view(request):
         'form': form,
         'form_action': reverse('profiles:login_create')
     })
+
 
 def match_view(request):
     form = MatchForm(request.GET or None)
@@ -115,8 +115,11 @@ def logout_view(request):
 def dashboard(request):
     user = request.user
     profile = request.user.profile
+    form = MatchForm(request.GET or None)
+
     if not request.user.is_superuser:
         profile = Profile.objects.get(user_id=request.user.id)
+        
     if profile.user_type == 'Voluntier':
         applications = Application.objects.filter(
             voluntier=request.user
@@ -128,7 +131,8 @@ def dashboard(request):
                 'applications': applications,
                 'user_type': profile.user_type,
                 'user': request.user,
-                'profile': profile
+                'profile': profile,
+                'form': form,  # Passando o formulário para o contexto
             }
         )
     else:
@@ -142,6 +146,7 @@ def dashboard(request):
                 'vacancies': vacancies,
                 'user_type': profile.user_type,
                 'user': request.user,
-                'profile': profile
+                'profile': profile,
+                'form': form,  # Passando o formulário para o contexto
             }
         )

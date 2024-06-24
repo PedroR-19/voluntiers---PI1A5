@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from .validators import validate_cpf, validate_cnpj
@@ -34,7 +35,7 @@ class User(AbstractBaseUser):
 
 class Institution(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, verbose_name=_('Name'))
     cnpj = models.CharField(max_length=18, validators=[validate_cnpj])
 
     def __str__(self):
@@ -42,9 +43,9 @@ class Institution(models.Model):
 
 class Voluntier(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    birth_date = models.DateField()
+    first_name = models.CharField(max_length=30, verbose_name=_('First Name'))
+    last_name = models.CharField(max_length=30, verbose_name=_('Last Name'))
+    birth_date = models.DateField(verbose_name=_('Birth date'))
     cpf = models.CharField(max_length=14, validators=[validate_cpf])
 
     def __str__(self):

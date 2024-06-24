@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 14:24-0300\n"
+"POT-Creation-Date: 2024-06-24 15:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\base_templates\global\partials\form.html:17
-#: .\profiles\forms\register_form.py:27
-msgid "Username"
-msgstr "Nome de usuário"
-
-#: .\base_templates\global\partials\form.html:19
-#: .\profiles\forms\register_form.py:62
-msgid "Password"
-msgstr "Senha"
-
-#: .\base_templates\global\partials\form.html:45
+#: .\base_templates\global\partials\form.html:34
 msgid "There are errors in the form, please correct them and resubmit"
 msgstr "Existem erros no formulário, corrija-os e envie novamente"
 
-#: .\base_templates\global\partials\form.html:53
+#: .\base_templates\global\partials\form.html:42
 #: .\vacancies\templates\vacancies\pages\candidatar_vacancy.html:14
 msgid "Submit"
 msgstr "Enviar"
@@ -41,139 +31,145 @@ msgstr "Enviar"
 msgid "Home"
 msgstr "Página principal"
 
-#: .\base_templates\global\partials\menu.html:10
-msgid "New vacancy"
-msgstr "Nova vaga"
-
-#: .\base_templates\global\partials\menu.html:14
+#: .\base_templates\global\partials\menu.html:13
 msgid "Login"
 msgstr "Login"
 
-#: .\base_templates\global\partials\menu.html:15
-#: .\profiles\templates\profiles\pages\register_view.html:5
-#: .\profiles\templates\profiles\pages\register_view.html:9
+#: .\base_templates\global\partials\menu.html:14
+#: .\profiles\templates\profiles\pages\register_choice.html:4
+#: .\profiles\templates\profiles\pages\register_choice.html:8
+#: .\profiles\templates\profiles\pages\register_view.html:4
+#: .\profiles\templates\profiles\pages\register_view.html:8
 msgid "Register"
 msgstr "Registro"
 
-#: .\profiles\forms\register_form.py:11
-msgid "Your name"
-msgstr "Seu nome"
+#: .\profiles\forms\institution_form.py:8
+msgid "Confirm password"
+msgstr "Confirme sua senha"
 
 #: .\profiles\forms\register_form.py:12
-msgid "Your e-mail"
-msgstr "Seu e-mail"
-
-#: .\profiles\forms\register_form.py:13
-msgid "Ex.: Pedro"
-msgstr "Ex.: Pedro"
-
-#: .\profiles\forms\register_form.py:14
-msgid "Ex.: Costa"
-msgstr "Ex.: Costa"
-
-#: .\profiles\forms\register_form.py:15
-msgid "Write your password"
-msgstr "Digite sua senha"
-
-#: .\profiles\forms\register_form.py:16
-msgid "Write your password again"
-msgstr "Repita sua senha"
-
-#: .\profiles\forms\register_form.py:23
 msgid "Please select an option"
 msgstr "Por favor, selecione uma opção"
 
-#: .\profiles\forms\register_form.py:24
-msgid "User_type"
+#: .\profiles\forms\register_form.py:13
+#, fuzzy
+#| msgid "User_type"
+msgid "User type"
 msgstr "Tipo de usuário"
 
-#: .\profiles\forms\register_form.py:29
-msgid "Username must contain letters, numbers, or one of these: @.+-_. Username must contain between 4 and 150 characters."
-msgstr "O nome de usuário deve conter letras, números ou um destes: @.+-_. Nome de usuário deve conter entre 4 e 150 caracteres."
-
-#: .\profiles\forms\register_form.py:32
-msgid "This field must not be empty"
-msgstr "Este campo não deve estar vazio"
-
-#: .\profiles\forms\register_form.py:33
-msgid "Username must have at least 4 characters"
-msgstr "O nome de usuário deve ter pelo menos 4 caracteres"
-
-#: .\profiles\forms\register_form.py:34
-msgid "Username must have less than 150 characters"
-msgstr "O nome de usuário deve ter menos de 150 caracteres"
-
-#: .\profiles\forms\register_form.py:39
-msgid "Write your first name"
-msgstr "Escreva seu primeiro nome"
-
-#: .\profiles\forms\register_form.py:40
-msgid "First name"
-msgstr "Primeiro nome"
-
-#: .\profiles\forms\register_form.py:43
-msgid "Write your last name"
-msgstr "Escreva seu sobrenome"
-
-#: .\profiles\forms\register_form.py:44
-msgid "Last name"
-msgstr "Sobrenome"
-
-#: .\profiles\forms\register_form.py:47
-msgid "E-mail is required"
-msgstr "E-mail é obrigatório"
-
-#: .\profiles\forms\register_form.py:49
-msgid "The e-mail need to be valid."
-msgstr "O e-mail precisa ser válido"
-
-#: .\profiles\forms\register_form.py:54
-msgid "Password must not be empty"
-msgstr "A senha não deve estar vazia"
-
-#: .\profiles\forms\register_form.py:57
-msgid ""
-"Password must contain at least one uppercase letter, a lowercase letter and "
-"a number. at least 8 characters."
-msgstr ""
-"A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um "
-"número. pelo menos 8 caracteres"
-
-#: .\profiles\forms\register_form.py:66
-msgid "Password2"
-msgstr "Repita sua senha"
-
-#: .\profiles\forms\register_form.py:68
-msgid "Please, repeat your password"
-msgstr "Por favor, repita sua senha"
-
-#: .\profiles\forms\register_form.py:89
+#: .\profiles\forms\register_form.py:23
 msgid "This email is already in use."
 msgstr "Este e-mail já está em uso"
 
-#: .\profiles\forms\register_form.py:102
-msgid "Password and Password2 must be the same"
-msgstr "Senha e Senha2 devem ser as mesmas"
+#: .\profiles\models.py:38
+msgid "Name"
+msgstr "Nome"
+
+#: .\profiles\models.py:46
+msgid "First Name"
+msgstr "Primeiro nome"
+
+#: .\profiles\models.py:47
+msgid "Last Name"
+msgstr "Sobrenome"
+
+#: .\profiles\models.py:48
+msgid "Birth date"
+msgstr "Data de nascimento"
 
 #: .\profiles\templates\profiles\pages\dashboard.html:16
-msgid "vacancies"
-msgstr "Vagas"
+msgid "Find Matching Vacancies"
+msgstr "Seus Matches"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:20
+#: .\vacancies\models.py:60
+#: .\vacancies\templates\vacancies\partials\vacancy.html:52
+msgid "Shift"
+msgstr "Turno"
 
 #: .\profiles\templates\profiles\pages\dashboard.html:28
+#: .\vacancies\models.py:61
+#: .\vacancies\templates\vacancies\partials\vacancy.html:54
+msgid "Country"
+msgstr "País"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:36
+#: .\vacancies\models.py:62
+#: .\vacancies\templates\vacancies\partials\vacancy.html:55
+msgid "State"
+msgstr "Estado"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:44
+#: .\vacancies\models.py:63
+#: .\vacancies\templates\vacancies\partials\vacancy.html:56
+msgid "City"
+msgstr "Cidade"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:52
+#: .\vacancies\views.py:81
+msgid "Category"
+msgstr "Categoria"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:59
+#: .\vacancies\templates\vacancies\pages\match.html:9
+msgid "Match"
+msgstr "Match"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:63
+#: .\profiles\templates\profiles\partials\login_message.html:9
+msgid "Create a new vacancy"
+msgstr "Criar uma nova vaga"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:64
+#: .\vacancies\models.py:90
+msgid "Vacancies"
+msgstr "Vagas"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:77
 msgid "You do not have any vacancy"
 msgstr "Você não tem nenhuma vaga"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:33
-msgid "applications"
+#: .\profiles\templates\profiles\pages\dashboard.html:82
+msgid "Applications"
 msgstr "Veja suas candidaturas"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:37
-msgid "application made at"
+#: .\profiles\templates\profiles\pages\dashboard.html:86
+#, fuzzy
+#| msgid "application made at"
+msgid "Application made at"
 msgstr "feito em"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:41
+#: .\profiles\templates\profiles\pages\dashboard.html:90
 msgid "You do not have applied for any vacancy"
 msgstr "Você não se candidatou em nenhuma vaga ainda"
+
+#: .\profiles\templates\profiles\pages\dashboard_vacancy.html:9
+#, fuzzy
+#| msgid "Create a new vacancy"
+msgid "Create Vacancy"
+msgstr "Criar uma nova vaga"
+
+#: .\profiles\templates\profiles\pages\dashboard_vacancy.html:14
+msgid "Save"
+msgstr "Salvar"
+
+#: .\profiles\templates\profiles\pages\institution_register.html:4
+#: .\profiles\templates\profiles\pages\institution_register.html:8
+msgid "Register Institution"
+msgstr "Registrar como Instituição"
+
+#: .\profiles\templates\profiles\pages\register_choice.html:9
+msgid "Register as Institution"
+msgstr "Registrar como Instituição"
+
+#: .\profiles\templates\profiles\pages\register_choice.html:10
+msgid "Register as Voluntier"
+msgstr "Registrar como Voluntier"
+
+#: .\profiles\templates\profiles\pages\voluntier_register.html:4
+#: .\profiles\templates\profiles\pages\voluntier_register.html:8
+msgid "Register Voluntier"
+msgstr "Registrar como Voluntier"
 
 #: .\profiles\templates\profiles\partials\login_message.html:5
 msgid "You are logged in as"
@@ -182,10 +178,6 @@ msgstr "Você está logado como"
 #: .\profiles\templates\profiles\partials\login_message.html:8
 msgid "See your vacancies"
 msgstr "Veja suas vagas"
-
-#: .\profiles\templates\profiles\partials\login_message.html:9
-msgid "Create a new vacancy"
-msgstr "Criar uma nova vaga"
 
 #: .\profiles\templates\profiles\partials\login_message.html:10
 #: .\profiles\templates\profiles\partials\login_message.html:19
@@ -206,105 +198,233 @@ msgstr "para desconectar"
 msgid "See your applications"
 msgstr "Veja suas candidaturas"
 
-#: .\profiles\views\all.py:39
-msgid "Your user has been created, please log in."
+#: .\profiles\validators.py:8
+msgid "Invalid CPF"
+msgstr "CPF inválido"
+
+#: .\profiles\validators.py:13
+msgid "Invalid CNPJ"
+msgstr "CNPJ Inválido"
+
+#: .\profiles\views\all.py:22
+#, fuzzy
+#| msgid "Your user has been created, please log in."
+msgid "Your Institution has been created, please log in."
 msgstr "Seu usuário foi criado, faça login"
 
-#: .\profiles\views\all.py:68
+#: .\profiles\views\all.py:34
+#, fuzzy
+#| msgid "Your user has been created, please log in."
+msgid "Your Voluntier account has been created, please log in."
+msgstr "Seu usuário foi criado, faça login"
+
+#: .\profiles\views\all.py:83
 msgid "You're logged in!"
 msgstr "Você está logado"
 
-#: .\profiles\views\all.py:71
+#: .\profiles\views\all.py:86
 msgid "Invalid credentials"
 msgstr "Credenciais inválidas"
 
-#: .\profiles\views\all.py:73
-msgid "Invalid username or password"
+#: .\profiles\views\all.py:88
+#, fuzzy
+#| msgid "Invalid username or password"
+msgid "Invalid email or password"
 msgstr "Nome de usuário ou senha inválidos"
 
-#: .\profiles\views\all.py:81
+#: .\profiles\views\all.py:97
 msgid "Invalid logout request"
 msgstr "Solicitação de logout inválida"
 
-#: .\profiles\views\all.py:85
-msgid "Invalid logout user"
-msgstr "Usuário de logout inválido"
-
-#: .\profiles\views\all.py:88
+#: .\profiles\views\all.py:101
 msgid "Logout Done Successfully"
 msgstr "Logout feito com sucesso"
 
-#: .\vacancies\models.py:17
+#: .\vacancies\models.py:24
+msgid "Morning"
+msgstr "Manhã"
+
+#: .\vacancies\models.py:25
+msgid "Afternoon"
+msgstr "Tarde"
+
+#: .\vacancies\models.py:26
+msgid "Night"
+msgstr "Noite"
+
+#: .\vacancies\models.py:30
+msgid "Brazil"
+msgstr "Brasil"
+
+#: .\vacancies\models.py:31
+msgid "United States"
+msgstr "Estados Unidos"
+
+#: .\vacancies\models.py:35 .\vacancies\models.py:40
+msgid "São Paulo"
+msgstr "São Paulo"
+
+#: .\vacancies\models.py:36 .\vacancies\models.py:41
+msgid "Rio de Janeiro"
+msgstr "Rio de Janeiro"
+
+#: .\vacancies\models.py:44
 msgid "Title"
 msgstr "Título"
 
-#: .\vacancies\models.py:18
+#: .\vacancies\models.py:45
 msgid "Description"
 msgstr "Descrição"
 
-#: .\vacancies\models.py:20
-msgid "Salary"
-msgstr "Salário"
-
-#: .\vacancies\models.py:21
-msgid "Types"
-msgstr "Tipos"
-
-#: .\vacancies\models.py:22
+#: .\vacancies\models.py:47
 msgid "Requirements"
 msgstr "Requerimentos"
 
-#: .\vacancies\models.py:24
+#: .\vacancies\models.py:49
 msgid "Created_at"
 msgstr "Criado_às"
 
-#: .\vacancies\models.py:25
+#: .\vacancies\models.py:50
 msgid "Updated_at"
 msgstr "atualizado_às"
 
-#: .\vacancies\models.py:28
+#: .\vacancies\models.py:52
 msgid "Cover"
 msgstr "Capa"
 
-#: .\vacancies\models.py:34
-msgid "Profile"
-msgstr "Perfil"
+#: .\vacancies\models.py:64
+#: .\vacancies\templates\vacancies\partials\vacancy.html:57
+msgid "Address"
+msgstr "Endereço"
 
-#: .\vacancies\models.py:52 .\vacancies\models.py:62
+#: .\vacancies\models.py:80 .\vacancies\models.py:89
 msgid "Vacancy"
 msgstr "Vaga"
 
-#: .\vacancies\models.py:55
+#: .\vacancies\models.py:83
 msgid "Date"
 msgstr "Data"
-
-#: .\vacancies\models.py:63
-msgid "Vacancies"
-msgstr "Vagas"
 
 #: .\vacancies\templates\vacancies\pages\candidatar_vacancy.html:8
 msgid "Apply for"
 msgstr "Candidatar-se para"
 
-#: .\vacancies\templates\vacancies\partials\vacancy.html:52
-msgid "Contract"
-msgstr "Contrato"
+#: .\vacancies\templates\vacancies\pages\match.html:15
+msgid "No matching vacancies found"
+msgstr "Nenhum match encontrado"
 
-#: .\vacancies\templates\vacancies\partials\vacancy.html:63
+#: .\vacancies\templates\vacancies\partials\vacancy.html:53
+#, fuzzy
+#| msgid "Category"
+msgid "Subcategory"
+msgstr "Categoria"
+
+#: .\vacancies\templates\vacancies\partials\vacancy.html:66
 msgid "See more"
 msgstr "Ver mais"
 
-#: .\vacancies\templates\vacancies\partials\vacancy.html:80
+#: .\vacancies\templates\vacancies\partials\vacancy.html:84
 msgid "Apply"
 msgstr "Candidatar-se"
 
-#: .\vacancies\templates\vacancies\partials\vacancy.html:84
+#: .\vacancies\templates\vacancies\partials\vacancy.html:88
 msgid "You need to be a Voluntier to apply"
 msgstr "Você precisa ser um Voluntier para aplicar para essa vaga"
 
-#: .\vacancies\views.py:84
-msgid "Category"
-msgstr "Categoria"
+#: .\vacancies\templates\vacancies\partials\vacancy.html:91
+#, fuzzy
+#| msgid "You need to be a Voluntier to apply"
+msgid "You need to be logged in to apply"
+msgstr "Você precisa ser um Voluntier para aplicar para essa vaga"
+
+#~ msgid "Username"
+#~ msgstr "Nome de usuário"
+
+#~ msgid "Password"
+#~ msgstr "Senha"
+
+#~ msgid "New vacancy"
+#~ msgstr "Nova vaga"
+
+#~ msgid "Your name"
+#~ msgstr "Seu nome"
+
+#~ msgid "Your e-mail"
+#~ msgstr "Seu e-mail"
+
+#~ msgid "Ex.: Pedro"
+#~ msgstr "Ex.: Pedro"
+
+#~ msgid "Ex.: Costa"
+#~ msgstr "Ex.: Costa"
+
+#~ msgid "Write your password again"
+#~ msgstr "Repita sua senha"
+
+#~ msgid ""
+#~ "Username must contain letters, numbers, or one of these: @.+-_. Username "
+#~ "must contain between 4 and 150 characters."
+#~ msgstr ""
+#~ "O nome de usuário deve conter letras, números ou um destes: @.+-_. Nome "
+#~ "de usuário deve conter entre 4 e 150 caracteres."
+
+#~ msgid "This field must not be empty"
+#~ msgstr "Este campo não deve estar vazio"
+
+#~ msgid "Username must have at least 4 characters"
+#~ msgstr "O nome de usuário deve ter pelo menos 4 caracteres"
+
+#~ msgid "Username must have less than 150 characters"
+#~ msgstr "O nome de usuário deve ter menos de 150 caracteres"
+
+#~ msgid "Write your first name"
+#~ msgstr "Escreva seu primeiro nome"
+
+#~ msgid "Write your last name"
+#~ msgstr "Escreva seu sobrenome"
+
+#~ msgid "E-mail is required"
+#~ msgstr "E-mail é obrigatório"
+
+#~ msgid "The e-mail need to be valid."
+#~ msgstr "O e-mail precisa ser válido"
+
+#~ msgid "Password must not be empty"
+#~ msgstr "A senha não deve estar vazia"
+
+#~ msgid ""
+#~ "Password must contain at least one uppercase letter, a lowercase letter "
+#~ "and a number. at least 8 characters."
+#~ msgstr ""
+#~ "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e "
+#~ "um número. pelo menos 8 caracteres"
+
+#~ msgid "Password2"
+#~ msgstr "Repita sua senha"
+
+#~ msgid "Please, repeat your password"
+#~ msgstr "Por favor, repita sua senha"
+
+#~ msgid "Password and Password2 must be the same"
+#~ msgstr "Senha e Senha2 devem ser as mesmas"
+
+#~ msgid "vacancies"
+#~ msgstr "Vagas"
+
+#~ msgid "Invalid logout user"
+#~ msgstr "Usuário de logout inválido"
+
+#~ msgid "Salary"
+#~ msgstr "Salário"
+
+#~ msgid "Types"
+#~ msgstr "Tipos"
+
+#~ msgid "Profile"
+#~ msgstr "Perfil"
+
+#~ msgid "Contract"
+#~ msgstr "Contrato"
 
 #, fuzzy
 #~| msgid "Date"

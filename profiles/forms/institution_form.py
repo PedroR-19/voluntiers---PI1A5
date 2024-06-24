@@ -1,10 +1,11 @@
 from django import forms
 from profiles.models import Institution
+from django.utils.translation import gettext_lazy as _
 
 class InstitutionForm(forms.ModelForm):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput(), label=_("Confirm password"))
 
     class Meta:
         model = Institution

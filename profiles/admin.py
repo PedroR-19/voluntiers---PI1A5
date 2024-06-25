@@ -8,18 +8,18 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_staff', 'is_active')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),  # Adicione 'groups' e 'user_permissions'
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2'),
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active', 'is_superuser'),
         }),
     )
     search_fields = ('email',)
     ordering = ('email',)
-    filter_horizontal = ()  # Remover a referência a 'groups' e 'user_permissions'
+    filter_horizontal = ('groups', 'user_permissions')  # Adicione 'groups' e 'user_permissions'
 
 @admin.register(Institution)
 class InstitutionAdmin(admin.ModelAdmin):

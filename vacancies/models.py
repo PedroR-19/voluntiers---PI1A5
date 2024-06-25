@@ -51,10 +51,10 @@ class Vacancy(models.Model):
     cover = models.ImageField(
         upload_to='vacancies/covers/%Y/%m/%d/', blank=True, default='', verbose_name=_('Cover'))
     category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True, blank=True, default=None
+        Category, on_delete=models.SET_NULL, null=True, blank=True, default=None, verbose_name=_('Category')
     )
     subcategory = models.ForeignKey(
-        Subcategory, on_delete=models.SET_NULL, null=True, blank=True, default=None
+        Subcategory, on_delete=models.SET_NULL, null=True, blank=True, default=None, verbose_name=_('Subcategory')
     )
     profile = models.ForeignKey(Institution, on_delete=models.CASCADE)
     shift = models.CharField(max_length=10, choices=SHIFT_CHOICES, default='morning', verbose_name=_('Shift'))

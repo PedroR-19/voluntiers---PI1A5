@@ -642,7 +642,6 @@ a {
 
 .profiles-dashboard-container {
   background-color: var(--background-color);
-  padding: 5px 20px 5px 20px;
   margin-top: 10px;
   border-radius: 10px;
   border-color: var(--border-color);
@@ -673,7 +672,7 @@ a {
   padding-bottom: 0;
 }
 
-#id_username, #id_password {
+#id_username, #id_password, #id_email{
   /* margin-left: 10px; */
   min-width: 200px;
   border: solid;
@@ -681,6 +680,7 @@ a {
   border-color: var(--border-color);
   border-radius: 10px;
   background-color: var(--background-color);
+  padding: 5px;
 }
 
 #id_user_type, 
@@ -690,6 +690,11 @@ a {
 #id_password2,
 
 #id_title,
+#id_name,
+#id_cnpj,
+#id_birth_date,
+#id_confirm_password,
+#id_cpf,
 #id_description,
 #id_category,
 #id_subcategory,
@@ -701,11 +706,16 @@ a {
 #id_requirements,
 #id_cover
 {
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-width: 1px;
   border-color: var(--border-color);
   border-radius: 10px;
   background-color: var(--background-color);
+  padding: 5px;
 }
+
+
 
 #need-to-be-voluntier {
   margin: 0px 0px 20px 20px;
@@ -721,6 +731,11 @@ a {
 .main-content-container {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+form p {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 600px) {

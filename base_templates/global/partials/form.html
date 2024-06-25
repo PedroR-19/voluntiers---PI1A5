@@ -6,7 +6,7 @@
 
     <div class="form-content form-content-grid">
       {% for field in form %}
-        <div class="form-group {{ field.field.widget.attrs.class }}">
+      <div class="login-form form-group {{ field.field.widget.attrs.class }}">
           <label for="{{ field.id_for_label }}">
             {% translate field.label %}
           </label>
@@ -39,7 +39,7 @@
 
     <div class="form-content form-content-grid">
       <div class="form-group">
-        <button type="submit">{% translate 'Submit' %}</button>
+        <button type="submit" class="styled-button">{% translate 'Submit' %}</button>
       </div>
     </div>
   </form>

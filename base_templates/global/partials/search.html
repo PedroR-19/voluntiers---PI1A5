@@ -5,7 +5,8 @@
         <form action="{% url 'vacancies:search' %}" method="GET" class="search-form">
             <input 
                 type="search" class="search-input" 
-                name="q" value="{{ search_term }}" required 
+                name="q" value="{{ search_term }}" required
+                id="search-input"
             >
             <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>

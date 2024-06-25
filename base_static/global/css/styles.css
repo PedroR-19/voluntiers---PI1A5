@@ -673,7 +673,7 @@ a {
   padding-bottom: 0;
 }
 
-#id_username, #id_password, #id_email {
+#id_username, #id_password {
   /* margin-left: 10px; */
   min-width: 200px;
   border: solid;
@@ -681,19 +681,13 @@ a {
   border-color: var(--border-color);
   border-radius: 10px;
   background-color: var(--background-color);
-
-  padding: 5px 5px 5px 5px;
 }
 
-#id_name,
-#id_cnpj,
 #id_user_type, 
 #id_first_name, 
 #id_last_name, 
 #id_email, 
-#id_confirm_password,
-#id_birth_date,
-#id_cpf,
+#id_password2,
 
 #id_title,
 #id_description,
@@ -711,8 +705,6 @@ a {
   border-color: var(--border-color);
   border-radius: 10px;
   background-color: var(--background-color);
-  
-  padding: 5px 5px 5px 5px;
 }
 
 #need-to-be-voluntier {

@@ -6,12 +6,12 @@
 
 {% block content %}
   <h1>{% translate 'Apply for' %}: {{ vacancy.title }}</h1>
-  <form method="post" id="submit-cv-form" enctype="multipart/form-data">
+  <form method="post" id="submit-cv-form" enctype="multipart/form-data">                                            =================
     {% csrf_token %}
     {{ form.as_p }}
     <div class="form-content form-content-grid">
       <div class="form-group">
-        <button type="submit" class="styled-button">{% translate 'Submit' %}</button>
+        <button type="submit" class="styled-button">{% translate 'Submit' %}</button>                                            =================
       </div>
     </div>
   </form>

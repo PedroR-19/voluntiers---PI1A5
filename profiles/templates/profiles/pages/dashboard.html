@@ -1,3 +1,4 @@
+<!-- profiles/templates/profiles/pages/dashboard.html -->
 {% extends 'global/base.html' %}
 
 {% load i18n %}
@@ -56,12 +57,11 @@
               {% endfor %}
             </select>
           </div>
-          <button type="submit">{% translate 'Match' %}</button>
+          <button type="submit" class="styled-button">{% translate 'Match' %}</button>                                            =================
         </form>
       {% endif %}
       {% if user_type == 'ONG' %}
-      <a href="{% url 'profiles:dashboard_vacancy_new' %}">{% translate 'Create a new vacancy' %}</a>
-        <h3>{% translate 'Vacancies' %}</h3>
+      <h3>{% translate 'Vacancies' %}</h3>                                            =================
         <ul>
           {% for vacancy in vacancies %}
             <li>
@@ -79,15 +79,15 @@
           {% endfor %}
         </ul>
       {% elif user_type == 'Voluntier' %}
-        <h3>{% translate 'Applications' %}</h3>
+      <h3>{% translate 'Applications' %}</h3>                                            =================
         <ul>
           {% for application in applications %}
             <li>
-              {{ application.vacancy.title }} - {% translate 'Application made at' %} {{ application.date }}
+              {{ application.vacancy.title }} - {% translate 'application made at' %} {{ application.date }}
             </li>
           {% empty %}
             <li>
-              <p>{% translate 'You do not have applied for any vacancy' %}.</p>
+              <p>{% translate 'You have not applied for any vacancy' %}.</p>                                            =================
             </li>
           {% endfor %}
         </ul>

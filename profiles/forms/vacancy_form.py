@@ -23,10 +23,9 @@ class ProfileVacancyForm(forms.ModelForm):
         model = Vacancy
         fields = [
             'title', 'description', 'category', 'subcategory', 'shift',
-            'country', 'state', 'city', 'logradouro', 'requirements', 'cover',
+            'country', 'state', 'city', 'logradouro', 'requirements',
         ]
         widgets = {
-            'cover': forms.FileInput(attrs={'class': 'span-2'}),
             'shift': forms.Select(choices=Vacancy.SHIFT_CHOICES),
         }
 

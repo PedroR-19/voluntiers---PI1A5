@@ -4,9 +4,11 @@
 {% block title %}{% trans 'Register' %} | {% endblock title %}
 
 {% block content %}
+
   <div class="main-content center container">
     <h2>{% trans 'Register' %}</h2>
     <a href="{% url 'profiles:institution_register' %}">{% trans 'Register as Institution' %}</a>
     <a href="{% url 'profiles:voluntier_register' %}">{% trans 'Register as Voluntier' %}</a>
   </div>
+
 {% endblock content %}

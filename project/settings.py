@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import locale
 
 from django.contrib.messages import constants
 
@@ -31,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'vacancies',
+    'positions',
     'profiles',
 ]
 
@@ -107,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
+
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 LANGUAGE_CODE = 'pt-br'
 

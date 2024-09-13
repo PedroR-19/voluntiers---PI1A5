@@ -1,0 +1,21 @@
+{% extends 'global/base.html' %}
+
+{% load i18n %}
+
+{% block title %}Match{% endblock title %}
+
+{% block content %}
+
+    <div class="main-content main-content-detail container">
+        <h2>{% translate 'Match' %}</h2>
+        {% include 'global/partials/messages.html' %}
+
+        {% for position in positions %}
+            {% include 'positions/partials/position.html' with position=position is_detail_page=False %}
+
+        {% empty %}
+            <p>{% translate 'No matching positions found' %}</p>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

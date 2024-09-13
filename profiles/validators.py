@@ -1,6 +1,8 @@
-from validate_docbr import CPF, CNPJ
-from django.core.exceptions import ValidationError
+from django.core.exceptions   import ValidationError
 from django.utils.translation import gettext_lazy as _
+
+from validate_docbr import CPF, CNPJ
+
 
 def validate_cpf(value):
     cpf = CPF()

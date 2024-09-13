@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Django's command-line utility for administrative vacancies."""
+"""Django's command-line utility for administrative positions."""
 import os
 import sys
 
@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 def main():
-    """Run administrative vacancies."""
+    """Run administrative positions."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
     load_dotenv()
     try:

@@ -1,10 +1,12 @@
-from django import forms
+from django                     import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.core.exceptions import ValidationError
-from .django_forms import add_placeholder, strong_password
+from django.contrib.auth.forms  import UserCreationForm
+from django.core.exceptions     import ValidationError
+from .django_forms              import add_placeholder, strong_password
+from django.utils.translation   import gettext_lazy as _
+
 from profiles.models import User, Institution, Voluntier
-from django.utils.translation import gettext_lazy as _
+
 
 class RegisterForm(UserCreationForm):
     user_type = forms.ChoiceField(
@@ -19,14 +21,17 @@ class RegisterForm(UserCreationForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email', '')
+
         if User.objects.filter(email=email).exists():
             raise ValidationError(_('This email is already in use.'), code='invalid')
         return email
+
 
 class InstitutionForm(forms.ModelForm):
     class Meta:
         model = Institution
         fields = ['name', 'cnpj']
+
 
 class VoluntierForm(forms.ModelForm):
     birth_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

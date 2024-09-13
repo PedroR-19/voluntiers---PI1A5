@@ -1,18 +1,22 @@
-from django.http import JsonResponse
+from django.http  import JsonResponse
 from django.views import View
-from vacancies.models import Vacancy, Subcategory
+
+from positions.models import Position, Subcategory
+
 
 class FilterStates(View):
     def get(self, request, *args, **kwargs):
         country = request.GET.get('country')
-        states = [state for state in Vacancy.STATE_CHOICES if country == 'US' or country == 'BR']
+        states = [state for state in Position.STATE_CHOICES if country == 'US' or country == 'BR']
         return JsonResponse(states, safe=False)
+
 
 class FilterCities(View):
     def get(self, request, *args, **kwargs):
         state = request.GET.get('state')
-        cities = [city for city in Vacancy.CITY_CHOICES if state in ['SP', 'RJ']]
+        cities = [city for city in Position.CITY_CHOICES if state in ['SP', 'RJ']]
         return JsonResponse(cities, safe=False)
+
 
 class FilterSubcategories(View):
     def get(self, request, *args, **kwargs):

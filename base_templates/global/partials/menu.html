@@ -2,16 +2,24 @@
 
 <div class="menu-content">
     <nav class="menu-nav">
-      <a href="{% url 'vacancies:home' %}">{% translate 'Home' %}</a>
+      <a href="{% url 'positions:home' %}">{% translate 'Home' %}</a>
+
       {% if user.is_authenticated %}
         {% if profile.user_type == 'Voluntier' %}
+
           <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
+
         {% else %}
+
         <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
+
         {% endif %}
+
       {% else %}
+
         <a href="{% url 'profiles:login' %}">{% translate 'Login' %}</a>
         <a href="{% url 'profiles:register_choice' %}">{% trans 'Register' %}</a>
+        
     {% endif %}
     </nav>
 </div>

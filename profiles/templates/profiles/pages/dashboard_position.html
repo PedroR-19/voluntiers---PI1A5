@@ -1,0 +1,24 @@
+{% extends 'global/base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}Create position | {% endblock title %}
+
+{% block content %}
+
+  <div class="main-content center container">
+    <h2>{% translate 'Create position' %}</h2>
+    
+    {% include 'global/partials/messages.html' %}
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit" class="styled-button">{% translate 'Save' %}</button>
+    </form>
+  </div>
+
+  <script src="{% static 'js/position_form.js' %}"></script>
+
+{% endblock content %}

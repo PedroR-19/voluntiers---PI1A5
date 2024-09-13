@@ -1,0 +1,98 @@
+{% load i18n %}
+
+<div class="position position-list-item">
+    {% if position.cover %} 
+        <div class="position-cover">
+            <a href="{{ position.get_absolute_url }}">
+                <img src="{{ position.cover.url }}" alt="Temporário">
+            </a>
+        </div>
+    {% endif %}
+
+    <div class="position-title-container">
+        <h2 class="position-title">
+            <a href="{{ position.get_absolute_url }}">
+                {{ position.title }}
+            </a>
+        </h2>
+    </div>
+
+    <div class="position-profile">
+        {% if position.profile is not None %}
+            <span class="position-profile-item">
+                <i class="fas fa-user"></i>
+                {% if position.profile.first_name %}
+                    {{ position.profile.first_name }} {{ position.profile.last_name }}
+                    
+                {% else %}
+                    {{ position.profile.email }}
+                {% endif %}
+            </span>
+        {% endif %}
+
+        <span class="position-profile-item">
+            <i class="fas fa-calendar-alt"></i>
+            {{ position.created_at|date:"d/m/Y" }} {{ position.created_at|date:"H:i" }}
+        </span>
+
+        {% if position.category is not None %}
+            <span class="position-profile-item">
+                <a href="{% url 'positions:category' position.category.id %}">
+                    <i class="fas fa-layer-group"></i>
+                    <span>{{ position.category.name }}</span>
+                </a>
+            </span>
+        {% endif %}
+    </div>
+
+    <div class="position-content">
+        <p>{{ position.description }}</p>
+    </div>
+
+    <div class="position-meta-container">
+        <div class="position-meta position-preparation">
+            <h3 class="position-meta-title"></i> {% translate "Shift" %} {{ position.get_shift_display }} </h3>
+            <h3 class="position-meta-title"></i> {% translate "Country" %} {{ position.country }} </h3>
+            <h3 class="position-meta-title"></i> {% translate "State" %} {{ position.state }} </h3>
+            <h3 class="position-meta-title"></i> {% translate "City" %} {{ position.city }} </h3>
+            <h3 class="position-meta-title"></i> {% translate "Address" %} {{ position.logradouro }} </h3>
+            </h3>
+        </div>
+    </div>
+
+    {% if is_detail_page is not True %}
+        <footer class="position-footer">
+            <a class="position-read-more button button-dark button-full-width" href="{% url 'positions:position' position.id %}">
+                <i class="fas fa-eye"></i>
+                <span>{% translate "See more" %}...</span>
+            </a>    
+        </footer>
+    {% endif %}
+
+    {% if is_detail_page is True %}
+        <div class="preparation-requirements">
+            {% if position.requirements_is_html is True %}
+                {{ position.requirements|safe }}
+            {% else %}
+                {{ position.requirements|linebreaksbr }}
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+            {% if user_profile %}
+                <div class="form-content form-content-grid">
+                    <a class="position-read-more button button-dark button-full-width" href="{% url 'positions:candidatar_position' position.id %}">
+                        <span>{% translate "Apply" %}</span>
+                    </a>
+                </div>
+
+                {% else %}
+                    <p>{% translate "You need to be a Voluntier to apply" %}.</p>
+                {% endif %}
+
+        {% else %}
+            <p>{% translate "You need to be logged in to apply" %}.</p>
+        {% endif %}
+        
+    {% endif %}
+</div>

@@ -1,21 +1,25 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib                 import messages
+from django.contrib.auth            import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse
+from django.http                    import Http404
+from django.shortcuts               import redirect, render, get_object_or_404
+from django.urls                    import reverse
+from django.utils.translation       import gettext as _
+
 from profiles.forms.match_form import MatchForm
-from profiles.forms import LoginForm, InstitutionForm, VoluntierForm
-from profiles.models import User, Institution, Voluntier
-from vacancies.models import Vacancy, Application
-from django.utils.translation import gettext as _
+from profiles.forms            import LoginForm, InstitutionForm, VoluntierForm
+from profiles.models           import User, Institution, Voluntier
+from positions.models          import Position, Application
+
 
 def register_choice_view(request):
     return render(request, 'profiles/pages/register_choice.html')
 
+
 def institution_register_view(request):
     if request.method == 'POST':
         form = InstitutionForm(request.POST)
+
         if form.is_valid():
             user = User.objects.create_user(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
             Institution.objects.create(user=user, name=form.cleaned_data['name'], cnpj=form.cleaned_data['cnpj'])
@@ -25,9 +29,11 @@ def institution_register_view(request):
         form = InstitutionForm()
     return render(request, 'profiles/pages/institution_register.html', {'form': form})
 
+
 def voluntier_register_view(request):
     if request.method == 'POST':
         form = VoluntierForm(request.POST)
+
         if form.is_valid():
             user = User.objects.create_user(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
             Voluntier.objects.create(user=user, first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], birth_date=form.cleaned_data['birth_date'], cpf=form.cleaned_data['cpf'])
@@ -37,6 +43,7 @@ def voluntier_register_view(request):
         form = VoluntierForm()
     return render(request, 'profiles/pages/voluntier_register.html', {'form': form})
 
+
 def login_view(request):
     form = LoginForm()
     return render(request, 'profiles/pages/login.html', {
@@ -44,26 +51,32 @@ def login_view(request):
         'form_action': reverse('profiles:login_create')
     })
 
+
 def match_view(request):
     form = MatchForm(request.GET or None)
-    vacancies = Vacancy.objects.all()
+    positions = Position.objects.all()
 
     if form.is_valid():
         if form.cleaned_data['shift']:
-            vacancies = vacancies.filter(shift=form.cleaned_data['shift'])
-        if form.cleaned_data['country']:
-            vacancies = vacancies.filter(country=form.cleaned_data['country'])
-        if form.cleaned_data['state']:
-            vacancies = vacancies.filter(state=form.cleaned_data['state'])
-        if form.cleaned_data['city']:
-            vacancies = vacancies.filter(city=form.cleaned_data['city'])
-        if form.cleaned_data['category']:
-            vacancies = vacancies.filter(category=form.cleaned_data['category'])
+            positions = positions.filter(shift=form.cleaned_data['shift'])
 
-    return render(request, 'vacancies/pages/match.html', {
-        'vacancies': vacancies,
+        if form.cleaned_data['country']:
+            positions = positions.filter(country=form.cleaned_data['country'])
+
+        if form.cleaned_data['state']:
+            positions = positions.filter(state=form.cleaned_data['state'])
+
+        if form.cleaned_data['city']:
+            positions = positions.filter(city=form.cleaned_data['city'])
+
+        if form.cleaned_data['category']:
+            positions = positions.filter(category=form.cleaned_data['category'])
+
+    return render(request, 'positions/pages/match.html', {
+        'positions': positions,
         'form': form,
     })
+
 
 def login_create(request):
     if not request.POST:
@@ -72,7 +85,7 @@ def login_create(request):
     form = LoginForm(request.POST)
 
     if form.is_valid():
-        email = form.cleaned_data.get('email')
+        email   = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
 
         # Atualize a autenticação para usar o email como username
@@ -88,7 +101,6 @@ def login_create(request):
         messages.error(request, _('Invalid email or password'))
 
     return redirect(reverse('profiles:login'))
-
 
 
 @login_required(login_url='profiles:login', redirect_field_name='next')
@@ -108,20 +120,20 @@ def dashboard(request):
     form = MatchForm(request.GET or None)
 
     user_type = None
-    profile = None
+    profile   = None
 
     if not request.user.is_superuser:
         try:
             institution = Institution.objects.get(user=user)
-            user_type = 'ONG'
-            profile = institution
+            user_type   = 'ONG'
+            profile     = institution
         except Institution.DoesNotExist:
             institution = None
 
         try:
             voluntier = Voluntier.objects.get(user=user)
             user_type = 'Voluntier'
-            profile = voluntier
+            profile   = voluntier
         except Voluntier.DoesNotExist:
             voluntier = None
 
@@ -138,13 +150,14 @@ def dashboard(request):
                     'form': form,  # Passando o formulário para o contexto
                 }
             )
+        
         elif user_type == 'ONG':
-            vacancies = Vacancy.objects.filter(profile=institution)
+            positions = Position.objects.filter(profile=institution)
             return render(
                 request,
                 'profiles/pages/dashboard.html',
                 context={
-                    'vacancies': vacancies,
+                    'positions': positions,
                     'user_type': user_type,
                     'user': user,
                     'profile': profile,

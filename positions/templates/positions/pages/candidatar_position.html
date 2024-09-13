@@ -1,0 +1,23 @@
+{% extends 'global/base.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+  <h1>{% translate 'Apply for' %}: {{ position.title }}</h1>
+
+  <form method="post" id="submit-cv-form" enctype="multipart/form-data">                                            
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-content form-content-grid">
+      <div class="form-group">
+        <button type="submit" class="styled-button">{% translate 'Submit' %}</button>                                            
+      </div>
+    </div>
+    
+  </form>
+
+{% endblock %}

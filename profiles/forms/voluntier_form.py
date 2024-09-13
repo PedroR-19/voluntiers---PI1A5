@@ -1,11 +1,12 @@
 from django import forms
 from profiles.models import Voluntier
 
+
 class VoluntierForm(forms.ModelForm):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    email            = forms.EmailField()
+    password         = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
-    birth_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    birth_date       = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = Voluntier
@@ -13,7 +14,8 @@ class VoluntierForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        password = cleaned_data.get('password')
+        
+        password         = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
 
         if password != confirm_password:

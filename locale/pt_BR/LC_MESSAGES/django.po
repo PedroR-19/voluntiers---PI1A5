@@ -109,10 +109,8 @@ msgid "Category"
 msgstr "Categoria"
 
 #: .\positions\models.py:80
-#, fuzzy
-#| msgid "Category"
 msgid "Subcategory"
-msgstr "Categoria"
+msgstr "subcategoria"
 
 #: .\positions\models.py:85
 #: .\positions\templates\positions\partials\position.html:54
@@ -243,14 +241,10 @@ msgid "application made at"
 msgstr "feito em"
 
 #: .\profiles\templates\profiles\pages\dashboard.html:114
-#, fuzzy
-#| msgid "You do not have applied for any position"
 msgid "You have not applied for any position"
 msgstr "Você não se candidatou em nenhuma vaga ainda"
 
 #: .\profiles\templates\profiles\pages\dashboard_position.html:11
-#, fuzzy
-#| msgid "Create a new position"
 msgid "Create position"
 msgstr "Criar uma nova vaga"
 
@@ -312,10 +306,8 @@ msgid "Invalid CNPJ"
 msgstr "CNPJ Inválido"
 
 #: .\profiles\views\all.py:26
-#, fuzzy
-#| msgid "Your user has been created, please log in."
 msgid "Your Institution has been created, please log in."
-msgstr "Seu usuário foi criado, faça login"
+msgstr "Seu usuário foi criado, faça o login"
 
 #: .\profiles\views\all.py:40
 #, fuzzy

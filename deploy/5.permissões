@@ -1,0 +1,13 @@
+1. Acessar a pasta 'nginx.conf' e trocar o 'user www-data' para  'user ubuntu'
+# nano /etc/nginx/nginx.conf
+# 'user ubuntu'
+
+###############################################################################
+2. Trocar a permissão da pasta do nginx.conf
+# cd /etc/nginx/
+# sudo chown ubuntu:www-data nginx.conf
+
+###############################################################################
+3. Trocar a permissão da pasta voluntiers---PI1A5
+# cd /home/ubuntu
+# sudo chown ubuntu:www-data voluntiers---PI1A5

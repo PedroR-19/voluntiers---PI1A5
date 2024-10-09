@@ -64,6 +64,11 @@ sudo systemctl status voluntiers.socket
 curl --unix-socket /run/voluntiers.socket localhost
 sudo systemctl status voluntiers
 
+#OBS - Se o arquivo gunicorn-error-log não existir
+# sudo touch home/ubuntu/voluntiers---PI1A5/venv/bin/gunicorn-error-log
+# sudo chown ubuntu:www-data home/ubuntu/voluntiers---PI1A5/venv/bin/gunicorn-error-log
+# sudo chmod 755 home/ubuntu/voluntiers---PI1A5/venv/bin/gunicorn-error-log
+
 
 # 7. Restarting
 sudo systemctl restart voluntiers.service

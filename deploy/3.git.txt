@@ -1,0 +1,12 @@
+1. Fazer o git clone do repositório e Acessar
+# git clone https://github.com/PedroR-19/voluntiers---PI1A5/tree/main
+cd voluntiers---PI1A5
+
+###############################################################################
+2. Acessar o venv e instalar as bibliotecas
+python3 -m venv venv
+. venv/bin/activate
+pip install -r requirements.txt
+pip install psycopg2-binary
+pip install psycopg2
+pip install gunicorn

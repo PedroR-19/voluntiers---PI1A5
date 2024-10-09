@@ -8,6 +8,7 @@
 # /home/ubuntu/voluntiers---PI1A5/static = Replace with the path to the folder for static files
 # /home/ubuntu/voluntiers---PI1A5/media = Replace with the path to the folder for media files
 # voluntiers.socket = Replace with your unix socket name
+
 # For letsencrypt and Ubuntu:
 # sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 # sudo apt install nginx certbot python3-certbot-nginx -y
@@ -16,6 +17,7 @@
 # sudo certbot certonly --standalone -d app-voluntiers.com
 # sudo chmod -R 755 /home/ubuntu/voluntiers---PI1A5
 # sudo nano /etc/nginx/sites-available/app-voluntiers.com
+
 # Add contents of this file
 # sudo ln -s /etc/nginx/sites-available/app-voluntiers.com /etc/nginx/sites-enabled/app-voluntiers.com
 

@@ -68,7 +68,6 @@ class Dashboardposition(View):
 
             institution = get_object_or_404(Institution, user=request.user)  # Obtenha a instituição do usuário
             position.profile = institution  # Associe a vaga à instituição
-            position.requirements_is_html = False
 
             position.save()
 

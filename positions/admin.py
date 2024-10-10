@@ -23,12 +23,12 @@ class positionAdmin(admin.ModelAdmin):
     list_display_links = ('title', 'created_at')
 
     search_fields = [
-        'id', 'title', 'description', 'slug', 'requirements',
+        'id', 'title', 'description', 'slug',
         'country', 'state', 'city', 'logradouro'
     ]
 
     list_filter = [
-        'category', 'profile', 'requirements_is_html', 'shift',
+        'category', 'profile', 'shift',
         'subcategory', 'country', 'state', 'city',
     ]
 

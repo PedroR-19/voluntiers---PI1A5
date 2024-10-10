@@ -56,10 +56,6 @@ class Position(models.Model):
     title        = models.CharField(max_length=65, verbose_name=_('Title'))
     description  = models.CharField(max_length=165, verbose_name=_('Description'))
     slug         = models.SlugField(unique=True)
-
-    requirements         = models.TextField(verbose_name=_('Requirements'))
-    requirements_is_html = models.BooleanField(default=False)
-
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created_at'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated_at'))
 

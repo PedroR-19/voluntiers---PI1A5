@@ -13,7 +13,6 @@ class ProfilepositionForm(forms.ModelForm):
 
         self._my_errors = defaultdict(list)
 
-        add_attr(self.fields.get('requirements'), 'class', 'span-2')
         add_attr(self.fields.get('country'), 'id', 'id_country')
         add_attr(self.fields.get('state'), 'id', 'id_state')
         add_attr(self.fields.get('city'), 'id', 'id_city')
@@ -26,7 +25,7 @@ class ProfilepositionForm(forms.ModelForm):
 
         fields = [
             'title', 'description', 'category', 'subcategory', 'shift',
-            'country', 'state', 'city', 'zone','logradouro', 'requirements',
+            'country', 'state', 'city', 'zone','logradouro',
         ]
 
         widgets = {

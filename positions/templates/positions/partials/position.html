@@ -71,14 +71,6 @@
     {% endif %}
 
     {% if is_detail_page is True %}
-        <div class="preparation-requirements">
-            {% if position.requirements_is_html is True %}
-                {{ position.requirements|safe }}
-            {% else %}
-                {{ position.requirements|linebreaksbr }}
-            {% endif %}
-        </div>
-
         {% if user.is_authenticated %}
             {% if user_profile %}
                 <div class="form-content form-content-grid">

@@ -15,15 +15,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 0
-ALLOWED_HOSTS: list[str] = ['*']
+DEBUG = 1
 
-#ALLOWED_HOSTS: list[str] = ['app-voluntiers.com']
-#CSRF_TRUSTED_ORIGINS: list[str] = ['https://app-voluntiers.com']
+ALLOWED_HOSTS = ['app-voluntiers.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
-#CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8000']
+CORS_ALLOWED_ORIGINS = ['https://app-voluntiers.com','https://127.0.0.1','https://0.0.0.0']
 
-# Application definition
+CSRF_TRUSTED_ORIGINS = ['https://app-voluntiers.com','https://*.localhost','https://*.127.0.0.1','https://*.0.0.0.0','https://*.app-voluntiers.com']
+
+CSRF_COOKIE_SECURE = False
+
+CSRF_COOKIE_DOMAIN = ['app-voluntiers.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,11 +42,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',  # Este é o middleware de CSRF
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -149,3 +150,4 @@ MESSAGE_TAGS = {
 }
 
 AUTH_USER_MODEL = 'profiles.User'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None

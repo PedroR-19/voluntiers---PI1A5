@@ -132,3 +132,14 @@ server {
   #access_log  /var/log/nginx/app-voluntiers.com-access.log;
   error_log   /var/log/nginx/app-voluntiers.com-error.log;
 }
+
+
+###############################################################################
+1. Acessar a pasta 'nginx.conf' e trocar o 'user www-data' para  'user ubuntu'
+nano /etc/nginx/nginx.conf
+'user ubuntu'
+
+
+1.1 Trocar a permissão da pasta do nginx.conf
+cd /etc/nginx/
+sudo chown ubuntu:www-data nginx.conf

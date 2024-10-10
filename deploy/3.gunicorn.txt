@@ -82,9 +82,3 @@ sudo systemctl restart voluntiers.service && sudo systemctl restart voluntiers.s
 # 9. Debugging
 sudo journalctl -u voluntiers.service
 sudo journalctl -u voluntiers.socket
-
-
-10. Acessar a pasta a venv
-. venv/bin/activate
-python manage.py makemigrations
-python manage.py migrate 

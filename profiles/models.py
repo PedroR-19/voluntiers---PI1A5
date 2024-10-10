@@ -23,14 +23,16 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField('email adress', unique=True)
 
     is_active    = models.BooleanField(default=True)
     is_staff     = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     
-
-    USERNAME_FIELD  = 'email'
+    username = None
+    
     REQUIRED_FIELDS = []
+    USERNAME_FIELD = "email"
 
     objects = UserManager()
 

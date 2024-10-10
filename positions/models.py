@@ -32,7 +32,6 @@ class Position(models.Model):
     
     COUNTRY_CHOICES = [
         ('BR', _('Brazil')),
-        ('US', _('United States')),
     ]
 
     STATE_CHOICES = [
@@ -44,6 +43,15 @@ class Position(models.Model):
         ('São Paulo', _('São Paulo')),
         ('Rio de Janeiro', _('Rio de Janeiro')),
     ]
+
+    ZONE_CHOICES = [
+        ('Central', _('Central')),
+        ('Leste', _('Leste')),
+        ('Oeste', _('Oeste')),
+        ('Norte', _('Norte')),
+        ('Sul', _('Sul')),
+    ]
+
 
     title        = models.CharField(max_length=65, verbose_name=_('Title'))
     description  = models.CharField(max_length=165, verbose_name=_('Description'))
@@ -86,6 +94,7 @@ class Position(models.Model):
     country    = models.CharField(max_length=100, choices=COUNTRY_CHOICES, verbose_name=_('Country'))
     state      = models.CharField(max_length=100, choices=STATE_CHOICES, verbose_name=_('State'))
     city       = models.CharField(max_length=100, choices=CITY_CHOICES, verbose_name=_('City'))
+    zone = models.CharField(max_length=100, choices=ZONE_CHOICES, verbose_name=_('Zone'), default='')
     logradouro = models.CharField(max_length=255, verbose_name=_('Address'))
 
     def __str__(self):

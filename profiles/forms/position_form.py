@@ -26,7 +26,7 @@ class ProfilepositionForm(forms.ModelForm):
 
         fields = [
             'title', 'description', 'category', 'subcategory', 'shift',
-            'country', 'state', 'city', 'logradouro', 'requirements',
+            'country', 'state', 'city', 'zone','logradouro', 'requirements',
         ]
 
         widgets = {

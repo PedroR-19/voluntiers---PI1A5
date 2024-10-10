@@ -38,4 +38,4 @@ class VoluntierForm(forms.ModelForm):
 
     class Meta:
         model = Voluntier
-        fields = ['first_name', 'last_name', 'birth_date', 'cpf']
+        fields = ['first_name', 'last_name', 'birth_date', 'cpf', 'experiences', 'languages']

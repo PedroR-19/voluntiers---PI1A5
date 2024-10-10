@@ -36,7 +36,9 @@ def voluntier_register_view(request):
 
         if form.is_valid():
             user = User.objects.create_user(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
-            Voluntier.objects.create(user=user, first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], birth_date=form.cleaned_data['birth_date'], cpf=form.cleaned_data['cpf'])
+            Voluntier.objects.create(user=user, first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], 
+                                     birth_date=form.cleaned_data['birth_date'], cpf=form.cleaned_data['cpf'],
+                                     experiences=form.cleaned_data['experiences'], languages=form.cleaned_data['languages'],)
             messages.success(request, _('Your Voluntier account has been created, please log in.'))
             return redirect(reverse('profiles:login'))
     else:

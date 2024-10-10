@@ -58,10 +58,12 @@ class Institution(models.Model):
 
 class Voluntier(models.Model):
     user       = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=30, verbose_name=_('First Name'))  # Corrigido aqui
-    last_name  = models.CharField(max_length=30, verbose_name=_('Last Name'))  # Corrigido aqui
+    first_name = models.CharField(max_length=30, verbose_name=_('First Name'))
+    last_name  = models.CharField(max_length=30, verbose_name=_('Last Name'))
     birth_date = models.DateField(verbose_name=_('Birth date'))
     cpf        = models.CharField(max_length=14, validators=[validate_cpf])
+    experiences = models.CharField(max_length=100, verbose_name=_('Experiences'), default='')
+    languages = models.CharField(max_length=100, verbose_name=_('Languages'), default='')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

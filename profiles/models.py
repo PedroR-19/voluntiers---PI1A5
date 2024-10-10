@@ -21,8 +21,7 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
-class User(AbstractBaseUser, PermissionsMixin):  # Adiciona PermissionsMixin
-    email       = models.EmailField(unique=True)
+class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     is_active    = models.BooleanField(default=True)

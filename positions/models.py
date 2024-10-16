@@ -90,7 +90,7 @@ class Position(models.Model):
     country    = models.CharField(max_length=100, choices=COUNTRY_CHOICES, verbose_name=_('Country'))
     state      = models.CharField(max_length=100, choices=STATE_CHOICES, verbose_name=_('State'))
     city       = models.CharField(max_length=100, choices=CITY_CHOICES, verbose_name=_('City'))
-    zone = models.CharField(max_length=100, choices=ZONE_CHOICES, verbose_name=_('Zone'), default='')
+    zone       = models.CharField(max_length=100, choices=ZONE_CHOICES, verbose_name=_('Zone'), default='')
     logradouro = models.CharField(max_length=255, verbose_name=_('Address'))
 
     def __str__(self):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 12:24-0300\n"
+"POT-Creation-Date: 2024-10-16 10:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,90 +67,110 @@ msgstr "Noite"
 msgid "Brazil"
 msgstr "Brasil"
 
-#: .\positions\models.py:35
-msgid "United States"
-msgstr "Estados Unidos"
-
-#: .\positions\models.py:39 .\positions\models.py:44
+#: .\positions\models.py:38 .\positions\models.py:43
 msgid "São Paulo"
 msgstr "São Paulo"
 
-#: .\positions\models.py:40 .\positions\models.py:45
+#: .\positions\models.py:39 .\positions\models.py:44
 msgid "Rio de Janeiro"
 msgstr "Rio de Janeiro"
 
 #: .\positions\models.py:48
+#, fuzzy
+#| msgid "Contract"
+msgid "Central"
+msgstr "Contrato"
+
+#: .\positions\models.py:49
+msgid "Leste"
+msgstr ""
+
+#: .\positions\models.py:50
+msgid "Oeste"
+msgstr ""
+
+#: .\positions\models.py:51
+msgid "Norte"
+msgstr ""
+
+#: .\positions\models.py:52
+msgid "Sul"
+msgstr ""
+
+#: .\positions\models.py:56
 msgid "Title"
 msgstr "Título"
 
-#: .\positions\models.py:49
+#: .\positions\models.py:57
 msgid "Description"
 msgstr "Descrição"
 
-#: .\positions\models.py:52
-msgid "Requirements"
-msgstr "Requerimentos"
-
-#: .\positions\models.py:55
+#: .\positions\models.py:59
 msgid "Created_at"
 msgstr "Criado_às"
 
-#: .\positions\models.py:56
+#: .\positions\models.py:60
 msgid "Updated_at"
 msgstr "atualizado_às"
 
-#: .\positions\models.py:62
+#: .\positions\models.py:66
 msgid "Cover"
 msgstr "Capa"
 
-#: .\positions\models.py:71 .\positions\views.py:84
-#: .\profiles\templates\profiles\pages\dashboard.html:67
+#: .\positions\models.py:75 .\positions\views.py:84
+#: .\profiles\templates\profiles\pages\dashboard.html:78
 msgid "Category"
 msgstr "Categoria"
 
-#: .\positions\models.py:80
+#: .\positions\models.py:84
 msgid "Subcategory"
 msgstr "subcategoria"
 
-#: .\positions\models.py:85
+#: .\positions\models.py:89
 #: .\positions\templates\positions\partials\position.html:54
 #: .\profiles\templates\profiles\pages\dashboard.html:23
 msgid "Shift"
 msgstr "Turno"
 
-#: .\positions\models.py:86
+#: .\positions\models.py:90
 #: .\positions\templates\positions\partials\position.html:55
 #: .\profiles\templates\profiles\pages\dashboard.html:34
 msgid "Country"
 msgstr "País"
 
-#: .\positions\models.py:87
+#: .\positions\models.py:91
 #: .\positions\templates\positions\partials\position.html:56
 #: .\profiles\templates\profiles\pages\dashboard.html:45
 msgid "State"
 msgstr "Estado"
 
-#: .\positions\models.py:88
+#: .\positions\models.py:92
 #: .\positions\templates\positions\partials\position.html:57
 #: .\profiles\templates\profiles\pages\dashboard.html:56
 msgid "City"
 msgstr "Cidade"
 
-#: .\positions\models.py:89
+#: .\positions\models.py:93
 #: .\positions\templates\positions\partials\position.html:58
+#: .\profiles\templates\profiles\pages\dashboard.html:67
+msgid "Zone"
+msgstr "Zona"
+
+#: .\positions\models.py:94
+#: .\positions\templates\positions\partials\position.html:59
 msgid "Address"
 msgstr "Endereço"
 
-#: .\positions\models.py:106 .\positions\models.py:116
+#: .\positions\models.py:111 .\positions\models.py:121
 msgid "position"
 msgstr "Vaga"
 
-#: .\positions\models.py:110
+#: .\positions\models.py:115
 msgid "Date"
 msgstr "Data"
 
-#: .\positions\models.py:117
-#: .\profiles\templates\profiles\pages\dashboard.html:83
+#: .\positions\models.py:122
+#: .\profiles\templates\profiles\pages\dashboard.html:94
 msgid "positions"
 msgstr "Vagas"
 
@@ -159,7 +179,7 @@ msgid "Apply for"
 msgstr "Candidatar-se para"
 
 #: .\positions\templates\positions\pages\match.html:10
-#: .\profiles\templates\profiles\pages\dashboard.html:76
+#: .\profiles\templates\profiles\pages\dashboard.html:87
 msgid "Match"
 msgstr "Match"
 
@@ -167,23 +187,24 @@ msgstr "Match"
 msgid "No matching positions found"
 msgstr "Nenhum match encontrado"
 
-#: .\positions\templates\positions\partials\position.html:67
+#: .\positions\templates\positions\partials\position.html:68
 msgid "See more"
 msgstr "Ver mais"
 
-#: .\positions\templates\positions\partials\position.html:85
+#: .\positions\templates\positions\partials\position.html:78
 msgid "Apply"
 msgstr "Candidatar-se"
 
-#: .\positions\templates\positions\partials\position.html:90
+#: .\positions\templates\positions\partials\position.html:83
 msgid "You need to be a Voluntier to apply"
 msgstr "Para se candidatar, é necessário ser um Voluntier"
 
-#: .\positions\templates\positions\partials\position.html:94
+#: .\positions\templates\positions\partials\position.html:87
 msgid "You need to be logged in to apply"
 msgstr "Para se candidatar, é necessário realizar o login"
 
 #: .\profiles\forms\institution_form.py:10
+#: .\profiles\forms\voluntier_form.py:10
 msgid "Confirm password"
 msgstr "Confirme sua senha"
 
@@ -201,46 +222,54 @@ msgstr "Tipo de usuário"
 msgid "This email is already in use."
 msgstr "Este e-mail já está em uso"
 
-#: .\profiles\models.py:52
+#: .\profiles\forms\voluntier_form.py:11 .\profiles\models.py:64
+msgid "Birth date"
+msgstr "Data de nascimento"
+
+#: .\profiles\models.py:53
 msgid "Name"
 msgstr "Nome"
 
-#: .\profiles\models.py:61
+#: .\profiles\models.py:62
 msgid "First Name"
 msgstr "Primeiro nome"
 
-#: .\profiles\models.py:62
+#: .\profiles\models.py:63
 msgid "Last Name"
 msgstr "Sobrenome"
 
-#: .\profiles\models.py:63
-msgid "Birth date"
-msgstr "Data de nascimento"
+#: .\profiles\models.py:66
+msgid "Experiences"
+msgstr "Experiências"
+
+#: .\profiles\models.py:67
+msgid "Languages"
+msgstr "Linguagem"
 
 #: .\profiles\templates\profiles\pages\dashboard.html:17
 msgid "Find Matching positions"
 msgstr "Seus Matches"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:82
+#: .\profiles\templates\profiles\pages\dashboard.html:93
 #: .\profiles\templates\profiles\partials\login_message.html:10
 msgid "Create a new position"
 msgstr "Criar uma nova vaga"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:100
+#: .\profiles\templates\profiles\pages\dashboard.html:111
 msgid "You do not have any position"
 msgstr "Você não tem nenhuma vaga"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:106
+#: .\profiles\templates\profiles\pages\dashboard.html:117
 msgid "Applications"
 msgstr "Veja suas candidaturas"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:110
+#: .\profiles\templates\profiles\pages\dashboard.html:121
 #, fuzzy
 #| msgid "application made at"
 msgid "application made at"
 msgstr "feito em"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:114
+#: .\profiles\templates\profiles\pages\dashboard.html:125
 msgid "You have not applied for any position"
 msgstr "Você não se candidatou em nenhuma vaga ainda"
 
@@ -309,33 +338,37 @@ msgstr "CNPJ Inválido"
 msgid "Your Institution has been created, please log in."
 msgstr "Seu usuário foi criado, faça o login"
 
-#: .\profiles\views\all.py:40
-#, fuzzy
-#| msgid "Your user has been created, please log in."
+#: .\profiles\views\all.py:42
 msgid "Your Voluntier account has been created, please log in."
 msgstr "Seu usuário foi criado, faça login"
 
-#: .\profiles\views\all.py:96
+#: .\profiles\views\all.py:101
 msgid "You're logged in!"
 msgstr "Você está logado"
 
-#: .\profiles\views\all.py:99
+#: .\profiles\views\all.py:104
 msgid "Invalid credentials"
 msgstr "Credenciais inválidas"
 
-#: .\profiles\views\all.py:101
+#: .\profiles\views\all.py:106
 #, fuzzy
 #| msgid "Invalid username or password"
 msgid "Invalid email or password"
 msgstr "Nome de usuário ou senha inválidos"
 
-#: .\profiles\views\all.py:109
+#: .\profiles\views\all.py:114
 msgid "Invalid logout request"
 msgstr "Solicitação de logout inválida"
 
-#: .\profiles\views\all.py:113
+#: .\profiles\views\all.py:118
 msgid "Logout Done Successfully"
 msgstr "Logout feito com sucesso"
+
+#~ msgid "United States"
+#~ msgstr "Estados Unidos"
+
+#~ msgid "Requirements"
+#~ msgstr "Requerimentos"
 
 #~ msgid "New position"
 #~ msgstr "Nova vaga"
@@ -413,9 +446,6 @@ msgstr "Logout feito com sucesso"
 
 #~ msgid "Profile"
 #~ msgstr "Perfil"
-
-#~ msgid "Contract"
-#~ msgstr "Contrato"
 
 #, fuzzy
 #~| msgid "Date"

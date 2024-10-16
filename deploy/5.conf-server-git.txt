@@ -53,5 +53,6 @@ sudo chown ubuntu:www-data db.sqlite3
 ###############################################################################
 5. Fazer as migrações no manage.py
 . venv/bin/activate
+python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate

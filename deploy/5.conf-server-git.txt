@@ -1,10 +1,13 @@
-1. Fazer o git clone do repositório e Acessar
+1. Fazer o git clone do repositório e conceder permissões necessárias
+cd /home/ubuntu
 git clone https://github.com/PedroR-19/voluntiers---PI1A5/
-cd voluntiers---PI1A5
+sudo chown ubuntu:www-data voluntiers---PI1A5
 
 
 ###############################################################################
-2. Acessar o venv e instalar as bibliotecas
+2. Acessar o venv, instalar as bibliotecas, fazer as migrações no manage.py e permissões
+cd voluntiers---PI1A5
+
 python3 -m venv venv
 . venv/bin/activate
 
@@ -17,14 +20,14 @@ pip install django
 pip install Pillow
 pip install gunicorn
 
+python manage.py collectstatic
+python manage.py makemigrations
+python manage.py migrate
+
+sudo chown ubuntu:www-data db.sqlite3
+
 
 ###############################################################################
-3. Configurar os arquivos de logs
-sudo touch /home/ubuntu/voluntiers---PI1A5/venv/bin/gunicorn-error-log
-sudo chown ubuntu:ubuntu /home/ubuntu/voluntiers---PI1A5/venv/bin/gunicorn-error-log
-sudo chmod 755 /home/ubuntu/voluntiers---PI1A5/venv/bin/gunicorn-error-log
-
-
 3.1  Reiniciar o servidor
 sudo systemctl daemon-reload
 sudo systemctl restart voluntiers.service && sudo systemctl restart voluntiers.socket && sudo systemctl restart voluntiers
@@ -39,20 +42,3 @@ sudo systemctl enable voluntiers.socket
 sudo systemctl status voluntiers.socket
 curl --unix-socket /run/voluntiers.socket localhost
 sudo systemctl status voluntiers
-
-
-###############################################################################
-4. Conceder permissões necessárias
-cd /home/ubuntu
-sudo chown ubuntu:www-data voluntiers---PI1A5
-
-cd /home/ubuntu/voluntiers---PI1A5
-sudo chown ubuntu:www-data db.sqlite3
-
-
-###############################################################################
-5. Fazer as migrações no manage.py
-. venv/bin/activate
-python manage.py collectstatic
-python manage.py makemigrations
-python manage.py migrate

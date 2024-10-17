@@ -19,13 +19,13 @@ DEBUG = 1
 
 ALLOWED_HOSTS = ['app-voluntiers.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
-CORS_ALLOWED_ORIGINS = ['https://app-voluntiers.com','https://127.0.0.1','https://0.0.0.0']
+CORS_ALLOWED_ORIGINS = ['https://app-voluntiers.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://app-voluntiers.com','https://*.localhost','https://*.127.0.0.1','https://*.0.0.0.0','https://*.app-voluntiers.com']
+CSRF_TRUSTED_ORIGINS = ['https://app-voluntiers.com', 'https://localhost', 'https://127.0.0.1']
 
 CSRF_COOKIE_SECURE = False
 
-CSRF_COOKIE_DOMAIN = ['app-voluntiers.com', 'localhost', '127.0.0.1', '0.0.0.0']
+CSRF_COOKIE_DOMAIN = 'app-voluntiers.com'
 
 INSTALLED_APPS = [
     'django.contrib.admin',

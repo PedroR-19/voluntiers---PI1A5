@@ -52,6 +52,9 @@ class Institution(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, verbose_name=_('Name'))
     cnpj = models.CharField(max_length=18, validators=[validate_cnpj])
+    state      = models.CharField(max_length=100, verbose_name=_('State'), default='')
+    city       = models.CharField(max_length=100, verbose_name=_('City'), default='')
+    logradouro = models.CharField(max_length=255, verbose_name=_('Address'), default='')
 
     def __str__(self):
         return self.name

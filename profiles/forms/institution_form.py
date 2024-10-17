@@ -26,7 +26,7 @@ class InstitutionForm(forms.ModelForm):
 
     class Meta:
         model  = Institution
-        fields = ['name', 'cnpj', 'email', 'password', 'confirm_password']
+        fields = ['name', 'cnpj', 'email', 'state', 'city', 'logradouro', 'password', 'confirm_password']
 
     def clean(self):
         cleaned_data     = super().clean()

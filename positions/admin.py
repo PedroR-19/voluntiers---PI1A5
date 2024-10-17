@@ -17,19 +17,19 @@ class SubcategoryAdmin(admin.ModelAdmin):
 class positionAdmin(admin.ModelAdmin):
     list_display = [
         'id', 'title', 'created_at', 'profile', 'shift',
-        'subcategory', 'country', 'state', 'city', 'logradouro'
+        'subcategory', 'state', 'city', 'logradouro'
     ]
 
     list_display_links = ('title', 'created_at')
 
     search_fields = [
         'id', 'title', 'description', 'slug',
-        'country', 'state', 'city', 'logradouro'
+        'state', 'city', 'logradouro'
     ]
 
     list_filter = [
         'category', 'profile', 'shift',
-        'subcategory', 'country', 'state', 'city',
+        'subcategory', 'state', 'city',
     ]
 
     list_per_page       = 10

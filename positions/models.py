@@ -29,10 +29,6 @@ class Position(models.Model):
         ('afternoon', _('Afternoon')),
         ('night', _('Night')),
     ]
-    
-    COUNTRY_CHOICES = [
-        ('BR', _('Brazil')),
-    ]
 
     STATE_CHOICES = [
         ('SP', _('São Paulo')),
@@ -87,7 +83,6 @@ class Position(models.Model):
     profile = models.ForeignKey(Institution, on_delete=models.CASCADE)
 
     shift      = models.CharField(max_length=10, choices=SHIFT_CHOICES, default='morning', verbose_name=_('Shift'))
-    country    = models.CharField(max_length=100, choices=COUNTRY_CHOICES, verbose_name=_('Country'))
     state      = models.CharField(max_length=100, choices=STATE_CHOICES, verbose_name=_('State'))
     city       = models.CharField(max_length=100, choices=CITY_CHOICES, verbose_name=_('City'))
     zone       = models.CharField(max_length=100, choices=ZONE_CHOICES, verbose_name=_('Zone'), default='')

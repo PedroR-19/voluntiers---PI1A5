@@ -31,17 +31,6 @@
           </div>
 
           <div class="form-group">
-            <label for="country">{% translate 'Country' %}</label>
-            <select name="country" id="country">
-
-              {% for value, display in form.fields.country.choices %}
-                <option value="{{ value }}" {% if form.data.country == value %}selected{% endif %}>{{ display }}</option>
-              {% endfor %}
-
-            </select>
-          </div>
-
-          <div class="form-group">
             <label for="state">{% translate 'State' %}</label>
             <select name="state" id="state">
 

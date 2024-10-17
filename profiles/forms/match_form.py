@@ -10,11 +10,6 @@ class MatchForm(forms.Form):
         required=False
     )
 
-    country = forms.ChoiceField(
-        choices=EMPTY_CHOICE + Position.COUNTRY_CHOICES,
-        required=False
-    )
-
     state = forms.ChoiceField(
         choices=EMPTY_CHOICE + Position.STATE_CHOICES,
         required=False

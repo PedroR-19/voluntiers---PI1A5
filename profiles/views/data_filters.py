@@ -4,13 +4,6 @@ from django.views import View
 from positions.models import Position, Subcategory
 
 
-class FilterStates(View):
-    def get(self, request, *args, **kwargs):
-        country = request.GET.get('country')
-        states = [state for state in Position.STATE_CHOICES if country == 'US' or country == 'BR']
-        return JsonResponse(states, safe=False)
-
-
 class FilterCities(View):
     def get(self, request, *args, **kwargs):
         state = request.GET.get('state')

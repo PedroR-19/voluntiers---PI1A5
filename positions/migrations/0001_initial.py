@@ -41,7 +41,6 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Updated_at')),
                 ('cover', models.ImageField(blank=True, default='', upload_to='positions/covers/%Y/%m/%d/', verbose_name='Cover')),
                 ('shift', models.CharField(choices=[('morning', 'Morning'), ('afternoon', 'Afternoon'), ('night', 'Night')], default='morning', max_length=10, verbose_name='Shift')),
-                ('country', models.CharField(choices=[('BR', 'Brazil'), ('US', 'United States')], max_length=100, verbose_name='Country')),
                 ('state', models.CharField(choices=[('SP', 'São Paulo'), ('RJ', 'Rio de Janeiro')], max_length=100, verbose_name='State')),
                 ('city', models.CharField(choices=[('São Paulo', 'São Paulo'), ('Rio de Janeiro', 'Rio de Janeiro')], max_length=100, verbose_name='City')),
                 ('logradouro', models.CharField(max_length=255, verbose_name='Address')),

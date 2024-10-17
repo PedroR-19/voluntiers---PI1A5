@@ -62,9 +62,6 @@ def match_view(request):
         if form.cleaned_data['shift']:
             positions = positions.filter(shift=form.cleaned_data['shift'])
 
-        if form.cleaned_data['country']:
-            positions = positions.filter(country=form.cleaned_data['country'])
-
         if form.cleaned_data['state']:
             positions = positions.filter(state=form.cleaned_data['state'])
 

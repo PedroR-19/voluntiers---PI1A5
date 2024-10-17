@@ -17,9 +17,9 @@ urlpatterns = [
 
     path('match/', views.match_view, name='match'),
 
-    path('ajax/filter-states/', data_filters.FilterStates.as_view(), name='filter_states'),
-    path('ajax/filter-cities/', data_filters.FilterCities.as_view(), name='filter_cities'),
-    path('ajax/filter-subcategories/', data_filters.FilterSubcategories.as_view(), name='filter_subcategories'),
+    #path('ajax/filter-states/', data_filters.FilterStates.as_view(), name='filter_states'),
+    #path('ajax/filter-cities/', data_filters.FilterCities.as_view(), name='filter_cities'),
+    #path('ajax/filter-subcategories/', data_filters.FilterSubcategories.as_view(), name='filter_subcategories'),
 
     path('dashboard/position/new/', views.Dashboardposition.as_view(), name='dashboard_position_new'),
     path('dashboard/position/delete/', views.DashboardpositionDelete.as_view(), name='dashboard_position_delete'),

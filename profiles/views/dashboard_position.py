@@ -71,7 +71,7 @@ class Dashboardposition(View):
 
             position.save()
 
-            messages.success(request, 'Sua vaga foi salva com sucesso!')
+            messages.success(request, 'Sua vaga foi criada com sucesso')
             return redirect(
                 reverse(
                     'profiles:dashboard_position_edit', args=(
@@ -93,5 +93,5 @@ class DashboardpositionDelete(Dashboardposition):
     def post(self, *args, **kwargs):
         position = self.get_position(self.request.POST.get('id'))
         position.delete()
-        messages.success(self.request, 'Deleted successfully.')
+        messages.success(self.request, 'Vaga deletada com sucesso')
         return redirect(reverse('profiles:dashboard'))

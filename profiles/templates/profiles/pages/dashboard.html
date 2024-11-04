@@ -14,6 +14,26 @@
 
     <div class="profiles-dashboard-container">
       {% if user_type == 'Voluntier' %}
+
+      <div>
+        <h3> {% translate 'Field of Interest' %} </h3>
+        <select name="area" id="area" style="width: 570px;">
+
+        {% for category in form.fields.category.queryset %}
+          <option value="{{ category.id }}" {% if form.data.category == category.id %}selected{% endif %}>{{ category.name }}</option>
+        {% endfor %}
+
+        </select>
+      
+        <h3> {% translate 'About' %} </h3>
+        <textarea id="curriculum" name="curriculum" rows="20" cols="75" placeholder="Digite aqui"> </textarea>
+
+        <h3> {% translate 'LinkedIn' %} </h3>
+        <textarea id="linkedin" name="linkedin" rows="2" cols="75" placeholder="Digite aqui"> </textarea>
+
+        <button type="submit" class="styled-button"> {% translate 'Save' %}</button> 
+      </div>
+
         <h3>{% translate 'Find Matching positions' %}</h3>
 
         <form method="get" action="{% url 'profiles:match' %}">
@@ -118,7 +138,7 @@
 
       {% else %}
 
-        <p>User type not recognized.</p>
+        <p>{% translate 'User type not recognized' %}.</p>
       {% endif %}
     </div>
   </div>

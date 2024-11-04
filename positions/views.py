@@ -178,7 +178,7 @@ def candidatar_position(request, position_id):
             application.position  = position
             application.voluntier = request.user.voluntier  # Certifique-se de que estamos associando corretamente
             application.save()
-            messages.success(request, 'Sua application foi enviada!')
+            messages.success(request, 'Candidatura enviada com sucesso')
             return redirect('profiles:dashboard')
     else:
         form = ApplicationForm()

@@ -39,8 +39,8 @@ class ProfilepositionForm(forms.ModelForm):
         description = cd.get('description')
 
         if title == description:
-            self._my_errors['title'].append('Cannot be equal to description')
-            self._my_errors['description'].append('Cannot be equal to title')
+            self._my_errors['title'].append('O Título NÃO pode ser igual à Descrição')
+            self._my_errors['description'].append('A Descrição NÃO pode ser igual ao Título')
 
         if self._my_errors:
             raise ValidationError(self._my_errors)
@@ -51,6 +51,6 @@ class ProfilepositionForm(forms.ModelForm):
         title = self.cleaned_data.get('title')
 
         if len(title) < 5:
-            self._my_errors['title'].append('Must have at least 5 chars.')
+            self._my_errors['title'].append('Deve ter pelo menos 5 caracteres')
 
         return title

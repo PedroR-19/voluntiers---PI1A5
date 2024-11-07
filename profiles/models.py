@@ -52,9 +52,12 @@ class Institution(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, verbose_name=_('Name'))
     cnpj = models.CharField(max_length=18, validators=[validate_cnpj])
+    cep      = models.CharField(max_length=100, verbose_name=_('cep'))
     state      = models.CharField(max_length=100, verbose_name=_('State'), default='')
     city       = models.CharField(max_length=100, verbose_name=_('City'), default='')
-    logradouro = models.CharField(max_length=255, verbose_name=_('Address'), default='')
+    neighborhood       = models.CharField(max_length=100, verbose_name=_('Neighborhood'), default='')
+    street = models.CharField(max_length=255, verbose_name=_('Street'), default='')
+    more = models.CharField(max_length=255, verbose_name=_('More'), default='')
 
     def __str__(self):
         return self.name

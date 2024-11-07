@@ -30,7 +30,7 @@ class RegisterForm(UserCreationForm):
 class InstitutionForm(forms.ModelForm):
     class Meta:
         model = Institution
-        fields = ['name', 'cnpj', 'state', 'city', 'logradouro',]
+        fields = ['name', 'cnpj', 'cep', 'state', 'city', 'neighborhood', 'street', 'more']
 
 
 class VoluntierForm(forms.ModelForm):

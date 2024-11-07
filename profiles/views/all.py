@@ -23,7 +23,9 @@ def institution_register_view(request):
         if form.is_valid():
             user = User.objects.create_user(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
             Institution.objects.create(user=user, name=form.cleaned_data['name'], cnpj=form.cleaned_data['cnpj'],
-                                       state=form.cleaned_data['state'], city=form.cleaned_data['city'], logradouro=form.cleaned_data['logradouro'])
+                                       cep=form.cleaned_data['cep'], state=form.cleaned_data['state'], 
+                                       city=form.cleaned_data['city'], neighborhood=form.cleaned_data['neighborhood'],
+                                       street=form.cleaned_data['street'], more=form.cleaned_data['more'],)
             messages.success(request, _('Your Institution has been created, please log in.'))
             return redirect(reverse('profiles:login'))
     else:

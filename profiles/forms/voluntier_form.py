@@ -12,7 +12,7 @@ class VoluntierForm(forms.ModelForm):
 
     class Meta:
         model = Voluntier
-        fields = ['first_name', 'last_name', 'birth_date', 'cpf', 'email', 'password', 'confirm_password', 'experiences', 'languages']
+        fields = ['first_name', 'last_name', 'birth_date', 'cpf', 'email', 'about', 'linkedin', 'password', 'confirm_password']
 
     def clean(self):
         cleaned_data = super().clean()

@@ -702,7 +702,10 @@ a {
 #id_country,
 #id_state,
 #id_city,
-#id_logradouro,
+#id_cep
+#id_neighborhood
+#id_street
+#id_more
 #id_requirements,
 #id_cover
 {

@@ -30,24 +30,6 @@ class Position(models.Model):
         ('night', _('Night')),
     ]
 
-    STATE_CHOICES = [
-        ('SP', _('São Paulo')),
-        ('RJ', _('Rio de Janeiro')),
-    ]
-
-    CITY_CHOICES = [
-        ('São Paulo', _('São Paulo')),
-        ('Rio de Janeiro', _('Rio de Janeiro')),
-    ]
-
-    ZONE_CHOICES = [
-        ('Central', _('Central')),
-        ('Leste', _('Leste')),
-        ('Oeste', _('Oeste')),
-        ('Norte', _('Norte')),
-        ('Sul', _('Sul')),
-    ]
-
 
     title        = models.CharField(max_length=65, verbose_name=_('Title'))
     description  = models.CharField(max_length=165, verbose_name=_('Description'))
@@ -83,10 +65,13 @@ class Position(models.Model):
     profile = models.ForeignKey(Institution, on_delete=models.CASCADE)
 
     shift      = models.CharField(max_length=10, choices=SHIFT_CHOICES, default='morning', verbose_name=_('Shift'))
-    state      = models.CharField(max_length=100, choices=STATE_CHOICES, verbose_name=_('State'))
-    city       = models.CharField(max_length=100, choices=CITY_CHOICES, verbose_name=_('City'))
-    zone       = models.CharField(max_length=100, choices=ZONE_CHOICES, verbose_name=_('Zone'), default='')
-    logradouro = models.CharField(max_length=255, verbose_name=_('Address'))
+    cep      = models.CharField(max_length=100, verbose_name=_('cep'))
+    state      = models.CharField(max_length=100, verbose_name=_('State'))
+    city       = models.CharField(max_length=100, verbose_name=_('City'))
+    neighborhood       = models.CharField(max_length=100, verbose_name=_('Neighborhood'), default='')
+    street = models.CharField(max_length=255, verbose_name=_('Street'), default='')
+    more = models.CharField(max_length=255, verbose_name=_('More'), default='')
+
 
     def __str__(self):
         return self.title

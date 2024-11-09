@@ -19,6 +19,43 @@
     </form>
   </div>
 
-  <script src="{% static 'js/position_form.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cepInput = document.getElementById('id_cep');
+        
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        function fetchAddress(cep) {
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            document.getElementById('id_state').value = data.uf;
+                            document.getElementById('id_city').value = data.localidade;
+                            document.getElementById('id_neighborhood').value = data.bairro;
+                            document.getElementById('id_street').value = data.logradouro;
+                        } else {
+                            alert('CEP não encontrado.');
+                        }
+                    })
+                    .catch(error => console.error('Error fetching CEP:', error));
+            }
+        }
+
+        if (cepInput) {
+            cepInput.addEventListener('input', debounce(function() {
+                const cep = this.value.replace(/\D/g, '');
+                fetchAddress(cep);
+            }, 500));
+        }
+    });
+  </script>
 
 {% endblock content %}

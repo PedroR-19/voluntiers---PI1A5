@@ -10,7 +10,10 @@
 <ul>
     {% for application in applications %}
         <li>
-            {{ application.voluntier.first_name }} {{ application.voluntier.last_name }} - {{ application.date }}
+            {{ application.voluntier.first_name }} {{ application.voluntier.last_name }} - 
+            {{ application.voluntier.user.email }} - 
+            <a href="{{ application.voluntier.linkedin }}" target="_blank">{{ application.voluntier.linkedin }}</a> - 
+            {{ application.voluntier.about }}
         </li>
     {% empty %}
         <li>{% translate "No applications found." %}</li>

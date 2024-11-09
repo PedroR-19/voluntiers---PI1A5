@@ -1,44 +1,30 @@
-from django.contrib                 import messages
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http.response           import Http404
-from django.shortcuts               import redirect, render, get_object_or_404
-from django.urls                    import reverse
-from django.utils.decorators        import method_decorator
-from django.views                   import View
+from django.http.response import Http404
+from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.generic import ListView
 
 from profiles.forms.position_form import ProfilepositionForm
-from positions.models             import Position
-from profiles.models              import Institution
-
+from positions.models import Position, Application
+from profiles.models import Institution
 
 @method_decorator(
     login_required(login_url='profiles:login', redirect_field_name='next'),
     name='dispatch'
 )
-
-
 class Dashboardposition(View):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    def setup(self, *args, **kwargs):
-        return super().setup(*args, **kwargs)
-
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
     def get_position(self, id=None):
         position = None
-
         if id is not None:
             position = Position.objects.filter(
-                profile__user=self.request.user,  # Ajuste para garantir que estamos filtrando pelo usuário da instituição
+                profile__user=self.request.user,
                 pk=id,
             ).first()
-
             if not position:
                 raise Http404()
-
         return position
 
     def render_position(self, form):
@@ -62,36 +48,44 @@ class Dashboardposition(View):
             files=request.FILES or None,
             instance=position
         )
-
         if form.is_valid():
             position = form.save(commit=False)
-
-            institution = get_object_or_404(Institution, user=request.user)  # Obtenha a instituição do usuário
-            position.profile = institution  # Associe a vaga à instituição
-
+            institution = get_object_or_404(Institution, user=request.user)
+            position.profile = institution
             position.save()
-
             messages.success(request, 'Sua vaga foi criada com sucesso')
             return redirect(
                 reverse(
-                    'profiles:dashboard_position_edit', args=(
-                        position.id,
-                    )
+                    'profiles:dashboard_position_edit', args=(position.id,)
                 )
             )
-
         return self.render_position(form)
-
 
 @method_decorator(
     login_required(login_url='profiles:login', redirect_field_name='next'),
     name='dispatch'
 )
-
-
 class DashboardpositionDelete(Dashboardposition):
     def post(self, *args, **kwargs):
         position = self.get_position(self.request.POST.get('id'))
         position.delete()
         messages.success(self.request, 'Vaga deletada com sucesso')
         return redirect(reverse('profiles:dashboard'))
+
+@method_decorator(
+    login_required(login_url='profiles:login', redirect_field_name='next'),
+    name='dispatch'
+)
+class DashboardPositionApplications(ListView):
+    model = Application
+    template_name = 'profiles/pages/position_applications.html'
+    context_object_name = 'applications'
+
+    def get_queryset(self):
+        position = get_object_or_404(Position, id=self.kwargs['id'])
+        return Application.objects.filter(position=position)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['position'] = get_object_or_404(Position, id=self.kwargs['id'])
+        return context

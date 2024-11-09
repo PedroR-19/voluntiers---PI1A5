@@ -69,14 +69,14 @@ def match_view(request):
         if form.cleaned_data['shift']:
             positions = positions.filter(shift=form.cleaned_data['shift'])
 
-        # if form.cleaned_data['state']:
-        #     positions = positions.filter(state=form.cleaned_data['state'])
+        if form.cleaned_data['state']:
+            positions = positions.filter(state__iexact=form.cleaned_data['state'])
 
-        # if form.cleaned_data['city']:
-        #     positions = positions.filter(city=form.cleaned_data['city'])
+        if form.cleaned_data['city']:
+            positions = positions.filter(city__iexact=form.cleaned_data['city'])
 
-        # if form.cleaned_data['zone']:
-        #     positions = positions.filter(zone=form.cleaned_data['zone'])
+        if form.cleaned_data['neighborhood']:
+            positions = positions.filter(neighborhood__iexact=form.cleaned_data['neighborhood'])
 
         if form.cleaned_data['category']:
             positions = positions.filter(category=form.cleaned_data['category'])

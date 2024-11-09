@@ -5,17 +5,34 @@
 {% block title %}Match{% endblock title %}
 
 {% block content %}
-
     <div class="main-content main-content-detail container">
         <h2>{% translate 'Match' %}</h2>
         {% include 'global/partials/messages.html' %}
 
+        <form method="get">
+            <div>
+                {{ form.shift.label_tag }} {{ form.shift }}
+            </div>
+            <div>
+                {{ form.category.label_tag }} {{ form.category }}
+            </div>
+            <div>
+                {{ form.state.label_tag }} {{ form.state }}
+            </div>
+            <div>
+                {{ form.city.label_tag }} {{ form.city }}
+            </div>
+            <div>
+                {{ form.neighborhood.label_tag }} {{ form.neighborhood }}
+            </div>
+            <button type="submit">{% translate 'Search' %}</button>
+        </form>
+
+        <!-- Display positions -->
         {% for position in positions %}
             {% include 'positions/partials/position.html' with position=position is_detail_page=False %}
-
         {% empty %}
             <p>{% translate 'No matching positions found' %}</p>
         {% endfor %}
     </div>
-
 {% endblock content %}

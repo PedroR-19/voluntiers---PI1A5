@@ -24,3 +24,4 @@ class VoluntierForm(forms.ModelForm):
             raise forms.ValidationError('Passwords must match.')
 
         return cleaned_data
+    

@@ -5,12 +5,17 @@ from django.http                    import Http404
 from django.shortcuts               import redirect, render, get_object_or_404
 from django.urls                    import reverse
 from django.utils.translation       import gettext as _
-
+from django import forms
 from profiles.forms.match_form import MatchForm
 from profiles.forms            import LoginForm, InstitutionForm, VoluntierForm
 from profiles.models           import User, Institution, Voluntier
 from positions.models          import Position, Application
 
+
+class Update_Voluntier_Form(forms.ModelForm):
+    class Meta:
+        model = Voluntier
+        fields = ['about', 'linkedin']  
 
 def register_choice_view(request):
     return render(request, 'profiles/pages/register_choice.html')
@@ -121,23 +126,32 @@ def logout_view(request):
 @login_required(login_url='profiles:login', redirect_field_name='next')
 def dashboard(request):
     user = request.user
-    form = MatchForm(request.GET or None)
+    match_form = MatchForm(request.GET or None)
+    voluntier_form = None  # Initialize as None
 
     user_type = None
-    profile   = None
+    profile = None
 
     if not request.user.is_superuser:
         try:
             institution = Institution.objects.get(user=user)
-            user_type   = 'ONG'
-            profile     = institution
+            user_type = 'ONG'
+            profile = institution
         except Institution.DoesNotExist:
             institution = None
 
         try:
             voluntier = Voluntier.objects.get(user=user)
             user_type = 'Voluntier'
-            profile   = voluntier
+            profile = voluntier
+            # Initialize the VoluntierForm with existing data
+            voluntier_form = Update_Voluntier_Form(request.POST or None, instance=voluntier)
+
+            if request.method == 'POST' and voluntier_form.is_valid():
+                voluntier_form.save()
+                messages.success(request, _('Voluntier data saved successfully.'))
+                return redirect('profiles:dashboard')
+
         except Voluntier.DoesNotExist:
             voluntier = None
 
@@ -151,10 +165,11 @@ def dashboard(request):
                     'user_type': user_type,
                     'user': user,
                     'profile': profile,
-                    'form': form,  # Passando o formulário para o contexto
+                    'form': match_form,
+                    'voluntier_form': voluntier_form,  # Add the VoluntierForm to the context
                 }
             )
-        
+
         elif user_type == 'ONG':
             positions = Position.objects.filter(profile=institution)
             return render(
@@ -165,11 +180,11 @@ def dashboard(request):
                     'user_type': user_type,
                     'user': user,
                     'profile': profile,
-                    'form': form,  # Passando o formulário para o contexto
+                    'form': match_form,
                 }
             )
     else:
-        # Lógica para superusuário, se necessário
+        # Logic for superuser if needed
         pass
 
-    return render(request, 'profiles/pages/dashboard.html', {'form': form})
+    return render(request, 'profiles/pages/dashboard.html', {'form': match_form})

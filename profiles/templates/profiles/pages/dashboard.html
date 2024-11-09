@@ -14,87 +14,66 @@
 
     <div class="profiles-dashboard-container">
       {% if user_type == 'Voluntier' %}
-
-      <div>
-        <h3> {% translate 'Field of Interest' %} </h3>
-        <select name="area" id="area" style="width: 570px;">
-
-        {% for category in form.fields.category.queryset %}
-          <option value="{{ category.id }}" {% if form.data.category == category.id %}selected{% endif %}>{{ category.name }}</option>
-        {% endfor %}
-
-        </select>
       
-        <h3> {% translate 'About' %} </h3>
-        <textarea id="curriculum" name="curriculum" rows="20" cols="75" placeholder="Digite aqui"> </textarea>
-
-        <h3> {% translate 'LinkedIn' %} </h3>
-        <textarea id="linkedin" name="linkedin" rows="2" cols="75" placeholder="Digite aqui"> </textarea>
-
+      <form method="post" action="">
+        {% csrf_token %}
+        {{ voluntier_form.as_p }}
         <button type="submit" class="styled-button"> {% translate 'Save' %}</button> 
-      </div>
+    </form>
 
-        <h3>{% translate 'Find Matching positions' %}</h3>
+      <h3>{% translate 'Find Matching positions' %}</h3>
 
-        <form method="get" action="{% url 'profiles:match' %}">
-          {% csrf_token %}
+      <form method="get" action="{% url 'profiles:match' %}">
+        {% csrf_token %}
 
-          <div class="form-group">
-            <label for="shift">{% translate 'Shift' %}</label>
-            <select name="shift" id="shift">
+        <div class="form-group">
+          <label for="shift">{% translate 'Shift' %}</label>
+          <select name="shift" id="shift">
+            {% for value, display in form.fields.shift.choices %}
+              <option value="{{ value }}" {% if form.data.shift == value %}selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+          </select>
+        </div>
 
-              {% for value, display in form.fields.shift.choices %}
-                <option value="{{ value }}" {% if form.data.shift == value %}selected{% endif %}>{{ display }}</option>
-              {% endfor %}
+        {% comment %} 
+        <div class="form-group">
+          <label for="state">{% translate 'State' %}</label>
+          <select name="state" id="state">
+            {% for value, display in form.fields.state.choices %}
+              <option value="{{ value }}" {% if form.data.state == value %}selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+          </select>
+        </div>
 
-            </select>
-          </div>
+        <div class="form-group">
+          <label for="city">{% translate 'City' %}</label>
+          <select name="city" id="city">
+            {% for value, display in form.fields.city.choices %}
+              <option value="{{ value }}" {% if form.data.city == value %}selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+          </select>
+        </div>
 
-          {% comment %} <div class="form-group">
-            <label for="state">{% translate 'State' %}</label>
-            <select name="state" id="state">
+        <div class="form-group">
+          <label for="zone">{% translate 'Zone' %}</label>
+          <select name="zone" id="zone">
+            {% for value, display in form.fields.zone.choices %}
+              <option value="{{ value }}" {% if form.data.zone == value %}selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+          </select>
+        </div> 
+        {% endcomment %}
 
-              {% for value, display in form.fields.state.choices %}
-                <option value="{{ value }}" {% if form.data.state == value %}selected{% endif %}>{{ display }}</option>
-              {% endfor %}
-
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="city">{% translate 'City' %}</label>
-            <select name="city" id="city">
-
-              {% for value, display in form.fields.city.choices %}
-                <option value="{{ value }}" {% if form.data.city == value %}selected{% endif %}>{{ display }}</option>
-              {% endfor %}
-
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="zone">{% translate 'Zone' %}</label>
-            <select name="zone" id="zone">
-
-              {% for value, display in form.fields.zone.choices %}
-                <option value="{{ value }}" {% if form.data.zone == value %}selected{% endif %}>{{ display }}</option>
-              {% endfor %}
-
-            </select>
-          </div> {% endcomment %}
-
-          <div class="form-group">
-            <label for="category">{% translate 'Category' %}</label>
-            <select name="category" id="category">
-
-              {% for category in form.fields.category.queryset %}
-                <option value="{{ category.id }}" {% if form.data.category == category.id %}selected{% endif %}>{{ category.name }}</option>
-              {% endfor %}
-
-            </select>
-          </div>
-          <button type="submit" class="styled-button">{% translate 'Match' %}</button>                                            
-        </form>
+        <div class="form-group">
+          <label for="category">{% translate 'Category' %}</label>
+          <select name="category" id="category">
+            {% for category in form.fields.category.queryset %}
+              <option value="{{ category.id }}" {% if form.data.category == category.id %}selected{% endif %}>{{ category.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="styled-button">{% translate 'Match' %}</button>                                            
+      </form>
 
       {% endif %}
 
@@ -102,43 +81,39 @@
       <a href="{% url 'profiles:dashboard_position_new' %}" id="create-new-position">{% translate 'Create a new position' %}</a>  
       <h3>{% translate 'positions' %}</h3>         
 
-        <ul>
-          {% for position in positions %}
-            <li>
-              <a href="{% url 'profiles:dashboard_position_edit' position.id %}">{{ position.title }}</a>
-
-              <form class="inline-form form-delete" action="{% url 'profiles:dashboard_position_delete' %}" method='POST'>
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{ position.id }}">
-                <button class="plaintext-button" type="submit">❌</button>
-              </form>
-            </li>
-
-          {% empty %}
-
-            <li>
-              <p>{% translate 'You do not have any position' %}.</p>
-            </li>
-          {% endfor %}
-        </ul>
+      <ul>
+        {% for position in positions %}
+          <li>
+            <a href="{% url 'profiles:dashboard_position_edit' position.id %}">{{ position.title }}</a>
+            <form class="inline-form form-delete" action="{% url 'profiles:dashboard_position_delete' %}" method='POST'>
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{ position.id }}">
+              <button class="plaintext-button" type="submit">❌</button>
+            </form>
+          </li>
+        {% empty %}
+          <li>
+            <p>{% translate 'You do not have any position' %}.</p>
+          </li>
+        {% endfor %}
+      </ul>
 
       {% elif user_type == 'Voluntier' %}
       <h3>{% translate 'Applications' %}</h3>                                            
-        <ul>
-          {% for application in applications %}
-            <li>
-              {{ application.position.title }} - {% translate 'application made at' %} {{ application.date }}
-            </li>
-          {% empty %}
-            <li>
-              <p>{% translate 'You have not applied for any position' %}.</p>                                            
-            </li>
-          {% endfor %}
-        </ul>
+      <ul>
+        {% for application in applications %}
+          <li>
+            {{ application.position.title }} - {% translate 'application made at' %} {{ application.date }}
+          </li>
+        {% empty %}
+          <li>
+            <p>{% translate 'You have not applied for any position' %}.</p>                                            
+          </li>
+        {% endfor %}
+      </ul>
 
       {% else %}
-
-        <p>{% translate 'User type not recognized' %}.</p>
+      <p>{% translate 'User type not recognized' %}.</p>
       {% endif %}
     </div>
   </div>
@@ -146,12 +121,10 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const forms = document.querySelectorAll('.form-delete');
-
       forms.forEach(form => {
         form.addEventListener('submit', function(e) {
           e.preventDefault();
           const confirmed = confirm('Are you sure you want to delete this position?');
-
           if (confirmed) {
             this.submit();
           }

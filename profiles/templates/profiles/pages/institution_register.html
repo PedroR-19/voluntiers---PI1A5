@@ -9,6 +9,48 @@
   </div>
 
   {% include 'global/partials/messages.html' %}
-  {% include 'global/partials/form.html' %} 
-  
+  {% include 'global/partials/form.html' with form_action=request.path %}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cepInput = document.getElementById('id_cep');
+        
+        // Debounce function to delay the execution
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+    
+        // Function to fetch and populate address fields
+        function fetchAddress(cep) {
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            document.getElementById('id_state').value = data.uf;
+                            document.getElementById('id_city').value = data.localidade;
+                            document.getElementById('id_neighborhood').value = data.bairro;
+                            document.getElementById('id_street').value = data.logradouro;
+                        } else {
+                            alert('CEP não encontrado.');
+                        }
+                    })
+                    .catch(error => console.error('Error fetching CEP:', error));
+            }
+        }
+    
+        // Attach the debounced function to the input event
+        if (cepInput) {
+            cepInput.addEventListener('input', debounce(function() {
+                const cep = this.value.replace(/\D/g, '');
+                fetchAddress(cep);
+            }, 500)); // Adjust the delay as needed (500ms is a common choice)
+        }
+    });
+    </script>
+
 {% endblock content %}

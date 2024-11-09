@@ -1,27 +1,23 @@
-from django.db.models               import Q
-from django.http.response           import Http404
-from django.views.generic           import DetailView, ListView
-from django.shortcuts               import get_object_or_404, redirect, render
+from django.db.models import Q
+from django.http.response import Http404
+from django.views.generic import DetailView, ListView
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from django.utils                   import translation
-from django.utils.translation       import gettext as _
-
+from django.utils import translation
+from django.utils.translation import gettext as _
+from django.contrib import messages
+from django.utils.decorators import method_decorator
 from positions.models import Position, Application
-from positions.forms  import ApplicationForm
-from profiles.models  import User, Institution, Voluntier
-from positions.models import Position
-
+from profiles.models import User, Institution, Voluntier
 from .pagination import make_pagination
-
 
 PER_PAGE = 6
 
-
 class positionListViewBase(ListView):
-    model               = Position
+    model = Position
     context_object_name = 'positions'
-    ordering            = ['-id']
-    template_name       = 'positions/pages/home.html'
+    ordering = ['-id']
+    template_name = 'positions/pages/home.html'
 
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset(*args, **kwargs)
@@ -37,21 +33,19 @@ class positionListViewBase(ListView):
 
         html_language = translation.get_language()
 
-        ctx.update(
-            {'positions': page_obj,
-             'pagination_range': pagination_range,
-             'html_language': html_language,
-            }
-        )
+        ctx.update({
+            'positions': page_obj,
+            'pagination_range': pagination_range,
+            'html_language': html_language,
+        })
         return ctx
 
-
 def position_list_view_home(request):
-    user      = request.user
+    user = request.user
     positions = Position.objects.all()
 
     institution = None
-    voluntier   = None
+    voluntier = None
 
     if user.is_authenticated and not user.is_superuser:
         try:
@@ -74,7 +68,6 @@ def position_list_view_home(request):
             'positions': positions,
         }
     )
-
 
 class positionListViewCategory(positionListViewBase):
     template_name = 'positions/pages/category.html'
@@ -99,7 +92,6 @@ class positionListViewCategory(positionListViewBase):
             raise Http404()
 
         return qs
-
 
 class positionListViewSearch(positionListViewBase):
     template_name = 'positions/pages/search.html'
@@ -131,15 +123,33 @@ class positionListViewSearch(positionListViewBase):
 
         return ctx
 
-
+@method_decorator(login_required, name='dispatch')
 class positionDetail(DetailView):
-    model               = Position
+    model = Position
     context_object_name = 'position'
-    template_name       = 'positions/pages/position-view.html'
+    template_name = 'positions/pages/position-view.html'
 
-    def get_queryset(self, *args, **kwargs):
-        qs = super().get_queryset(*args, **kwargs)
-        return qs
+    def post(self, request, *args, **kwargs):
+        # Get the position object
+        self.object = self.get_object()
+        
+        # Check if the user is a Voluntier
+        try:
+            voluntier = request.user.voluntier
+        except Voluntier.DoesNotExist:
+            voluntier = None
+
+        if voluntier:
+            # Create an Application object
+            Application.objects.create(
+                position=self.object,
+                voluntier=voluntier
+            )
+            messages.success(request, 'Your application has been submitted successfully!')
+            return redirect('profiles:dashboard')  # Redirect to the dashboard or another appropriate page
+
+        messages.error(request, 'You need to be a Voluntier to apply.')
+        return redirect('positions:position', pk=self.object.pk)
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
@@ -157,29 +167,3 @@ class positionDetail(DetailView):
         })
 
         return ctx
-
-
-from django.contrib                 import messages
-from django.shortcuts               import get_object_or_404, redirect, render
-from django.contrib.auth.decorators import login_required
-
-from positions.models import Position
-from positions.forms  import ApplicationForm
-
-
-@login_required
-def candidatar_position(request, position_id):
-    position = get_object_or_404(Position, id=position_id)
-    if request.method == 'POST':
-        form = ApplicationForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            application           = form.save(commit=False)
-            application.position  = position
-            application.voluntier = request.user.voluntier  # Certifique-se de que estamos associando corretamente
-            application.save()
-            messages.success(request, 'Candidatura enviada com sucesso')
-            return redirect('profiles:dashboard')
-    else:
-        form = ApplicationForm()
-    return render(request, 'positions/pages/candidatar_position.html', {'form': form, 'position': position})

@@ -23,7 +23,6 @@
                 <i class="fas fa-user"></i>
                 {% if position.profile.first_name %}
                     {{ position.profile.first_name }} {{ position.profile.last_name }}
-                    
                 {% else %}
                     {{ position.profile.email }}
                 {% endif %}
@@ -51,11 +50,10 @@
 
     <div class="position-meta-container">
         <div class="position-meta position-preparation">
-            <h3 class="position-meta-title"></i> {% translate "Shift" %} {{ position.get_shift_display }} </h3>
-            <h3 class="position-meta-title"></i> {% translate "State" %} {{ position.state }} </h3>
-            <h3 class="position-meta-title"></i> {% translate "City" %} {{ position.neighborhood }} </h3>
-            <h3 class="position-meta-title"></i> {% translate "City" %} {{ position.street }} </h3>
-            </h3>
+            <h3 class="position-meta-title">{% translate "Shift" %}: {{ position.get_shift_display }}</h3>
+            <h3 class="position-meta-title">{% translate "State" %}: {{ position.state }}</h3>
+            <h3 class="position-meta-title">{% translate "City" %}: {{ position.neighborhood }}</h3>
+            <h3 class="position-meta-title">{% translate "Street" %}: {{ position.street }}</h3>
         </div>
     </div>
 
@@ -71,19 +69,25 @@
     {% if is_detail_page is True %}
         {% if user.is_authenticated %}
             {% if user_profile %}
-                <div class="form-content form-content-grid">
-                    <a class="position-read-more button button-dark button-full-width" href="{% url 'positions:candidatar_position' position.id %}">
-                        <span>{% translate "Apply" %}</span>
-                    </a>
+                <div>
+                    <p>{% translate "Name" %}: {{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+                    <p>{% translate "About" %}: {{ user_profile.about }}</p>
+                    <p>{% translate "LinkedIn" %}: <a href="{{ user_profile.linkedin }}">{{ user_profile.linkedin }}</a></p>
                 </div>
 
+                {% if application_success %}
+                    <p>{% translate "Your application has been submitted successfully!" %}</p>
                 {% else %}
-                    <p>{% translate "You need to be a Voluntier to apply" %}.</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="styled-button">{% translate 'Confirm Application' %}</button>
+                    </form>
                 {% endif %}
-
+            {% else %}
+                <p>{% translate "You need to be a Voluntier to apply" %}.</p>
+            {% endif %}
         {% else %}
             <p>{% translate "You need to be logged in to apply" %}.</p>
         {% endif %}
-        
     {% endif %}
 </div>

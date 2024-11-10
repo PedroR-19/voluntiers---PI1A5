@@ -440,7 +440,7 @@ a {
 
 .message {
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 0.4rem;
   border: 1px solid var(--color-dark-text);
   background: var(--color-gray-2);
   color: var(--color-dark-text);
@@ -612,7 +612,7 @@ a {
 
 
 
-#shift, #country, #state, #city, #category {
+/* #shift, #country, #state, #city, #category {
   display: flex;
   margin-left: 5px;
   background-color: var(--background-color);
@@ -621,7 +621,7 @@ a {
   border-color: var(--border-color);
   border-style: solid;
   border-width: 1px;
-}
+} */
 
 #shift, #country, #state, #city, #category {
   min-width: 120px;
@@ -632,7 +632,7 @@ a {
   width: 70px;
   justify-content: center;
   padding: 5px 5px 5px 5px;
-  border-radius: 10px;
+  border-radius: 0.4rem;
   border: none;
   color: var(--light-font-color);
   cursor: pointer;
@@ -672,8 +672,8 @@ a {
   padding-bottom: 0;
 }
 
-#id_username, #id_password, #id_email{
-  /* margin-left: 10px; */
+/* #id_username, #id_password, #id_email{
+  margin-left: 10px;
   min-width: 200px;
   border: solid;
   border-width: 1px;
@@ -681,12 +681,13 @@ a {
   border-radius: 10px;
   background-color: var(--background-color);
   padding: 5px;
-}
+} */
 
 #id_user_type, 
 #id_first_name, 
 #id_last_name, 
 #id_email, 
+#id_password,
 #id_password2,
 
 #id_title,
@@ -702,20 +703,34 @@ a {
 #id_country,
 #id_state,
 #id_city,
-#id_cep
-#id_neighborhood
-#id_street
-#id_more
+#id_logradouro,
 #id_requirements,
-#id_cover
+#id_cover,
+
+#id_experiences,
+#id_languages,
+
+#zone,
+#id_zone,
+
+#shift, #country, #state, #city, #category
 {
   margin-top: 5px;
   margin-bottom: 5px;
   border-width: 1px;
   border-color: var(--border-color);
-  border-radius: 10px;
+  border-radius: 0.4rem;
   background-color: var(--background-color);
   padding: 5px;
+
+  display: flex;
+  background-color: var(--background-color);
+  padding: 3px 5px 3px 5px;
+  border-color: var(--border-color);
+  border-style: solid;
+  border-width: 1px;
+
+  width: 100%;
 }
 
 
@@ -734,11 +749,25 @@ a {
 .main-content-container {
   margin-left: 20px;
   margin-right: 20px;
+  justify-content: center;
 }
 
 form p {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 20%;
+}
+
+.form-group {
+  width: 100%;
 }
 
 @media (max-width: 600px) {
@@ -746,4 +775,12 @@ form p {
   .form-content-grid {
     grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
   }
+}
+
+.position-list-item p {
+  padding: 5px;
+} 
+
+form {
+  justify-content: center;
 }

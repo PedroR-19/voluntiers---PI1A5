@@ -12,10 +12,17 @@
     <div class="position-title-container">
         <h2 class="position-title">
             <a href="{{ position.get_absolute_url }}">
-                {{ position.title }}
+                {{ position.title }} <br>
             </a>
         </h2>
+        
+        <h4 class="position-title">
+            <a href="{{ position.get_absolute_url }}">
+                {{ position.profile }} <br>
+            </a>
+        </h4>
     </div>
+
 
     <div class="position-profile">
         {% if position.profile is not None %}
@@ -52,8 +59,9 @@
         <div class="position-meta position-preparation">
             <h3 class="position-meta-title">{% translate "Shift" %}: {{ position.get_shift_display }}</h3>
             <h3 class="position-meta-title">{% translate "State" %}: {{ position.state }}</h3>
-            <h3 class="position-meta-title">{% translate "City" %}: {{ position.neighborhood }}</h3>
-            <h3 class="position-meta-title">{% translate "Street" %}: {{ position.street }}</h3>
+            <h3 class="position-meta-title">{% translate "City" %}: {{ position.city }}</h3>
+            <h3 class="position-meta-title">{% translate "Neighborhood" %}: {{ position.neighborhood }}</h3>
+            <h3 class="position-meta-title">{% translate "Address" %}: {{ position.street }}, {{ position.more }} </h3>
         </div>
     </div>
 

@@ -54,10 +54,9 @@ class Dashboardposition(View):
             position.profile = institution
             position.save()
             messages.success(request, 'Sua vaga foi criada com sucesso')
+            
             return redirect(
-                reverse(
-                    'profiles:dashboard_position_edit', args=(position.id,)
-                )
+                reverse('profiles:dashboard')
             )
         return self.render_position(form)
 

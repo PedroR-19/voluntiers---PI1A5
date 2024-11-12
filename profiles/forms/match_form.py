@@ -12,9 +12,9 @@ class MatchForm(forms.Form):
 
     
     category = forms.ModelChoiceField(
-        queryset=Category.objects.all(),
-        required=False,
-        empty_label='Select Category'
+            queryset=Category.objects.all(),
+            required=False,
+            empty_label='Select Category'
     )
 
     state = forms.ChoiceField(

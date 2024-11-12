@@ -8,10 +8,20 @@
         {% if profile.user_type == 'Voluntier' %}
 
           <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
+    
 
         {% else %}
 
         <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
+
+        <a>
+          <form class="inline-form" action="{% url 'profiles:logout' %}" method='POST'>
+            {% csrf_token %}
+    
+            <input type="hidden" name="email" value="{{ request.user.email }}"> <!-- Alterado para usar email -->
+            <button class="plaintext-button" type="submit">{% translate 'Logout' %}</button>
+          </form>
+        </a>
 
         {% endif %}
 
@@ -21,5 +31,7 @@
         <a href="{% url 'profiles:register_choice' %}">{% trans 'Register' %}</a>
         
     {% endif %}
+
+
     </nav>
 </div>

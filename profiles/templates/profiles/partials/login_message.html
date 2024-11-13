@@ -3,33 +3,6 @@
 {% if user.is_authenticated %}
   <div class="login-message">
     {% translate 'You are logged in as' %} 
-    {{ request.user.email }}.
-    {% if profile.user_type == 'ONG' %}
-
-    <a href="{% url 'profiles:dashboard' %}">{% translate 'See your positions' %}</a>,
-      <a href="{% url 'profiles:dashboard_position_new' %}">{% translate 'Create a new position' %}</a>
-      {% translate 'or' %}
-
-      <form class="inline-form" action="{% url 'profiles:logout' %}" method='POST'>
-        {% csrf_token %}
-
-        <input type="hidden" name="email" value="{{ request.user.email }}"> <!-- Alterado para usar email -->
-        <button class="plaintext-button" type="submit">{% translate 'click here' %}</button>
-      </form> {% translate 'to logout' %}.
-    </div>
-
-    {% else %}
-
-      <a href="{% url 'profiles:dashboard' %}">{% translate 'See your applications' %}</a>
-      {% translate 'or' %}
-
-      <form class="inline-form" action="{% url 'profiles:logout' %}" method='POST'>
-        {% csrf_token %}
-
-        <input type="hidden" name="email" value="{{ request.user.email }}"> <!-- Alterado para usar email -->
-        <button class="plaintext-button" type="submit">{% translate 'click here' %}</button>
-      </form> {% translate 'to logout' %}.
-
-    {% endif %}  
+    {{ request.user.email }}. 
 
 {% endif %}

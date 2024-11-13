@@ -422,15 +422,6 @@ a {
   grid-column: span 2;
 }
 
-.plaintext-button {
-  display: inline;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: var(--color-primary);
-  font-size: 1.6rem;
-}
-
 /* Messages */
 .messages-container {
   display: flex;
@@ -601,6 +592,17 @@ a {
   margin-right: 10px;
 }
 
+.menu-nav a button {
+  display: inline;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-headings);
+  color: var(--light-font-color);
+  font-size: 2rem;
+}
+
+
 .form-group {
   margin: 10px;
   max-width: 400px;
@@ -629,7 +631,7 @@ a {
 
 .styled-button {
   background-color: var(--color-black);
-  width: 70px;
+  width: 115px;
   justify-content: center;
   padding: 5px 5px 5px 5px;
   border-radius: 0.4rem;
@@ -647,6 +649,12 @@ a {
   border-color: var(--border-color);
   /* border-style: solid; */
   border-width: 1px;
+}
+
+.profiles-dashboard-container ul li {
+  font-family: var(--font-headings);
+  font-size: 2rem;
+  color: #4a5369;
 }
 
 #apply-span {
@@ -733,8 +741,6 @@ a {
   width: 100%;
 }
 
-
-
 #need-to-be-voluntier {
   margin: 0px 0px 20px 20px;
 }
@@ -783,4 +789,26 @@ form {
 
 form {
   justify-content: center;
+}
+
+#id_about {
+  padding: 0 0 250px 0;
+  text-indent: 0;
+  resize: vertical; /* Permite redimensionar verticalmente */
+  box-sizing: border-box;
+  overflow-wrap: break-word; /* Garante quebra de linha para palavras longas */
+  white-space: pre-wrap; /* Mantém quebras de linha e espaços */
+}
+
+.plaintext-button {
+  color: dodgerblue;
+  display: inline;
+  cursor: pointer;
+  font-family: var(--font-headings);
+  font-size: 1.8rem;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  background: none;
 }

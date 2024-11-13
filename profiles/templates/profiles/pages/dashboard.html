@@ -3,11 +3,11 @@
 
 {% load i18n %}
 
-{% block title %}Dashboard ({{ user }}) | {% endblock title %}
+{% block title %}Dashboard ({{ profile }}) | {% endblock title %}
 
 {% block content %}
   <div class="main-content center container">
-    <h2>Dashboard ({{ user }})</h2>
+    <h2>Dashboard ({{ profile }}) </h2>
 
     {% include 'profiles/partials/login_message.html' %}
     {% include 'global/partials/messages.html' %}
@@ -84,8 +84,8 @@
         {% for position in positions %}
           <li>
             {{ position.title }}
-            <a href="{% url 'profiles:dashboard_position_edit' position.id %}" class="plaintext-button">Edit</a>
-            <a href="{% url 'profiles:dashboard_position_applications' position.id %}" class="plaintext-button">Applications</a>
+            <a href="{% url 'profiles:dashboard_position_edit' position.id %}" class="plaintext-button"> {% translate 'Edit |' %} </a>
+            <a href="{% url 'profiles:dashboard_position_applications' position.id %}" class="plaintext-button"> {% translate 'Applications |' %} </a>
             <form class="inline-form form-delete" action="{% url 'profiles:dashboard_position_delete' %}" method='POST'>
               {% csrf_token %}
               <input type="hidden" name="id" value="{{ position.id }}">
@@ -125,7 +125,7 @@
       forms.forEach(form => {
         form.addEventListener('submit', function(e) {
           e.preventDefault();
-          const confirmed = confirm('Are you sure you want to delete this position?');
+          const confirmed = confirm('Tem certeza que deseja excluir esta vaga?')
           if (confirmed) {
             this.submit();
           }

@@ -15,10 +15,10 @@
                 {{ position.title }} <br>
             </a>
         </h2>
-        
+
         <h4 class="position-title">
             <a href="{{ position.get_absolute_url }}">
-                {{ position.profile }} <br>
+                {{ position.category }}
             </a>
         </h4>
     </div>
@@ -45,7 +45,7 @@
             <span class="position-profile-item">
                 <a href="{% url 'positions:category' position.category.id %}">
                     <i class="fas fa-layer-group"></i>
-                    <span>{{ position.category.name }}</span>
+                    <span> {{ position.profile }} </span>
                 </a>
             </span>
         {% endif %}
@@ -84,11 +84,12 @@
                 </div>
 
                 {% if application_success %}
-                    <p>{% translate "Your application has been submitted successfully!" %}</p>
+                    <p>{% translate "Your application has been submitted successfully" %}</p>
                 {% else %}
+
                     <form method="post">
                         {% csrf_token %}
-                        <button type="submit" class="styled-button">{% translate 'Confirm Application' %}</button>
+                        <button type="submit" class="styled-button">{% translate 'Apply' %}</button>
                     </form>
                 {% endif %}
             {% else %}

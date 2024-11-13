@@ -69,8 +69,8 @@ class Voluntier(models.Model):
     last_name  = models.CharField(max_length=30, verbose_name=_('Last Name'))
     birth_date = models.DateField(verbose_name=_('Birth date'))
     cpf        = models.CharField(max_length=14, validators=[validate_cpf])
-    about = models.CharField(max_length=100, verbose_name=_('About'), default='')
-    linkedin = models.CharField(max_length=100, default='')
+    about      = models.TextField(max_length=2500, verbose_name=_('About'), default='')
+    linkedin   = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

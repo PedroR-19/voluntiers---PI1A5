@@ -11,6 +11,7 @@
     <h2>{% translate 'Create position' %}</h2>
     
     {% include 'global/partials/messages.html' %}
+    
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}

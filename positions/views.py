@@ -145,7 +145,7 @@ class positionDetail(DetailView):
                 position=self.object,
                 voluntier=voluntier
             )
-            messages.success(request, 'Your application has been submitted successfully!')
+            messages.success(request, 'Your application has been submitted successfully')
             return redirect('profiles:dashboard')  # Redirect to the dashboard or another appropriate page
 
         messages.error(request, 'You need to be a Voluntier to apply.')

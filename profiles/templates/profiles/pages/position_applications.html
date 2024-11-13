@@ -2,10 +2,10 @@
 
 {% load i18n %}
 
-{% block title %}Applications for {{ position.title }}{% endblock title %}
+{% block title %}{% translate "Applications for" %} {{ position.title }}{% endblock title %}
 
 {% block content %}
-<h2>Applications for {{ position.title }}</h2>
+<h2>{% translate "Applications for" %} {{ position.title }}</h2>
 
 <ul>
     {% for application in applications %}

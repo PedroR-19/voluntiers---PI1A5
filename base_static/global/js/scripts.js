@@ -5,7 +5,7 @@ function my_scope() {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const confirmed = confirm('Are you sure?');
+      const confirmed = confirm('Tem certeza?');
 
       if (confirmed) {
         form.submit();

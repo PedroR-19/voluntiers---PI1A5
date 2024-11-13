@@ -149,7 +149,7 @@ def dashboard(request):
 
             if request.method == 'POST' and voluntier_form.is_valid():
                 voluntier_form.save()
-                messages.success(request, _('Voluntier data saved successfully.'))
+                messages.success(request, _('Voluntier data saved successfully'))
                 return redirect('profiles:dashboard')
 
         except Voluntier.DoesNotExist:

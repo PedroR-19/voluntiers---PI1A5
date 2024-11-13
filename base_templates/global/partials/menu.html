@@ -19,7 +19,7 @@
             {% csrf_token %}
     
             <input type="hidden" name="email" value="{{ request.user.email }}"> <!-- Alterado para usar email -->
-            <button class="plaintext-button" type="submit">{% translate 'Logout' %}</button>
+            <button class="plaintext-button" type="submit"> {% translate 'Logout' %} </button>
           </form>
         </a>
 

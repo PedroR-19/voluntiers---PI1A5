@@ -15,6 +15,8 @@ def validate_cnpj(value):
         raise ValidationError(_('Invalid CNPJ'))
    
 def validate_password_strength(value):
+    if value is None:
+        raise ValidationError(_('Password cannot be empty.'))
     if len(value) < 8:
         raise ValidationError(_('Password must be at least 8 characters long.'))
     if not re.search(r'[A-Z]', value):
@@ -25,6 +27,7 @@ def validate_password_strength(value):
         raise ValidationError(_('Password must contain at least one digit.'))
     if not re.search(r'[^a-zA-Z0-9]', value):
         raise ValidationError(_('Password must contain at least one special character.'))
+
 
 def validate_email(email):
     api_key = "bb5012362a7542feb491bb6b8994ea37"

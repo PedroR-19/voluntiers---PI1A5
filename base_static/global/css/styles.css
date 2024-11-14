@@ -54,6 +54,9 @@
 
   --font-color: rgb(74, 83, 105);
   --light-font-color: rgb(230, 234, 247);
+
+  --linkedin-blue: #0072b1;
+  --gmail-red: #f06464;
 }
 
 * {
@@ -198,6 +201,8 @@ a {
   transition: all 300ms ease-in-out;
   border-radius: 0.4rem;
   overflow: hidden;
+
+  margin-bottom: 20px;
 }
 
 .position img {
@@ -422,6 +427,19 @@ a {
   grid-column: span 2;
 }
 
+#error-application-message {
+  text-align: center;
+}
+
+.plaintext-button {
+  display: inline;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-primary);
+  font-size: 1.6rem;
+}
+
 /* Messages */
 .messages-container {
   display: flex;
@@ -592,19 +610,9 @@ a {
   margin-right: 10px;
 }
 
-.menu-nav a button {
-  display: inline;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-family: var(--font-headings);
-  color: var(--light-font-color);
-  font-size: 2rem;
-}
-
-
 .form-group {
   margin: 10px;
+  margin-left: 0;
   max-width: 400px;
   display: flex;
   flex-direction: column;
@@ -612,7 +620,9 @@ a {
   /* align-items: left; */
 } 
 
-
+#centered-form {
+  min-width: 100%;
+}
 
 /* #shift, #country, #state, #city, #category {
   display: flex;
@@ -631,7 +641,7 @@ a {
 
 .styled-button {
   background-color: var(--color-black);
-  width: 115px;
+  width: 70px;
   justify-content: center;
   padding: 5px 5px 5px 5px;
   border-radius: 0.4rem;
@@ -642,6 +652,54 @@ a {
   font-size: 15px;
 }
 
+#button-logout {
+  background-color: var(--header-color);
+  display: fixed;
+  flex-flow: row;
+  font-family: var(--font-headings);
+  font-size: 2rem;
+  text-align: right;
+  margin-left: 0;
+  margin-right: 0;
+  min-height: 30px;
+  color: (var(--light-font-color));
+}
+
+#btn-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#btn-far {
+  margin-top: 50px;
+}
+
+#btn-fat {
+  width: 140px;
+  margin-bottom: 20px;
+}
+
+#btn-lil-far {
+  margin-top: 20px;
+  /* width: 140px; */
+  margin-bottom: 20px;
+}
+
+#position-user-info {
+  margin: 20px;
+}
+
+#div-centered-matches {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+
+
 .profiles-dashboard-container {
   background-color: var(--background-color);
   margin-top: 10px;
@@ -649,12 +707,6 @@ a {
   border-color: var(--border-color);
   /* border-style: solid; */
   border-width: 1px;
-}
-
-.profiles-dashboard-container ul li {
-  font-family: var(--font-headings);
-  font-size: 2rem;
-  color: #4a5369;
 }
 
 #apply-span {
@@ -721,10 +773,13 @@ a {
 #zone,
 #id_zone,
 
-#shift, #country, #state, #city, #category
+#shift, #country, #state, #city, #category,
+#id_cep, #id_neighborhood, #id_street, #id_more, 
+#neighborhood, #id_about, #id_linkedin
+
 {
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   border-width: 1px;
   border-color: var(--border-color);
   border-radius: 0.4rem;
@@ -739,6 +794,37 @@ a {
   border-width: 1px;
 
   width: 100%;
+}
+
+#a-linkedin {
+  color: var(--linkedin-blue);
+}
+
+#span-email {
+  color: var(--gmail-red);
+}
+
+b {
+  font-weight: 600 !important;
+}
+
+#id-div-applications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* #id_about {
+  line-height: 3em;
+} */
+
+#position-user-info, #application-item {
+  word-wrap: break-word;
+}
+
+#application-item {
+  margin-top: 20px;
+  /* max-width: 50%; */
 }
 
 #need-to-be-voluntier {
@@ -776,6 +862,10 @@ form {
   width: 100%;
 }
 
+#larger {
+  width: 64rem;
+}
+
 @media (max-width: 600px) {
   .main-content-list,
   .form-content-grid {
@@ -789,26 +879,4 @@ form {
 
 form {
   justify-content: center;
-}
-
-#id_about {
-  padding: 0 0 250px 0;
-  text-indent: 0;
-  resize: vertical; /* Permite redimensionar verticalmente */
-  box-sizing: border-box;
-  overflow-wrap: break-word; /* Garante quebra de linha para palavras longas */
-  white-space: pre-wrap; /* Mantém quebras de linha e espaços */
-}
-
-.plaintext-button {
-  color: dodgerblue;
-  display: inline;
-  cursor: pointer;
-  font-family: var(--font-headings);
-  font-size: 1.8rem;
-  border-width: initial;
-  border-style: none;
-  border-color: initial;
-  border-image: initial;
-  background: none;
 }

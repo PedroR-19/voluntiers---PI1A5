@@ -9,23 +9,23 @@
         <h2>{% translate 'Match' %}</h2>
         {% include 'global/partials/messages.html' %}
 
-        <form method="get">
-            <div>
+        <form id="larger" method="get">
+            <div id="centered-form" class="form-group">
                 {{ form.shift.label_tag }} {{ form.shift }}
             </div>
-            <div>
+            <div id="centered-form" class="form-group">
                 {{ form.category.label_tag }} {{ form.category }}
             </div>
-            <div>
+            <div id="centered-form" class="form-group">
                 {{ form.state.label_tag }} {{ form.state }}
             </div>
-            <div>
+            <div id="centered-form" class="form-group">
                 {{ form.city.label_tag }} {{ form.city }}
-            </div>
-            <div>
+            </div> 
+            <div id="centered-form" class="form-group">
                 {{ form.neighborhood.label_tag }} {{ form.neighborhood }}
             </div>
-            <button type="submit">{% translate 'Search' %}</button>
+            <button id="btn-lil-far" type="submit" class="styled-button">{% translate 'Search' %}</button>
         </form>
 
         <!-- Display positions -->

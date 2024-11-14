@@ -15,10 +15,10 @@
                 {{ position.title }} <br>
             </a>
         </h2>
-
+        
         <h4 class="position-title">
             <a href="{{ position.get_absolute_url }}">
-                {{ position.category }}
+                {{ position.category }} <br>
             </a>
         </h4>
     </div>
@@ -45,7 +45,7 @@
             <span class="position-profile-item">
                 <a href="{% url 'positions:category' position.category.id %}">
                     <i class="fas fa-layer-group"></i>
-                    <span> {{ position.profile }} </span>
+                    <span>{{ position.profile }}</span>
                 </a>
             </span>
         {% endif %}
@@ -77,26 +77,24 @@
     {% if is_detail_page is True %}
         {% if user.is_authenticated %}
             {% if user_profile %}
-                <div>
-                    <p>{% translate "Name" %}: {{ user_profile.first_name }} {{ user_profile.last_name }}</p>
-                    <p>{% translate "About" %}: {{ user_profile.about }}</p>
-                    <p>{% translate "LinkedIn" %}: <a href="{{ user_profile.linkedin }}">{{ user_profile.linkedin }}</a></p>
+                <div id="position-user-info">
+                    <b>{% translate "Name" %}:</b> {{ user_profile.first_name }} {{ user_profile.last_name }} <b>| {% translate "LinkedIn" %}:</b> {{ user_profile.linkedin }}
+                    <br><b>{% translate "About" %}:</b> {{ user_profile.about }}
                 </div>
 
                 {% if application_success %}
-                    <p>{% translate "Your application has been submitted successfully" %}</p>
+                    <p>{% translate "Your application has been submitted successfully!" %}</p>
                 {% else %}
-
                     <form method="post">
                         {% csrf_token %}
-                        <button type="submit" class="styled-button">{% translate 'Apply' %}</button>
+                        <button id="btn-fat" type="submit" class="styled-button">{% translate 'Apply' %}</button>
                     </form>
                 {% endif %}
             {% else %}
-                <p>{% translate "You need to be a Voluntier to apply" %}.</p>
+                <p id="error-application-message">{% translate "You need to be a Voluntier to apply" %}.</p>
             {% endif %}
         {% else %}
-            <p>{% translate "You need to be logged in to apply" %}.</p>
+            <p id="error-application-message">{% translate "You need to be logged in to apply" %}.</p>
         {% endif %}
     {% endif %}
 </div>

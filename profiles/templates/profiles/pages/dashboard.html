@@ -26,7 +26,7 @@
       <form method="get" action="{% url 'profiles:match' %}">
         {% csrf_token %}
 
-          <div class="form-group">
+          <div id="centered-form" class="form-group">
               <label for="shift">{% translate 'Shift' %}</label>
               <select name="shift" id="shift">
                   {% for value, display in form.fields.shift.choices %}
@@ -35,7 +35,7 @@
               </select>
           </div>
 
-          <div class="form-group">
+          <div id="centered-form" class="form-group">
               <label for="category">{% translate 'Category' %}</label>
               <select name="category" id="category">
                   {% for category in form.fields.category.queryset %}
@@ -44,7 +44,7 @@
               </select>
           </div>
 
-          <div class="form-group">
+          <div id="centered-form" class="form-group">
               <label for="state">{% translate 'State' %}</label>
               <select name="state" id="state">
                   {% for value, display in form.fields.state.choices %}
@@ -53,7 +53,7 @@
               </select>
           </div>
 
-          <div class="form-group">
+          <div id="centered-form" class="form-group">
               <label for="city">{% translate 'City' %}</label>
               <select name="city" id="city">
                   {% for value, display in form.fields.city.choices %}
@@ -62,7 +62,7 @@
               </select>
           </div>
 
-          <div class="form-group">
+          <div id="centered-form" class="form-group">
               <label for="neighborhood">{% translate 'Neighborhood' %}</label>
               <select name="neighborhood" id="neighborhood">
                   {% for value, display in form.fields.neighborhood.choices %}
@@ -77,21 +77,23 @@
       {% endif %}
 
       {% if user_type == 'ONG' %}
-      <a href="{% url 'profiles:dashboard_position_new' %}" id="create-new-position">{% translate 'Create a new position' %}</a>  
+      <a href="{% url 'profiles:dashboard_position_new' %}" id="create-new-position">➕ {% translate 'Create a new position' %}</a>
       <h3>{% translate 'positions' %}</h3>         
 
       <ul>
         {% for position in positions %}
           <li>
             {{ position.title }}
-            <a href="{% url 'profiles:dashboard_position_edit' position.id %}" class="plaintext-button"> {% translate 'Edit |' %} </a>
-            <a href="{% url 'profiles:dashboard_position_applications' position.id %}" class="plaintext-button"> {% translate 'Applications |' %} </a>
+            <br>
+            <a href="{% url 'profiles:dashboard_position_edit' position.id %}" class="plaintext-button">⚙️ {% translate 'Edit' %}</a> <b>|</b>
+            <a href="{% url 'profiles:dashboard_position_applications' position.id %}" class="plaintext-button">📝 {% translate 'Applications' %}</a> <b>|</b>
             <form class="inline-form form-delete" action="{% url 'profiles:dashboard_position_delete' %}" method='POST'>
               {% csrf_token %}
               <input type="hidden" name="id" value="{{ position.id }}">
-              <button class="plaintext-button" type="submit">❌</button>
+              <button class="plaintext-button" type="submit">❌ {% translate 'Delete' %}</button>
             </form>
           </li>
+          <br>
         {% empty %}
           <li>
             <p>{% translate 'You do not have any position' %}.</p>

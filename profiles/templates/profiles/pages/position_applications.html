@@ -5,18 +5,19 @@
 {% block title %}{% translate "Applications for" %} {{ position.title }}{% endblock title %}
 
 {% block content %}
-<h2>{% translate "Applications for" %} {{ position.title }}</h2>
+<div id="id-div-applications">
+    <h2>{% translate "Applications for" %} {{ position.title }}</h2>
 
-<ul>
-    {% for application in applications %}
-        <li>
-            {{ application.voluntier.first_name }} {{ application.voluntier.last_name }} - 
-            {{ application.voluntier.user.email }} - 
-            <a href="{{ application.voluntier.linkedin }}" target="_blank">{{ application.voluntier.linkedin }}</a> - 
-            {{ application.voluntier.about }}
-        </li>
-    {% empty %}
-        <li>{% translate "No applications found." %}</li>
-    {% endfor %}
-</ul>
+    <ul id="application-item">
+        {% for application in applications %}
+            <li>
+                <b>{% translate "Name" %}:</b> {{ application.voluntier.first_name }} {{ application.voluntier.last_name }} <b>| Email:</b> <span id="span-email">{{ application.voluntier.user.email }}</span> <b>| LinkedIn:</b> <a id="a-linkedin" href="{{ application.voluntier.linkedin }}" target="_blank">{{ application.voluntier.linkedin }}</a>
+                <br><b>{% translate "About" %}:</b> {{ application.voluntier.about }}
+            </li>
+            <br>
+        {% empty %}
+            <li>{% translate "No applications found." %}</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock content %}

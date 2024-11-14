@@ -21,7 +21,7 @@ def strong_password(password):
 
 class InstitutionForm(forms.ModelForm):
     email = forms.EmailField(
-        validators=[validate_email],
+        # validators=[validate_email],
         label=_("Email")
     )
     password = forms.CharField(

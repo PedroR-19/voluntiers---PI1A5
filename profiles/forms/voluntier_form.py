@@ -7,7 +7,7 @@ from profiles.models import Voluntier, User
 
 class VoluntierForm(forms.ModelForm):
     email = forms.EmailField(
-        validators=[validate_email],
+        # validators=[validate_email],
         label=_("Email")
     )
     password = forms.CharField(

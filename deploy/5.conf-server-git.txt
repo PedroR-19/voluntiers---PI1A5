@@ -18,6 +18,7 @@ pip install python-dotenv
 pip install validate-docbr
 pip install django
 pip install Pillow
+pip install requests
 pip install gunicorn
 
 python manage.py collectstatic

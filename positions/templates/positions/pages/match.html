@@ -29,7 +29,7 @@
         </form>
 
         <!-- Display positions -->
-        {% for position in positions %}
+        {% for positions in position %}
             {% include 'positions/partials/position.html' with position=position is_detail_page=False %}
         {% empty %}
             <p>{% translate 'No matching positions found' %}</p>

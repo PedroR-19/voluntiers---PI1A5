@@ -1,9 +1,9 @@
 from django                   import forms
 from django.utils.translation import gettext_lazy as _
-from profiles.models import Institution
+from profiles.models import Institution, User
 import re
 from django.core.exceptions import ValidationError
-
+from profiles.validators import validate_password_strength, validate_email
 
 
 def strong_password(password):
@@ -20,22 +20,39 @@ def strong_password(password):
 
 
 class InstitutionForm(forms.ModelForm):
-    email            = forms.EmailField()
-    password         = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput(), label=_("Confirm password"))
+    email = forms.EmailField(
+        validators=[validate_email],
+        label=_("Email")
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        label=_("Password"),
+        validators=[validate_password_strength]
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(),
+        label=_("Confirm password")
+    )
 
     class Meta:
         model  = Institution
         fields = ['name', 'cnpj', 'email', 'cep', 'state', 'city', 'neighborhood', 'street', 'more', 'password', 'confirm_password']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+
+        if User.objects.filter(email=email).exists():
+            raise ValidationError(_('This email is already in use.'), code='invalid')
+        return email
 
     def clean(self):
         cleaned_data     = super().clean()
         password         = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
 
-        if password != confirm_password:
-            raise forms.ValidationError('Passwords must match.')
-        
+        if password and confirm_password and password != confirm_password:
+            self.add_error('confirm_password', _('Passwords must match.'))
+            
         strong_password(password)
         
         return cleaned_data

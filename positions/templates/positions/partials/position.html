@@ -40,20 +40,12 @@
         </span>
 
         {% if position.category is not None %}
-            {% if user.is_authenticated %}
-                <span class="position-profile-item">
-                    <a href="{% url 'positions:category' position.category.id %}">
-                        <i class="fas fa-layer-group"></i>
-                        <span> {{ position.profile }} </span>
-                    </a>
-                </span>
-            {% else %}
-                <span class="position-profile-item">
-                    <!-- <a href="{% url 'positions:category' position.category.id %}"> -->
+            <span class="position-profile-item">
+                <a href="{% url 'positions:category' position.category.id %}">
                     <i class="fas fa-layer-group"></i>
                     <span> {{ position.profile }} </span>
-                </span>
-            {% endif %}
+                </a>
+            </span>
         {% endif %}
     </div>
 

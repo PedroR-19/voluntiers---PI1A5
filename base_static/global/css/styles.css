@@ -641,7 +641,7 @@ a {
 
 .styled-button {
   background-color: var(--color-black);
-  width: 70px;
+  width: 115px;
   justify-content: center;
   padding: 5px 5px 5px 5px;
   border-radius: 0.4rem;

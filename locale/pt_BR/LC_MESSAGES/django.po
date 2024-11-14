@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-13 19:33-0300\n"
+"POT-Creation-Date: 2024-11-14 12:14-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,8 @@ msgid "Username"
 msgstr "Nome de usuário"
 
 #: .\base_templates\global\partials\form.html:21
+#: .\profiles\forms\institution_form.py:29
+#: .\profiles\forms\voluntier_form.py:15
 msgid "Password"
 msgstr "Senha"
 
@@ -177,11 +179,13 @@ msgstr "Ver mais"
 
 #: .\positions\templates\positions\partials\position.html:81
 #: .\profiles\models.py:53
+#: .\profiles\templates\profiles\pages\position_applications.html:14
 msgid "Name"
 msgstr "Nome"
 
 #: .\positions\templates\positions\partials\position.html:82
 #: .\profiles\models.py:72
+#: .\profiles\templates\profiles\pages\position_applications.html:15
 msgid "About"
 msgstr "Sobre"
 
@@ -189,7 +193,7 @@ msgstr "Sobre"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: .\positions\templates\positions\partials\position.html:88
+#: .\positions\templates\positions\partials\position.html:87
 msgid "Your application has been submitted successfully"
 msgstr "Sua candidatura foi enviada com sucesso"
 
@@ -206,9 +210,26 @@ msgid "You need to be logged in to apply"
 msgstr "Para se candidatar, é necessário realizar o login"
 
 #: .\profiles\forms\institution_form.py:25
-#: .\profiles\forms\voluntier_form.py:10
+#: .\profiles\forms\voluntier_form.py:11
+msgid "Email"
+msgstr ""
+
+#: .\profiles\forms\institution_form.py:34
+#: .\profiles\forms\voluntier_form.py:20
 msgid "Confirm password"
 msgstr "Confirme sua senha"
+
+#: .\profiles\forms\institution_form.py:45 .\profiles\forms\register_form.py:26
+#: .\profiles\forms\voluntier_form.py:34
+msgid "This email is already in use."
+msgstr "Este e-mail já está em uso"
+
+#: .\profiles\forms\institution_form.py:56
+#: .\profiles\forms\voluntier_form.py:44
+#, fuzzy
+#| msgid "Password must not be empty"
+msgid "Passwords must match."
+msgstr "A senha não deve estar vazia"
 
 #: .\profiles\forms\register_form.py:14
 msgid "Please select an option"
@@ -220,11 +241,7 @@ msgstr "Por favor, selecione uma opção"
 msgid "User type"
 msgstr "Tipo de usuário"
 
-#: .\profiles\forms\register_form.py:26
-msgid "This email is already in use."
-msgstr "Este e-mail já está em uso"
-
-#: .\profiles\forms\voluntier_form.py:11 .\profiles\models.py:70
+#: .\profiles\forms\voluntier_form.py:24 .\profiles\models.py:70
 msgid "Birth date"
 msgstr "Data de nascimento"
 
@@ -237,7 +254,7 @@ msgid "Last Name"
 msgstr "Sobrenome"
 
 #: .\profiles\templates\profiles\pages\dashboard.html:21
-#: .\profiles\templates\profiles\pages\dashboard_position.html:19
+#: .\profiles\templates\profiles\pages\dashboard_position.html:18
 msgid "Save"
 msgstr "Salvar"
 
@@ -249,31 +266,32 @@ msgstr "Seus Matches"
 msgid "Create a new position"
 msgstr "Criar uma nova vaga"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:87
-msgid "Edit |"
-msgstr "Editar |"
-
 #: .\profiles\templates\profiles\pages\dashboard.html:88
-msgid "Applications |"
-msgstr "Candidatos |"
+msgid "Edit"
+msgstr "Editar"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:97
-msgid "You do not have any position"
-msgstr "Você não tem nenhuma vaga"
-
-#: .\profiles\templates\profiles\pages\dashboard.html:103
+#: .\profiles\templates\profiles\pages\dashboard.html:89
+#: .\profiles\templates\profiles\pages\dashboard.html:105
 msgid "Applications"
 msgstr "Veja suas candidaturas"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:107
+#: .\profiles\templates\profiles\pages\dashboard.html:93
+msgid "Delete"
+msgstr ""
+
+#: .\profiles\templates\profiles\pages\dashboard.html:99
+msgid "You do not have any position"
+msgstr "Você não tem nenhuma vaga"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:109
 msgid "application made at"
 msgstr "Candidatura enviada em"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:111
+#: .\profiles\templates\profiles\pages\dashboard.html:113
 msgid "You have not applied for any position"
 msgstr "Você não se candidatou em nenhuma vaga ainda"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:117
+#: .\profiles\templates\profiles\pages\dashboard.html:119
 msgid "User type not recognized"
 msgstr "Usuário não reconhecido"
 
@@ -287,15 +305,13 @@ msgid "Register Institution"
 msgstr "Registrar como Instituição"
 
 #: .\profiles\templates\profiles\pages\position_applications.html:5
-#: .\profiles\templates\profiles\pages\position_applications.html:8
+#: .\profiles\templates\profiles\pages\position_applications.html:9
 msgid "Applications for"
 msgstr "Candidaturas para"
 
 #: .\profiles\templates\profiles\pages\position_applications.html:19
-#, fuzzy
-#| msgid "No matching positions found"
 msgid "No applications found."
-msgstr "Nenhum match encontrado"
+msgstr "Nenhuma candidatura encontrado"
 
 #: .\profiles\templates\profiles\pages\register_choice.html:10
 msgid "Register as Institution"
@@ -321,6 +337,45 @@ msgstr "CPF inválido"
 #: .\profiles\validators.py:15
 msgid "Invalid CNPJ"
 msgstr "CNPJ Inválido"
+
+#: .\profiles\validators.py:19
+#, fuzzy
+#| msgid "Password must not be empty"
+msgid "Password cannot be empty."
+msgstr "A senha não deve estar vazia."
+
+#: .\profiles\validators.py:21
+msgid "Password must be at least 8 characters long."
+msgstr "A senha deve ter pelo menos 8 caracteres."
+
+#: .\profiles\validators.py:23
+msgid "Password must contain at least one uppercase letter."
+msgstr "A senha deve conter pelo menos uma letra maiúscula."
+
+#: .\profiles\validators.py:25
+msgid "Password must contain at least one lowercase letter."
+msgstr "A senha deve conter pelo menos uma letra minúscula."
+
+#: .\profiles\validators.py:27
+msgid "Password must contain at least one digit."
+msgstr "A senha deve conter pelo menos um dígito."
+
+#: .\profiles\validators.py:29
+msgid "Password must contain at least one special character."
+msgstr "A senha deve conter pelo menos um caractere especial."
+
+#: .\profiles\validators.py:47
+msgid "Invalid email address. Please enter a valid email."
+msgstr "Endereço de e-mail inválido. Por favor insira um e-mail válido."
+
+#: .\profiles\validators.py:50
+msgid "Error validating email address. Please try again later."
+msgstr ""
+"Erro ao validar o endereço de e-mail. Por favor, tente novamente mais tarde."
+
+#: .\profiles\validators.py:52
+msgid "Unexpected response format from the email validation service."
+msgstr "Formato de resposta inesperado do serviço de validação de e-mail."
 
 #: .\profiles\views\all.py:34
 msgid "Your Institution has been created, please log in."
@@ -355,6 +410,9 @@ msgstr "Logout feito com sucesso"
 #: .\profiles\views\all.py:152
 msgid "Voluntier data saved successfully"
 msgstr "Dados do Voluntário salvos com sucesso"
+
+#~ msgid "Applications |"
+#~ msgstr "Candidatos |"
 
 #~ msgid "Position"
 #~ msgstr "Vaga"
@@ -437,9 +495,6 @@ msgstr "Dados do Voluntário salvos com sucesso"
 #~ msgid "This field must not be empty"
 #~ msgstr "Este campo não deve estar vazio"
 
-#~ msgid "Username must have at least 4 characters"
-#~ msgstr "O nome de usuário deve ter pelo menos 4 caracteres"
-
 #~ msgid "Username must have less than 150 characters"
 #~ msgstr "O nome de usuário deve ter menos de 150 caracteres"
 
@@ -454,16 +509,6 @@ msgstr "Dados do Voluntário salvos com sucesso"
 
 #~ msgid "The e-mail need to be valid."
 #~ msgstr "O e-mail precisa ser válido"
-
-#~ msgid "Password must not be empty"
-#~ msgstr "A senha não deve estar vazia"
-
-#~ msgid ""
-#~ "Password must contain at least one uppercase letter, a lowercase letter "
-#~ "and a number. at least 8 characters."
-#~ msgstr ""
-#~ "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e "
-#~ "um número. pelo menos 8 caracteres"
 
 #~ msgid "Password2"
 #~ msgstr "Repita sua senha"

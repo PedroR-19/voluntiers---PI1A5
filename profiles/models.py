@@ -51,7 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Institution(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, verbose_name=_('Name'))
-    cnpj = models.CharField(max_length=18, validators=[validate_cnpj])
+    cnpj = models.CharField(max_length=18, validators=[validate_cnpj], unique=True)
     cep      = models.CharField(max_length=100, verbose_name=_('cep'))
     state      = models.CharField(max_length=100, verbose_name=_('State'), default='')
     city       = models.CharField(max_length=100, verbose_name=_('City'), default='')
@@ -68,9 +68,9 @@ class Voluntier(models.Model):
     first_name = models.CharField(max_length=30, verbose_name=_('First Name'))
     last_name  = models.CharField(max_length=30, verbose_name=_('Last Name'))
     birth_date = models.DateField(verbose_name=_('Birth date'))
-    cpf        = models.CharField(max_length=14, validators=[validate_cpf])
-    about      = models.TextField(max_length=2500, verbose_name=_('About'), default='')
-    linkedin   = models.CharField(max_length=100, default='')
+    cpf        = models.CharField(max_length=14, validators=[validate_cpf], unique=True)
+    about = models.CharField(max_length=100, verbose_name=_('About'), default='')
+    linkedin = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

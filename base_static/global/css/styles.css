@@ -798,6 +798,7 @@ a {
 
 #a-linkedin {
   color: var(--linkedin-blue);
+  
 }
 
 #span-email {
@@ -813,10 +814,6 @@ b {
   flex-direction: column;
   align-items: center;
 }
-
-/* #id_about {
-  line-height: 3em;
-} */
 
 #position-user-info, #application-item {
   word-wrap: break-word;

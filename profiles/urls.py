@@ -21,6 +21,11 @@ urlpatterns = [
     # path('ajax/filter-cities/', data_filters.FilterCities.as_view(), name='filter_cities'),
     # path('ajax/filter-subcategories/', data_filters.FilterSubcategories.as_view(), name='filter_subcategories'),
 
+    path('dashboard/payment/', views.payment_view, name='payment'),
+    path('payment/success/', views.payment_success, name='payment_success'),
+    path('payment/failure/', views.payment_failure, name='payment_failure'),
+    path('payment/pending/', views.payment_pending, name='payment_pending'),
+
     path('dashboard/position/new/', views.Dashboardposition.as_view(), name='dashboard_position_new'),
     path('dashboard/position/delete/', views.DashboardpositionDelete.as_view(), name='dashboard_position_delete'),
     path('dashboard/position/<int:id>/edit/', views.Dashboardposition.as_view(), name='dashboard_position_edit'),

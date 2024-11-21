@@ -10,6 +10,8 @@ from profiles.forms.match_form import MatchForm
 from profiles.forms            import LoginForm, InstitutionForm, VoluntierForm
 from profiles.models           import User, Institution, Voluntier
 from positions.models          import Position, Application
+from profiles.payments import create_payment_preference
+
 
 
 class Update_Voluntier_Form(forms.ModelForm):
@@ -188,3 +190,32 @@ def dashboard(request):
         pass
 
     return render(request, 'profiles/pages/dashboard.html', {'form': match_form})
+
+
+def payment_view(request):
+    preference_id = create_payment_preference()
+    
+    mercado_pago_url = f"https://www.mercadopago.com.br/checkout/v1/redirect?pref_id={preference_id}"
+    return redirect(mercado_pago_url)
+
+
+@login_required
+def payment_success(request):
+    try:
+        institution = request.user.institution
+        institution.is_premium = True
+        institution.save()
+        messages.success(request, _('Your payment was successful, and your account is now premium!'))
+    except Institution.DoesNotExist:
+        messages.error(request, _('Institution not found.'))
+    return redirect('profiles:dashboard')
+
+@login_required
+def payment_failure(request):
+    messages.error(request, _('There was an issue with your payment. Please try again.'))
+    return redirect('profiles:dashboard')
+
+@login_required
+def payment_pending(request):
+    messages.info(request, _('Your payment is pending. We will notify you once it is complete.'))
+    return redirect('profiles:dashboard')

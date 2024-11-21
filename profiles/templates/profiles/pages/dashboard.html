@@ -78,7 +78,9 @@
 
       {% if user_type == 'ONG' %}
       <a href="{% url 'profiles:dashboard_position_new' %}" id="create-new-position">➕ {% translate 'Create a new position' %}</a>
-      <h3>{% translate 'positions' %}</h3>         
+      <h3>{% translate 'positions' %}</h3> 
+      
+      <a href="{% url 'profiles:payment' %}" class="styled-button">Pay for Premium</a>
 
       <ul>
         {% for position in positions %}

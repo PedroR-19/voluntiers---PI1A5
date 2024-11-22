@@ -86,4 +86,31 @@
             {% endif %}
         </footer>
     {% endif %}
+
+    {% if is_detail_page is True %}
+        {% if user.is_authenticated %}
+            {% if user_profile %}
+                <div>
+                    <p>{% translate "Name" %}: {{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+                    <p>{% translate "About" %}: {{ user_profile.about }}</p>
+                    <p>{% translate "LinkedIn" %}: <a href="{{ user_profile.linkedin }}">{{ user_profile.linkedin }}</a></p>
+                </div>
+
+                {% if application_success %}
+
+                    <p> {% translate "Your application has been submitted successfully" %} </p>
+
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="styled-button">{% translate 'Apply' %}</button>
+                    </form>
+                {% endif %}
+            {% else %}
+                <p>{% translate "You need to be a Voluntier to apply" %}.</p>
+            {% endif %}
+        {% else %}
+            <p>{% translate "You need to be logged in to apply" %}.</p>
+        {% endif %}
+    {% endif %}
 </div>

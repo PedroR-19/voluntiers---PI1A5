@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-22 10:58-0300\n"
+"POT-Creation-Date: 2024-11-22 12:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,7 +101,7 @@ msgid "Subcategory"
 msgstr "subcategoria"
 
 #: .\positions\models.py:67
-#: .\positions\templates\positions\partials\position.html:60
+#: .\positions\templates\positions\partials\position.html:66
 #: .\profiles\templates\profiles\pages\dashboard.html:30
 msgid "Shift"
 msgstr "Turno"
@@ -111,21 +111,21 @@ msgid "cep"
 msgstr ""
 
 #: .\positions\models.py:69
-#: .\positions\templates\positions\partials\position.html:61
+#: .\positions\templates\positions\partials\position.html:67
 #: .\profiles\models.py:56
 #: .\profiles\templates\profiles\pages\dashboard.html:48
 msgid "State"
 msgstr "Estado"
 
 #: .\positions\models.py:70
-#: .\positions\templates\positions\partials\position.html:62
+#: .\positions\templates\positions\partials\position.html:68
 #: .\profiles\models.py:57
 #: .\profiles\templates\profiles\pages\dashboard.html:57
 msgid "City"
 msgstr "Cidade"
 
 #: .\positions\models.py:71
-#: .\positions\templates\positions\partials\position.html:63
+#: .\positions\templates\positions\partials\position.html:69
 #: .\profiles\models.py:58
 #: .\profiles\templates\profiles\pages\dashboard.html:66
 msgid "Neighborhood"
@@ -169,44 +169,48 @@ msgstr "Pesquisar"
 msgid "No matching positions found"
 msgstr "Nenhum match encontrado"
 
-#: .\positions\templates\positions\partials\position.html:64
+#: .\positions\templates\positions\partials\position.html:70
 msgid "Address"
 msgstr "Endereço"
 
-#: .\positions\templates\positions\partials\position.html:72
+#: .\positions\templates\positions\partials\position.html:79
 msgid "See more"
 msgstr "Ver mais"
 
-#: .\positions\templates\positions\partials\position.html:81
+#: .\positions\templates\positions\partials\position.html:84
+msgid "Register to view more"
+msgstr "Registrar como Voluntário"
+
+#: .\positions\templates\positions\partials\position.html:94
 #: .\profiles\models.py:53
 #: .\profiles\templates\profiles\pages\position_applications.html:14
 msgid "Name"
 msgstr "Nome"
 
-#: .\positions\templates\positions\partials\position.html:82
+#: .\positions\templates\positions\partials\position.html:95
 #: .\profiles\models.py:72
 #: .\profiles\templates\profiles\pages\position_applications.html:15
 msgid "About"
 msgstr "Sobre"
 
-#: .\positions\templates\positions\partials\position.html:83
+#: .\positions\templates\positions\partials\position.html:96
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: .\positions\templates\positions\partials\position.html:87
+#: .\positions\templates\positions\partials\position.html:101
 #: .\positions\views.py:148
 msgid "Your application has been submitted successfully"
 msgstr "Sua candidatura foi enviada com sucesso"
 
-#: .\positions\templates\positions\partials\position.html:92
+#: .\positions\templates\positions\partials\position.html:106
 msgid "Apply"
 msgstr "Candidatar-se"
 
-#: .\positions\templates\positions\partials\position.html:97
+#: .\positions\templates\positions\partials\position.html:110
 msgid "You need to be a Voluntier to apply"
 msgstr "Para se candidatar, é necessário ser um Voluntier"
 
-#: .\positions\templates\positions\partials\position.html:100
+#: .\positions\templates\positions\partials\position.html:113
 msgid "You need to be logged in to apply"
 msgstr "Para se candidatar, é necessário realizar o login"
 
@@ -339,45 +343,46 @@ msgstr "Você está logado como"
 msgid "Invalid CPF"
 msgstr "CPF inválido"
 
-#: .\profiles\validators.py:15
+#: .\profiles\validators.py:16
 msgid "Invalid CNPJ"
 msgstr "CNPJ Inválido"
 
-#: .\profiles\validators.py:19
+#: .\profiles\validators.py:20
 #, fuzzy
 #| msgid "Password must not be empty"
 msgid "Password cannot be empty."
 msgstr "A senha não deve estar vazia."
 
-#: .\profiles\validators.py:21
+#: .\profiles\validators.py:22
 msgid "Password must be at least 8 characters long."
 msgstr "A senha deve ter pelo menos 8 caracteres."
 
-#: .\profiles\validators.py:23
+#: .\profiles\validators.py:24
 msgid "Password must contain at least one uppercase letter."
 msgstr "A senha deve conter pelo menos uma letra maiúscula."
 
-#: .\profiles\validators.py:25
+#: .\profiles\validators.py:26
 msgid "Password must contain at least one lowercase letter."
 msgstr "A senha deve conter pelo menos uma letra minúscula."
 
-#: .\profiles\validators.py:27
+#: .\profiles\validators.py:28
 msgid "Password must contain at least one digit."
 msgstr "A senha deve conter pelo menos um dígito."
 
-#: .\profiles\validators.py:29
+#: .\profiles\validators.py:30
 msgid "Password must contain at least one special character."
 msgstr "A senha deve conter pelo menos um caractere especial."
 
-#: .\profiles\validators.py:47
+#: .\profiles\validators.py:48
 msgid "Invalid email address. Please enter a valid email."
 msgstr "Endereço de e-mail inválido. Por favor insira um e-mail válido."
 
-#: .\profiles\validators.py:50
+#: .\profiles\validators.py:51
 msgid "Error validating email address. Please try again later."
-msgstr "Erro ao validar o endereço de e-mail. Por favor, tente novamente mais tarde."
+msgstr ""
+"Erro ao validar o endereço de e-mail. Por favor, tente novamente mais tarde."
 
-#: .\profiles\validators.py:52
+#: .\profiles\validators.py:53
 msgid "Unexpected response format from the email validation service."
 msgstr "Formato de resposta inesperado do serviço de validação de e-mail."
 
@@ -429,7 +434,8 @@ msgstr "Houve um problema com seu pagamento. Por favor, tente novamente."
 
 #: .\profiles\views\all.py:220
 msgid "Your payment is pending. We will notify you once it is complete."
-msgstr "Seu pagamento está pendente. Iremos notificá-lo assim que estiver concluído."
+msgstr ""
+"Seu pagamento está pendente. Iremos notificá-lo assim que estiver concluído."
 
 #~ msgid "Applications |"
 #~ msgstr "Candidatos |"

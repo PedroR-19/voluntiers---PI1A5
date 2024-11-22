@@ -20,6 +20,8 @@ pip install django
 pip install Pillow
 pip install requests
 pip install gunicorn
+pip install mercadopago
+
 
 python manage.py collectstatic
 python manage.py makemigrations

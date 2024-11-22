@@ -8,6 +8,7 @@ def validate_cpf(value):
     cpf = CPF()
     if not cpf.validate(value):
         raise ValidationError(_('Invalid CPF'))
+        
 
 def validate_cnpj(value):
     cnpj = CNPJ()

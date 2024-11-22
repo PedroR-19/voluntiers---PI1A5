@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 17:23-0300\n"
+"POT-Creation-Date: 2024-11-22 10:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,32 +267,36 @@ msgstr "Seus Matches"
 msgid "Create a new position"
 msgstr "Criar uma nova vaga"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:88
+#: .\profiles\templates\profiles\pages\dashboard.html:83
+msgid "Pay for Premium"
+msgstr "Pagar para ser Premium"
+
+#: .\profiles\templates\profiles\pages\dashboard.html:90
 msgid "Edit"
 msgstr "Editar"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:89
-#: .\profiles\templates\profiles\pages\dashboard.html:105
+#: .\profiles\templates\profiles\pages\dashboard.html:91
+#: .\profiles\templates\profiles\pages\dashboard.html:107
 msgid "Applications"
 msgstr "Veja suas candidaturas"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:93
+#: .\profiles\templates\profiles\pages\dashboard.html:95
 msgid "Delete"
-msgstr ""
+msgstr "Deletar"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:99
+#: .\profiles\templates\profiles\pages\dashboard.html:101
 msgid "You do not have any position"
 msgstr "Você não tem nenhuma vaga"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:109
+#: .\profiles\templates\profiles\pages\dashboard.html:111
 msgid "application made at"
 msgstr "Candidatura enviada em"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:113
+#: .\profiles\templates\profiles\pages\dashboard.html:115
 msgid "You have not applied for any position"
 msgstr "Você não se candidatou em nenhuma vaga ainda"
 
-#: .\profiles\templates\profiles\pages\dashboard.html:119
+#: .\profiles\templates\profiles\pages\dashboard.html:121
 msgid "User type not recognized"
 msgstr "Usuário não reconhecido"
 
@@ -371,46 +375,61 @@ msgstr "Endereço de e-mail inválido. Por favor insira um e-mail válido."
 
 #: .\profiles\validators.py:50
 msgid "Error validating email address. Please try again later."
-msgstr ""
-"Erro ao validar o endereço de e-mail. Por favor, tente novamente mais tarde."
+msgstr "Erro ao validar o endereço de e-mail. Por favor, tente novamente mais tarde."
 
 #: .\profiles\validators.py:52
 msgid "Unexpected response format from the email validation service."
 msgstr "Formato de resposta inesperado do serviço de validação de e-mail."
 
-#: .\profiles\views\all.py:34
+#: .\profiles\views\all.py:36
 msgid "Your Institution has been created, please log in."
 msgstr "Sua instituição foi criada, faça o login"
 
-#: .\profiles\views\all.py:49
+#: .\profiles\views\all.py:51
 msgid "Your Voluntier account has been created, please log in."
 msgstr "Seu voluntário foi criado, faça login"
 
-#: .\profiles\views\all.py:105
+#: .\profiles\views\all.py:107
 msgid "You're logged in!"
 msgstr "Você está logado"
 
-#: .\profiles\views\all.py:108
+#: .\profiles\views\all.py:110
 msgid "Invalid credentials"
 msgstr "Credenciais inválidas"
 
-#: .\profiles\views\all.py:110
+#: .\profiles\views\all.py:112
 #, fuzzy
 #| msgid "Invalid username or password"
 msgid "Invalid email or password"
 msgstr "Nome de usuário ou senha inválidos"
 
-#: .\profiles\views\all.py:118
+#: .\profiles\views\all.py:120
 msgid "Invalid logout request"
 msgstr "Solicitação de logout inválida"
 
-#: .\profiles\views\all.py:122
+#: .\profiles\views\all.py:124
 msgid "Logout Done Successfully"
 msgstr "Logout feito com sucesso"
 
-#: .\profiles\views\all.py:152
+#: .\profiles\views\all.py:154
 msgid "Voluntier data saved successfully"
 msgstr "Dados do Voluntário salvos com sucesso"
+
+#: .\profiles\views\all.py:208
+msgid "Your payment was successful, and your account is now premium!"
+msgstr "Seu pagamento foi realizado com sucesso e sua conta agora é premium!"
+
+#: .\profiles\views\all.py:210
+msgid "Institution not found."
+msgstr "Instituição não encontrada."
+
+#: .\profiles\views\all.py:215
+msgid "There was an issue with your payment. Please try again."
+msgstr "Houve um problema com seu pagamento. Por favor, tente novamente."
+
+#: .\profiles\views\all.py:220
+msgid "Your payment is pending. We will notify you once it is complete."
+msgstr "Seu pagamento está pendente. Iremos notificá-lo assim que estiver concluído."
 
 #~ msgid "Applications |"
 #~ msgstr "Candidatos |"

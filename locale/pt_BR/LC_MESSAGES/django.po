@@ -379,8 +379,7 @@ msgstr "Endereço de e-mail inválido. Por favor insira um e-mail válido."
 
 #: .\profiles\validators.py:51
 msgid "Error validating email address. Please try again later."
-msgstr ""
-"Erro ao validar o endereço de e-mail. Por favor, tente novamente mais tarde."
+msgstr "Erro ao validar o endereço de e-mail. Por favor, tente novamente mais tarde."
 
 #: .\profiles\validators.py:53
 msgid "Unexpected response format from the email validation service."
@@ -434,8 +433,7 @@ msgstr "Houve um problema com seu pagamento. Por favor, tente novamente."
 
 #: .\profiles\views\all.py:220
 msgid "Your payment is pending. We will notify you once it is complete."
-msgstr ""
-"Seu pagamento está pendente. Iremos notificá-lo assim que estiver concluído."
+msgstr "Seu pagamento está pendente. Iremos notificá-lo assim que estiver concluído."
 
 #~ msgid "Applications |"
 #~ msgstr "Candidatos |"

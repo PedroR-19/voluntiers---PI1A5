@@ -1,5 +1,38 @@
 [MASTER]
 ignore=venv,static,media,locale
 
+[MASTER]
+
+# Specify the output format.
+# Options are text, parseable, colorized, json
+# Default is text
+output-format=colorized
+
+# Allow long lines in docstrings, as Django templates often require them.
+max-line-length=120
+
+# Disable some Django-specific warnings that are often unnecessary.
+disable=
+    #C0301: Line too long (handled by max-line-length)
+    #C0114: Missing module docstring (Django projects don't always need them)
+    #C0115: Missing class docstring (Django models/forms often have implicit documentation)
+    #C0116: Missing function or method docstring (similar to above)
+    #R0903: Too few public methods (Django models can be simple)
+    #W0212: Access to a protected member (Django's internal structure might use this)
+    #W0613: Unused argument (Django callbacks might have unused parameters)
+    #invalid-name (Django often uses camelCase for models and forms)
+    #no-else-return (Sometimes useful to keep the code easier to read)
+    #too-many-ancestors (Django inheritance is common and often justified)
+
+
 [MESSAGES CONTROL]
-disable=C0114,C0115,C0116
+
+# Adjust the severity level of specific warnings.
+# For example, to make "too-many-arguments" an error:
+# too-many-arguments=2 # 2 is the warning threshold, above which it becomes an error
+
+
+[FORMAT]
+
+# Set the maximum line length (already in [MASTER])
+max-line-length=120

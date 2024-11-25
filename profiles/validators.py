@@ -31,7 +31,10 @@ def validate_password_strength(value):
 
 
 def validate_email(email):
-    api_key = "bb5012362a7542feb491bb6b8994ea37"
+    api_key = "f035cd7f990446aa8c872a7628d647d0"
+    # api_key = "f2520157b6444ba7a2d8e3f02399e442"
+    # api_key = "0aa43b463f744e84b92a862ab294c4fb"
+    
     url = f"https://emailvalidation.abstractapi.com/v1/?api_key={api_key}&email={email}"
     
     try:

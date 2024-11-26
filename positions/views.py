@@ -167,3 +167,30 @@ class positionDetail(DetailView):
         })
 
         return ctx
+    
+class positionListViewInstitution(positionListViewBase):
+    template_name = 'positions/pages/institution.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        institution_translation = _('Institution')
+        
+        # Get the institution name for the title
+        institution = get_object_or_404(Institution, id=self.kwargs.get('institution_id'))
+        
+        ctx.update({
+            'title': f'{institution.name} - {institution_translation} | '
+        })
+
+        return ctx
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        qs = qs.filter(
+            profile__id=self.kwargs.get('institution_id')
+        )
+
+        if not qs:
+            raise Http404()
+
+        return qs

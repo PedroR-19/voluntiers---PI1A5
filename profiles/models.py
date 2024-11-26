@@ -58,6 +58,7 @@ class Institution(models.Model):
     neighborhood = models.CharField(max_length=100, verbose_name=_('Neighborhood'), default='')
     street       = models.CharField(max_length=255, verbose_name=_('Street'), default='')
     more         = models.CharField(max_length=255, verbose_name=_('More'), default='')
+    is_premium   = models.BooleanField(default=False, verbose_name=_('Premium'))
 
     def __str__(self):
         return self.name

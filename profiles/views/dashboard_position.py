@@ -48,9 +48,21 @@ class Dashboardposition(View):
             files=request.FILES or None,
             instance=position
         )
+
+        # Fetch the institution associated with the user
+        institution = get_object_or_404(Institution, user=request.user)
+
+        # Check if the institution is premium and enforce position limit if not
+        if not institution.is_premium:
+            position_count = Position.objects.filter(profile=institution).count()
+            if position_count >= 5:
+                messages.error(request, 'Você alcançou o limite de 5 vagas. Atualize para premium para criar mais.')
+                return redirect(
+                reverse('profiles:dashboard')
+            )
+
         if form.is_valid():
             position = form.save(commit=False)
-            institution = get_object_or_404(Institution, user=request.user)
             position.profile = institution
             position.save()
             messages.success(request, 'Sua vaga foi criada com sucesso')

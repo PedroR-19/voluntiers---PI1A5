@@ -3,7 +3,7 @@ from positions.models import Position, Category
 
 
 class MatchForm(forms.Form):
-    EMPTY_CHOICE = [('', '---------')]  # Define uma opção vazia
+    EMPTY_CHOICE = [('', '---')]  # Define uma opção vazia
     
     shift = forms.ChoiceField(
         choices=EMPTY_CHOICE + Position.SHIFT_CHOICES,
@@ -14,7 +14,7 @@ class MatchForm(forms.Form):
     category = forms.ModelChoiceField(
             queryset=Category.objects.all(),
             required=False,
-            empty_label='Select Category'
+            empty_label='---'
     )
 
     state = forms.ChoiceField(

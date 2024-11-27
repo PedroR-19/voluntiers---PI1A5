@@ -10,20 +10,20 @@
         {% include 'global/partials/messages.html' %}
 
         <form id="larger" method="get">
-            <div id="centered-form" class="form-group">
-                {{ form.shift.label_tag }} {{ form.shift }}
+            <div id="centered-form" class="form-group"> {% trans "Shift" %} </label>
+                 {{ form.shift }}
             </div>
-            <div id="centered-form" class="form-group">
-                {{ form.category.label_tag }} {{ form.category }}
+            <div id="centered-form" class="form-group"> {% trans "Category" %} </label>
+                {{ form.category }}
             </div>
-            <div id="centered-form" class="form-group">
-                {{ form.state.label_tag }} {{ form.state }}
+            <div id="centered-form" class="form-group"> {% trans "State" %} </label>
+                {{ form.state }}
             </div>
-            <div id="centered-form" class="form-group">
-                {{ form.city.label_tag }} {{ form.city }}
+            <div id="centered-form" class="form-group"> {% trans "City" %} </label>
+                {{ form.city }}
             </div> 
-            <div id="centered-form" class="form-group">
-                {{ form.neighborhood.label_tag }} {{ form.neighborhood }}
+            <div id="centered-form" class="form-group"> {% trans "Neighborhood" %} </label>
+                {{ form.neighborhood }}
             </div>
             <button id="btn-lil-far" type="submit" class="styled-button">{% translate 'Search' %}</button>
         </form>

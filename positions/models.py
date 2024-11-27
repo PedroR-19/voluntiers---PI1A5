@@ -64,13 +64,13 @@ class Position(models.Model):
 
     profile = models.ForeignKey(Institution, on_delete=models.CASCADE)
 
-    shift      = models.CharField(max_length=10, choices=SHIFT_CHOICES, default='morning', verbose_name=_('Shift'))
-    cep      = models.CharField(max_length=100, verbose_name=_('cep'))
-    state      = models.CharField(max_length=100, verbose_name=_('State'))
-    city       = models.CharField(max_length=100, verbose_name=_('City'))
-    neighborhood       = models.CharField(max_length=100, verbose_name=_('Neighborhood'), default='')
-    street = models.CharField(max_length=255, verbose_name=_('Street'), default='')
-    more = models.CharField(max_length=255, verbose_name=_('More'), default='')
+    shift        = models.CharField(max_length=10, choices=SHIFT_CHOICES, default='morning', verbose_name=_('Shift'))
+    cep          = models.CharField(max_length=100, verbose_name=_('cep'))
+    state        = models.CharField(max_length=100, verbose_name=_('State'))
+    city         = models.CharField(max_length=100, verbose_name=_('City'))
+    neighborhood = models.CharField(max_length=100, verbose_name=_('Neighborhood'), default='')
+    street       = models.CharField(max_length=255, verbose_name=_('Street'), default='')
+    more         = models.CharField(max_length=255, verbose_name=_('More'), default='')
 
 
     def __str__(self):
